@@ -1,0 +1,44 @@
+# DNS Configuration for airys.video
+domain: airys.video
+
+# Implementation Steps
+steps:
+  1. Add DNS Records:
+    - Add A record:
+      name: @ (or leave empty for root domain)
+      value: ghs.googlehosted.com
+      TTL: 3600 (1 hour)
+    
+    - Add AAAA record:
+      name: @ (or leave empty for root domain)
+      value: ghs.googlehosted.com
+      TTL: 3600
+    
+    - Add CNAME record for www subdomain:
+      name: www
+      value: ghs.googlehosted.com
+      TTL: 3600
+
+  2. Verification:
+    - Wait for DNS propagation (can take up to 24 hours)
+    - Verify records are properly set
+    - Test both apex (airys.video) and www.airys.video
+
+  3. SSL Certificate:
+    - Will be automatically provisioned by Google
+    - May take up to 24 hours to issue
+    - Covers both apex and www domains
+
+notes: |
+  - Use ghs.googlehosted.com for all records
+  - Google manages the actual IP addresses
+  - Automatic SSL certificate management
+  - No manual certificate renewal needed
+  - DNS changes may take up to 24 hours to propagate
+  - Keep these records even after service deployment
+
+warnings: |
+  - Do not remove or change these records after setup
+  - Always use ghs.googlehosted.com (do not use direct IP addresses)
+  - Wait for full DNS propagation before mapping domain
+  - Keep TTL at 3600 for better caching 

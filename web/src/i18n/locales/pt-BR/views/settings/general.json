@@ -1,0 +1,45 @@
+{
+  "title": "Configurações Gerais",
+  "language": {
+    "title": "Idioma",
+    "interface": "Idioma da Interface",
+    "description": "Selecione seu idioma preferido para a interface"
+  },
+  "liveDashboard": {
+    "title": "Painel ao Vivo",
+    "autoLive": "Visualização Automática",
+    "autoLiveDescription": "Alternar automaticamente para visualização ao vivo quando movimento for detectado",
+    "autoLiveNote": "Isso só funcionará quando o painel estiver aberto",
+    "alertVideos": "Vídeos de Alerta",
+    "alertVideosDescription": "Mostrar clipes de vídeo para alertas no painel"
+  },
+  "layouts": {
+    "title": "Layouts",
+    "description": "Gerenciar seus layouts de câmera salvos",
+    "clearButton": "Limpar Layouts Salvos",
+    "cleared": "Layouts limpos com sucesso para {{group}}",
+    "clearError": "Erro ao limpar layouts: {{error}}"
+  },
+  "streaming": {
+    "title": "Transmissão",
+    "description": "Configurar definições de transmissão",
+    "clearButton": "Limpar Configurações de Transmissão",
+    "cleared": "Configurações de transmissão limpas com sucesso",
+    "clearError": "Erro ao limpar configurações de transmissão: {{error}}"
+  },
+  "recordings": {
+    "title": "Gravações",
+    "playbackRate": "Taxa de Reprodução Padrão",
+    "playbackRateDescription": "Definir a velocidade padrão de reprodução para gravações",
+    "playbackRateValue": "{{rate}}x"
+  },
+  "calendar": {
+    "title": "Calendário",
+    "firstWeekday": "Primeiro Dia da Semana",
+    "firstWeekdayDescription": "Definir qual dia sua semana começa",
+    "days": {
+      "sunday": "Domingo",
+      "monday": "Segunda-feira"
+    }
+  }
+} 

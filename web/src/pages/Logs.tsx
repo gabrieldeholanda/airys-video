@@ -44,7 +44,7 @@ function Logs() {
   const lastFetchedIndexRef = useRef(-1);
 
   useEffect(() => {
-    document.title = `${logService[0].toUpperCase()}${logService.substring(1)} Logs - Frigate`;
+    document.title = `${logService[0].toUpperCase()}${logService.substring(1)} Logs - Airys`;
   }, [logService]);
 
   useEffect(() => {

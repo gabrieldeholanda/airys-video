@@ -30,6 +30,7 @@ import { useStreamingSettings } from "@/context/streaming-settings-provider";
 import { IoIosWarning } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 type LiveContextMenuProps = {
   className?: string;
@@ -69,6 +70,7 @@ export default function LiveContextMenu({
   resetPreferredLiveMode,
   children,
 }: LiveContextMenuProps) {
+  const { t: translate } = useTranslation(['ui']);
   const [showSettings, setShowSettings] = useState(false);
 
   // streaming settings
@@ -82,16 +84,19 @@ export default function LiveContextMenu({
     );
 
   useEffect(() => {
-    if (cameraGroup) {
+    if (cameraGroup && cameraGroup != "default") {
       setGroupStreamingSettings(allGroupsStreamingSettings[cameraGroup]);
     }
-    // set individual group when all groups changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allGroupsStreamingSettings]);
+  }, [allGroupsStreamingSettings, cameraGroup]);
 
   const onSave = useCallback(
     (settings: GroupStreamingSettings) => {
-      if (!cameraGroup || !allGroupsStreamingSettings) {
+      if (
+        !cameraGroup ||
+        !allGroupsStreamingSettings ||
+        cameraGroup == "default" ||
+        !settings
+      ) {
         return;
       }
 
@@ -194,7 +199,7 @@ export default function LiveContextMenu({
             {preferredLiveMode == "jsmpeg" && isRestreamed && (
               <div className="flex flex-row items-center gap-1">
                 <IoIosWarning className="mr-1 size-4 text-danger" />
-                <p className="mr-2 text-xs">Low-bandwidth mode</p>
+                <p className="mr-2 text-xs">{translate('menu.live.camera_name.low_bandwidth')}</p>
               </div>
             )}
           </div>
@@ -203,7 +208,7 @@ export default function LiveContextMenu({
               <ContextMenuSeparator className="mb-1" />
               <div className="p-2 text-sm">
                 <div className="flex w-full flex-col gap-1">
-                  <p>Audio</p>
+                  <p>{translate('menu.live.audio.title')}</p>
                   <div className="flex flex-row items-center gap-1">
                     <VolumeIcon
                       className="size-5"
@@ -229,7 +234,7 @@ export default function LiveContextMenu({
               className="flex w-full cursor-pointer items-center justify-start gap-2"
               onClick={muteAll}
             >
-              <div className="text-primary">Mute All Cameras</div>
+              <div className="text-primary">{translate('menu.live.actions.mute_all')}</div>
             </div>
           </ContextMenuItem>
           <ContextMenuItem>
@@ -237,7 +242,7 @@ export default function LiveContextMenu({
               className="flex w-full cursor-pointer items-center justify-start gap-2"
               onClick={unmuteAll}
             >
-              <div className="text-primary">Unmute All Cameras</div>
+              <div className="text-primary">{translate('menu.live.actions.unmute_all')}</div>
             </div>
           </ContextMenuItem>
           <ContextMenuSeparator />
@@ -247,7 +252,7 @@ export default function LiveContextMenu({
               onClick={toggleStats}
             >
               <div className="text-primary">
-                {statsState ? "Hide" : "Show"} Stream Stats
+                {statsState ? translate('menu.live.actions.hide_stats') : translate('menu.live.actions.show_stats')}
               </div>
             </div>
           </ContextMenuItem>
@@ -256,7 +261,7 @@ export default function LiveContextMenu({
               className="flex w-full cursor-pointer items-center justify-start gap-2"
               onClick={() => navigate(`/settings?page=debug&camera=${camera}`)}
             >
-              <div className="text-primary">Debug View</div>
+              <div className="text-primary">{translate('menu.live.actions.debug_view')}</div>
             </div>
           </ContextMenuItem>
           {cameraGroup && cameraGroup !== "default" && (
@@ -267,7 +272,7 @@ export default function LiveContextMenu({
                   className="flex w-full cursor-pointer items-center justify-start gap-2"
                   onClick={() => setShowSettings(true)}
                 >
-                  <div className="text-primary">Streaming Settings</div>
+                  <div className="text-primary">{translate('menu.live.actions.streaming_settings')}</div>
                 </div>
               </ContextMenuItem>
             </>
@@ -280,7 +285,7 @@ export default function LiveContextMenu({
                   className="flex w-full cursor-pointer items-center justify-start gap-2"
                   onClick={resetPreferredLiveMode}
                 >
-                  <div className="text-primary">Reset</div>
+                  <div className="text-primary">{translate('menu.live.actions.reset')}</div>
                 </div>
               </ContextMenuItem>
             </>

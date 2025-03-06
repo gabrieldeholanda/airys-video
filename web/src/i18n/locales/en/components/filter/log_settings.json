@@ -1,0 +1,19 @@
+{
+  "title": "Settings",
+  "filter": {
+    "title": "Filter",
+    "description": "Filter logs by severity level",
+    "all_logs": "All Logs",
+    "severity": {
+      "debug": "Debug",
+      "info": "Info",
+      "warning": "Warning",
+      "error": "Error"
+    }
+  },
+  "loading": {
+    "title": "Loading",
+    "description": "Configure how logs are loaded",
+    "disableStreaming": "Disable Streaming"
+  }
+} 

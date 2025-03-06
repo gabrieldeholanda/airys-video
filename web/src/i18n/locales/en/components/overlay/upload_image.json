@@ -1,0 +1,9 @@
+{
+  "button": {
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "validation": {
+    "selectImage": "Please select an image file."
+  }
+} 

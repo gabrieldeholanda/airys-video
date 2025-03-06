@@ -1,0 +1,64 @@
+{
+  "title": {
+    "new": "Nova Zona",
+    "edit": "Editar Zona"
+  },
+  "description": "As zonas permitem que você defina uma área específica do quadro para determinar se um objeto está ou não dentro de uma área específica.",
+  "points": {
+    "count_zero": "0 pontos",
+    "count_one": "1 ponto",
+    "count_other": "{{count}} pontos"
+  },
+  "draw_instructions": "Clique para desenhar um polígono na imagem.",
+  "form": {
+    "name": {
+      "label": "Nome",
+      "placeholder": "Digite um nome...",
+      "description": "O nome deve ter pelo menos 2 caracteres e não pode ser o nome de uma câmera ou outra zona."
+    },
+    "inertia": {
+      "label": "Inércia",
+      "placeholder": "3",
+      "description": "Especifica quantos quadros um objeto deve estar em uma zona antes de ser considerado na zona. Padrão: 3"
+    },
+    "loitering_time": {
+      "label": "Tempo de Permanência",
+      "placeholder": "0",
+      "description": "Define um tempo mínimo em segundos que o objeto deve estar na zona para ativá-la. Padrão: 0"
+    },
+    "objects": {
+      "label": "Objetos",
+      "description": "Lista de objetos que se aplicam a esta zona.",
+      "all": "Todos os Objetos",
+      "options": {
+        "car": "carro",
+        "cat": "gato",
+        "dog": "cachorro",
+        "person": "pessoa"
+      }
+    },
+    "speed_estimation": {
+      "label": "Estimativa de Velocidade",
+      "description": "Ative a estimativa de velocidade para objetos nesta zona. A zona deve ter exatamente 4 pontos.",
+      "error": {
+        "points": "Zonas com estimativa de velocidade devem ter exatamente 4 pontos.",
+        "loitering": "Zonas com tempo de permanência maior que 0 não devem ser usadas com estimativa de velocidade."
+      },
+      "lines": {
+        "a": "Distância da Linha A ({{unit}})",
+        "b": "Distância da Linha B ({{unit}})",
+        "c": "Distância da Linha C ({{unit}})",
+        "d": "Distância da Linha D ({{unit}})"
+      },
+      "threshold": {
+        "label": "Limite de Velocidade ({{unit}})",
+        "description": "Especifica uma velocidade mínima para que os objetos sejam considerados nesta zona."
+      }
+    }
+  },
+  "actions": {
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  }
+} 

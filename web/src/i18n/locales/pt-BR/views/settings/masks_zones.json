@@ -1,0 +1,19 @@
+{
+  "title": "Máscaras / Zonas",
+  "documentation": "Documentação",
+  "zones": {
+    "title": "Zonas",
+    "description": "As zonas permitem que você defina uma área específica do quadro para determinar se um objeto está ou não dentro de uma área específica.",
+    "add": "Adicionar Zona"
+  },
+  "motion_masks": {
+    "title": "Máscaras de Movimento",
+    "description": "Máscaras de movimento são usadas para evitar que tipos indesejados de movimento acionem a detecção. O excesso de mascaramento dificultará o rastreamento de objetos.",
+    "add": "Adicionar Máscara de Movimento"
+  },
+  "object_masks": {
+    "title": "Máscaras de Objeto",
+    "description": "Máscaras de filtro de objeto são usadas para filtrar falsos positivos para um determinado tipo de objeto com base na localização.",
+    "add": "Adicionar Máscara de Objeto"
+  }
+} 

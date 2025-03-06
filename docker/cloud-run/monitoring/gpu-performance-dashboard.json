@@ -1,0 +1,229 @@
+{
+  "displayName": "Airys Video - Frigate Performance",
+  "gridLayout": {
+    "columns": 2,
+    "widgets": [
+      {
+        "title": "Object Detection Rate",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"custom.googleapis.com/frigate/detection_rate\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "fps"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Detection Rate"
+            }
+          ],
+          "yAxis": {
+            "label": "Detections/second",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Frame Processing Rate",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"custom.googleapis.com/frigate/frame_processing_rate\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "fps"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Processing Rate"
+            }
+          ],
+          "yAxis": {
+            "label": "Frames/second",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "GPU Utilization",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"run.googleapis.com/container/nvidia_gpu/utilization\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "%"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "GPU Utilization"
+            }
+          ],
+          "yAxis": {
+            "label": "Utilization (%)",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "GPU Memory Usage",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"run.googleapis.com/container/nvidia_gpu/memory_used\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "By"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Memory Used"
+            },
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"run.googleapis.com/container/nvidia_gpu/memory_total\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "By"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Memory Total"
+            }
+          ],
+          "yAxis": {
+            "label": "Memory (bytes)",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Event Detection Rate",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"custom.googleapis.com/frigate/event_detection_rate\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                }
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Events/minute"
+            }
+          ],
+          "yAxis": {
+            "label": "Events/minute",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Detection Accuracy",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"custom.googleapis.com/frigate/detection_accuracy\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "%"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Accuracy"
+            }
+          ],
+          "yAxis": {
+            "label": "Accuracy (%)",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Storage Usage",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"custom.googleapis.com/frigate/storage_usage\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                },
+                "unitOverride": "By"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "Storage Used"
+            }
+          ],
+          "yAxis": {
+            "label": "Storage (bytes)",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Camera Status",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"custom.googleapis.com/frigate/camera_status\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN"
+                  }
+                }
+              },
+              "plotType": "STACKED_BAR",
+              "legendTemplate": "Online Cameras"
+            }
+          ],
+          "yAxis": {
+            "label": "Count",
+            "scale": "LINEAR"
+          }
+        }
+      }
+    ]
+  }
+} 

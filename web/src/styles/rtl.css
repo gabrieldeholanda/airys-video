@@ -1,0 +1,58 @@
+/* RTL Support */
+[dir="rtl"] {
+  /* Text alignment */
+  text-align: right;
+}
+
+[dir="rtl"] .direction-rtl {
+  direction: rtl;
+}
+
+/* Flip icons and arrows */
+[dir="rtl"] .icon-flip {
+  transform: scaleX(-1);
+}
+
+/* Reverse margins and paddings */
+[dir="rtl"] .ml-auto {
+  margin-left: unset !important;
+  margin-right: auto !important;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: unset !important;
+  margin-left: auto !important;
+}
+
+/* Reverse borders */
+[dir="rtl"] .border-r {
+  border-right: none !important;
+  border-left: 1px solid var(--border-color) !important;
+}
+
+[dir="rtl"] .border-l {
+  border-left: none !important;
+  border-right: 1px solid var(--border-color) !important;
+}
+
+/* Reverse padding */
+[dir="rtl"] .pl-4 {
+  padding-left: unset !important;
+  padding-right: 1rem !important;
+}
+
+[dir="rtl"] .pr-4 {
+  padding-right: unset !important;
+  padding-left: 1rem !important;
+}
+
+/* Reverse flex direction */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Keep LTR for specific elements */
+[dir="rtl"] .keep-ltr {
+  direction: ltr;
+  text-align: left;
+} 

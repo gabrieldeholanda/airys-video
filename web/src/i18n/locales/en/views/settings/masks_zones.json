@@ -1,0 +1,19 @@
+{
+  "title": "Masks / Zones",
+  "documentation": "Documentation",
+  "zones": {
+    "title": "Zones",
+    "description": "Zones allow you to define a specific area of the frame so you can determine whether or not an object is within a particular area.",
+    "add": "Add Zone"
+  },
+  "motion_masks": {
+    "title": "Motion Masks",
+    "description": "Motion masks are used to prevent unwanted types of motion from triggering detection. Over masking will make it more difficult for objects to be tracked.",
+    "add": "Add Motion Mask"
+  },
+  "object_masks": {
+    "title": "Object Masks",
+    "description": "Object filter masks are used to filter out false positives for a given object type based on location.",
+    "add": "Add Object Mask"
+  }
+} 

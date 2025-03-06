@@ -1,0 +1,35 @@
+{
+  "general": {
+    "title": "General",
+    "description": "Filter by camera, label, zone, and more",
+    "labels": {
+      "title": "Labels",
+      "all": "All Labels",
+      "none": "No labels available"
+    },
+    "cameras": {
+      "title": "Cameras",
+      "all": "All Cameras",
+      "none": "No cameras available"
+    },
+    "zones": {
+      "title": "Zones",
+      "all": "All Zones",
+      "none": "No zones available"
+    }
+  },
+  "sort": {
+    "title": "Sort",
+    "description": "Sort results by date or score",
+    "types": {
+      "date_desc": "Date (Newest)",
+      "date_asc": "Date (Oldest)",
+      "score_desc": "Score (Highest)",
+      "score_asc": "Score (Lowest)"
+    }
+  },
+  "actions": {
+    "apply": "Apply",
+    "reset": "Reset"
+  }
+} 

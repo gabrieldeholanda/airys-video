@@ -1,0 +1,32 @@
+{
+  "reviewed": {
+    "label": "Mostrar Revisados",
+    "aria": "Mostrar revisados"
+  },
+  "motion": {
+    "label": "Apenas movimento",
+    "aria": "Mostrar Apenas Movimento"
+  },
+  "general": {
+    "button": {
+      "label": "Filtro",
+      "aria": "Filtro"
+    },
+    "labels": {
+      "title": "Todos os Rótulos",
+      "all": "Todos os Rótulos"
+    },
+    "zones": {
+      "title": "Todas as Zonas",
+      "all": "Todas as Zonas"
+    },
+    "severity": {
+      "alerts": "Alertas",
+      "detections": "Detecções"
+    }
+  },
+  "actions": {
+    "apply": "Aplicar",
+    "reset": "Redefinir"
+  }
+} 

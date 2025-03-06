@@ -1,0 +1,63 @@
+{
+  "layout": {
+    "grid": "Visualização em Grade",
+    "list": "Visualização em Lista",
+    "edit": "Editar Layout",
+    "save": "Salvar Layout",
+    "cancel": "Cancelar Edição"
+  },
+  "camera": {
+    "select": "Selecionar Câmera",
+    "group": "Grupo de Câmeras",
+    "birdseye": "Visão Panorâmica",
+    "status": {
+      "offline": "Câmera Offline",
+      "loading": "Carregando Câmera",
+      "error": "Erro na Câmera",
+      "reconnecting": "Reconectando..."
+    }
+  },
+  "controls": {
+    "fullscreen": {
+      "enter": "Entrar em Tela Cheia",
+      "exit": "Sair da Tela Cheia"
+    },
+    "audio": {
+      "mute": "Silenciar Áudio",
+      "unmute": "Ativar Áudio",
+      "mute_all": "Silenciar Todas",
+      "unmute_all": "Ativar Todas"
+    },
+    "stats": {
+      "show": "Mostrar Estatísticas",
+      "hide": "Ocultar Estatísticas",
+      "fps": "FPS",
+      "bitrate": "Taxa de Bits",
+      "resolution": "Resolução"
+    }
+  },
+  "events": {
+    "title": "Eventos Recentes",
+    "empty": "Nenhum evento recente",
+    "loading": "Carregando eventos...",
+    "error": "Erro ao carregar eventos"
+  },
+  "streaming": {
+    "mode": {
+      "title": "Modo de Transmissão",
+      "webrtc": "WebRTC",
+      "jsmpeg": "JSMPEG",
+      "mse": "MSE"
+    },
+    "quality": {
+      "title": "Qualidade da Transmissão",
+      "high": "Alta Qualidade",
+      "low": "Baixa Largura de Banda"
+    },
+    "settings": {
+      "title": "Configurações de Transmissão",
+      "background": "Reproduzir em Segundo Plano",
+      "autoplay": "Reprodução Automática em Movimento"
+    }
+  }
+} 

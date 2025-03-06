@@ -21,6 +21,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 
 type PlatformAwareDialogProps = {
   trigger: JSX.Element;
@@ -79,6 +80,8 @@ export function PlatformAwareSheet({
   open,
   onOpenChange,
 }: PlatformAwareSheetProps) {
+  const { t } = useTranslation("components/overlay/platform_dialog");
+
   if (isMobile) {
     return (
       <MobilePage open={open} onOpenChange={onOpenChange}>
@@ -91,7 +94,7 @@ export function PlatformAwareSheet({
               className="mx-2"
               onClose={() => onOpenChange(false)}
             >
-              <MobilePageTitle>More Filters</MobilePageTitle>
+              <MobilePageTitle>{t("sheet.title")}</MobilePageTitle>
             </MobilePageHeader>
             <div className={contentClassName}>{content}</div>
           </MobilePageContent>
@@ -108,9 +111,11 @@ export function PlatformAwareSheet({
       <SheetContent className={contentClassName}>
         <SheetHeader>
           <SheetTitle className={title ? titleClassName : "sr-only"}>
-            {title ?? ""}
+            {title ?? t("sheet.title")}
           </SheetTitle>
-          <SheetDescription className="sr-only">Information</SheetDescription>
+          <SheetDescription className="sr-only">
+            {t("sheet.description")}
+          </SheetDescription>
         </SheetHeader>
         {content}
       </SheetContent>

@@ -1,0 +1,64 @@
+{
+  "title": {
+    "new": "New Zone",
+    "edit": "Edit Zone"
+  },
+  "description": "Zones allow you to define a specific area of the frame so you can determine whether or not an object is within a particular area.",
+  "points": {
+    "count_zero": "0 points",
+    "count_one": "1 point",
+    "count_other": "{{count}} points"
+  },
+  "draw_instructions": "Click to draw a polygon on the image.",
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Enter a name...",
+      "description": "Name must be at least 2 characters and must not be the name of a camera or another zone."
+    },
+    "inertia": {
+      "label": "Inertia",
+      "placeholder": "3",
+      "description": "Specifies how many frames that an object must be in a zone before they are considered in the zone. Default: 3"
+    },
+    "loitering_time": {
+      "label": "Loitering Time",
+      "placeholder": "0",
+      "description": "Sets a minimum amount of time in seconds that the object must be in the zone for it to activate. Default: 0"
+    },
+    "objects": {
+      "label": "Objects",
+      "description": "List of objects that apply to this zone.",
+      "all": "All Objects",
+      "options": {
+        "car": "car",
+        "cat": "cat",
+        "dog": "dog",
+        "person": "person"
+      }
+    },
+    "speed_estimation": {
+      "label": "Speed Estimation",
+      "description": "Enable speed estimation for objects in this zone. The zone must have exactly 4 points.",
+      "error": {
+        "points": "Zones with speed estimation must have exactly 4 points.",
+        "loitering": "Zones with loitering times greater than 0 should not be used with speed estimation."
+      },
+      "lines": {
+        "a": "Line A distance ({{unit}})",
+        "b": "Line B distance ({{unit}})",
+        "c": "Line C distance ({{unit}})",
+        "d": "Line D distance ({{unit}})"
+      },
+      "threshold": {
+        "label": "Speed Threshold ({{unit}})",
+        "description": "Specifies a minimum speed for objects to be considered in this zone."
+      }
+    }
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  }
+} 

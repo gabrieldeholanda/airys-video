@@ -33,6 +33,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 type SearchFilterDialogProps = {
   config?: FrigateConfig;
@@ -51,6 +52,8 @@ export default function SearchFilterDialog({
   filterValues,
   onUpdateFilter,
 }: SearchFilterDialogProps) {
+  const { t } = useTranslation(["ui"]);
+
   // data
 
   const [currentFilter, setCurrentFilter] = useState(filter ?? {});
@@ -84,7 +87,7 @@ export default function SearchFilterDialog({
   const trigger = (
     <Button
       className="flex items-center gap-2"
-      aria-label="More Filters"
+      aria-label={t("overlay.search_filter.button.moreFilters")}
       size="sm"
       variant={moreFiltersSelected ? "select" : "default"}
     >
@@ -93,7 +96,7 @@ export default function SearchFilterDialog({
           moreFiltersSelected ? "text-white" : "text-secondary-foreground",
         )}
       />
-      More Filters
+      {t("overlay.search_filter.button.moreFilters")}
     </Button>
   );
   const content = (
@@ -166,7 +169,7 @@ export default function SearchFilterDialog({
       <div className="flex items-center justify-evenly p-2">
         <Button
           variant="select"
-          aria-label="Apply"
+          aria-label={t("overlay.search_filter.button.apply")}
           onClick={() => {
             if (currentFilter != filter) {
               onUpdateFilter(currentFilter);
@@ -175,10 +178,10 @@ export default function SearchFilterDialog({
             setOpen(false);
           }}
         >
-          Apply
+          {t("overlay.search_filter.button.apply")}
         </Button>
         <Button
-          aria-label="Reset filters to default values"
+          aria-label={t("overlay.search_filter.button.resetAriaLabel")}
           onClick={() => {
             setCurrentFilter((prevFilter) => ({
               ...prevFilter,
@@ -195,7 +198,7 @@ export default function SearchFilterDialog({
             }));
           }}
         >
-          Reset
+          {t("overlay.search_filter.button.reset")}
         </Button>
       </div>
     </div>
@@ -231,6 +234,8 @@ function TimeRangeFilterContent({
   timeRange,
   updateTimeRange,
 }: TimeRangeFilterContentProps) {
+  const { t } = useTranslation(["ui"]);
+
   const [startOpen, setStartOpen] = useState(false);
   const [endOpen, setEndOpen] = useState(false);
 
@@ -272,7 +277,7 @@ function TimeRangeFilterContent({
 
   return (
     <div className="overflow-x-hidden">
-      <div className="text-lg">Time Range</div>
+      <div className="text-lg">{t("overlay.search_filter.timeRange.title")}</div>
       <div className="mt-3 flex flex-row items-center justify-center gap-2">
         <Popover
           open={startOpen}
@@ -285,7 +290,7 @@ function TimeRangeFilterContent({
           <PopoverTrigger asChild>
             <Button
               className={`text-primary ${isDesktop ? "" : "text-xs"} `}
-              aria-label="Select Start Time"
+              aria-label={t("overlay.search_filter.timeRange.startTimeAriaLabel")}
               variant={startOpen ? "select" : "default"}
               size="sm"
               onClick={() => {
@@ -323,7 +328,7 @@ function TimeRangeFilterContent({
           <PopoverTrigger asChild>
             <Button
               className={`text-primary ${isDesktop ? "" : "text-xs"}`}
-              aria-label="Select End Time"
+              aria-label={t("overlay.search_filter.timeRange.endTimeAriaLabel")}
               variant={endOpen ? "select" : "default"}
               size="sm"
               onClick={() => {
@@ -366,11 +371,13 @@ export function ZoneFilterContent({
   zones,
   updateZones,
 }: ZoneFilterContentProps) {
+  const { t } = useTranslation(["ui"]);
+
   return (
     <>
       <div className="overflow-x-hidden">
         <DropdownMenuSeparator className="mb-3" />
-        <div className="text-lg">Zones</div>
+        <div className="text-lg">{t("overlay.search_filter.zones.title")}</div>
         {allZones && (
           <>
             <div className="mb-5 mt-2.5 flex items-center justify-between">
@@ -378,7 +385,7 @@ export function ZoneFilterContent({
                 className="mx-2 cursor-pointer text-primary"
                 htmlFor="allZones"
               >
-                All Zones
+                {t("overlay.search_filter.zones.allZones")}
               </Label>
               <Switch
                 className="ml-1"
@@ -433,13 +440,15 @@ export function SubFilterContent({
   subLabels,
   setSubLabels,
 }: SubFilterContentProps) {
+  const { t } = useTranslation(["ui"]);
+
   return (
     <div className="overflow-x-hidden">
       <DropdownMenuSeparator className="mb-3" />
-      <div className="text-lg">Sub Labels</div>
+      <div className="text-lg">{t("overlay.search_filter.subLabels.title")}</div>
       <div className="mb-5 mt-2.5 flex items-center justify-between">
         <Label className="mx-2 cursor-pointer text-primary" htmlFor="allLabels">
-          All Sub Labels
+          {t("overlay.search_filter.subLabels.allSubLabels")}
         </Label>
         <Switch
           className="ml-1"
@@ -491,10 +500,12 @@ export function ScoreFilterContent({
   maxScore,
   setScoreRange,
 }: ScoreFilterContentProps) {
+  const { t } = useTranslation(["ui"]);
+
   return (
     <div className="overflow-x-hidden">
       <DropdownMenuSeparator className="mb-3" />
-      <div className="mb-3 text-lg">Score</div>
+      <div className="mb-3 text-lg">{t("overlay.search_filter.score.title")}</div>
       <div className="flex items-center gap-1">
         <Input
           className="w-14 text-center"
@@ -545,11 +556,13 @@ export function SpeedFilterContent({
   maxSpeed,
   setSpeedRange,
 }: SpeedFilterContentProps) {
+  const { t } = useTranslation(["ui"]);
+
   return (
     <div className="overflow-x-hidden">
       <DropdownMenuSeparator className="mb-3" />
       <div className="mb-3 text-lg">
-        Estimated Speed ({config?.ui.unit_system == "metric" ? "kph" : "mph"})
+        {t("overlay.search_filter.speed.title")} ({config?.ui.unit_system == "metric" ? t("overlay.search_filter.speed.metric") : t("overlay.search_filter.speed.imperial")})
       </div>
       <div className="flex items-center gap-1">
         <Input
@@ -608,6 +621,8 @@ export function SnapshotClipFilterContent({
   submittedToFrigatePlus,
   setSnapshotClip,
 }: SnapshotClipContentProps) {
+  const { t } = useTranslation(["ui"]);
+
   const [isSnapshotFilterActive, setIsSnapshotFilterActive] = useState(
     hasSnapshot !== undefined,
   );
@@ -636,7 +651,7 @@ export function SnapshotClipFilterContent({
   return (
     <div className="overflow-x-hidden">
       <DropdownMenuSeparator className="mb-3" />
-      <div className="mb-3 text-lg">Features</div>
+      <div className="mb-3 text-lg">{t("overlay.search_filter.features.title")}</div>
 
       <div className="my-2.5 space-y-1">
         <div className="flex items-center justify-between">
@@ -658,7 +673,7 @@ export function SnapshotClipFilterContent({
               htmlFor="snapshot-filter"
               className="cursor-pointer text-sm font-medium leading-none"
             >
-              Has a snapshot
+              {t("overlay.search_filter.features.hasSnapshot")}
             </Label>
           </div>
           <ToggleGroup
@@ -676,17 +691,17 @@ export function SnapshotClipFilterContent({
           >
             <ToggleGroupItem
               value="yes"
-              aria-label="Yes"
+              aria-label={t("overlay.search_filter.features.yes")}
               className="data-[state=on]:bg-selected data-[state=on]:text-white data-[state=on]:hover:bg-selected data-[state=on]:hover:text-white"
             >
-              Yes
+              {t("overlay.search_filter.features.yes")}
             </ToggleGroupItem>
             <ToggleGroupItem
               value="no"
-              aria-label="No"
+              aria-label={t("overlay.search_filter.features.no")}
               className="data-[state=on]:bg-selected data-[state=on]:text-white data-[state=on]:hover:bg-selected data-[state=on]:hover:text-white"
             >
-              No
+              {t("overlay.search_filter.features.no")}
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
@@ -720,12 +735,7 @@ export function SnapshotClipFilterContent({
                       side="left"
                       sideOffset={5}
                     >
-                      You must first filter on tracked objects that have a
-                      snapshot.
-                      <br />
-                      <br />
-                      Tracked objects without a snapshot cannot be submitted to
-                      Frigate+.
+                      {t("overlay.search_filter.features.tooltip.frigatePlusDisabled")}
                     </TooltipContent>
                   )}
                 </Tooltip>
@@ -734,7 +744,7 @@ export function SnapshotClipFilterContent({
                 htmlFor="plus-filter"
                 className="cursor-pointer text-sm font-medium leading-none"
               >
-                Submitted to Frigate+
+                {t("overlay.search_filter.features.submittedToFrigatePlus")}
               </Label>
             </div>
             <ToggleGroup
@@ -757,17 +767,17 @@ export function SnapshotClipFilterContent({
             >
               <ToggleGroupItem
                 value="yes"
-                aria-label="Yes"
+                aria-label={t("overlay.search_filter.features.yes")}
                 className="data-[state=on]:bg-selected data-[state=on]:text-white data-[state=on]:hover:bg-selected data-[state=on]:hover:text-white"
               >
-                Yes
+                {t("overlay.search_filter.features.yes")}
               </ToggleGroupItem>
               <ToggleGroupItem
                 value="no"
-                aria-label="No"
+                aria-label={t("overlay.search_filter.features.no")}
                 className="data-[state=on]:bg-selected data-[state=on]:text-white data-[state=on]:hover:bg-selected data-[state=on]:hover:text-white"
               >
-                No
+                {t("overlay.search_filter.features.no")}
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -796,7 +806,7 @@ export function SnapshotClipFilterContent({
               htmlFor="clip-filter"
               className="cursor-pointer text-sm font-medium leading-none"
             >
-              Has a video clip
+              {t("overlay.search_filter.features.hasClip")}
             </Label>
           </div>
           <ToggleGroup
@@ -812,17 +822,17 @@ export function SnapshotClipFilterContent({
           >
             <ToggleGroupItem
               value="yes"
-              aria-label="Yes"
+              aria-label={t("overlay.search_filter.features.yes")}
               className="data-[state=on]:bg-selected data-[state=on]:text-white data-[state=on]:hover:bg-selected data-[state=on]:hover:text-white"
             >
-              Yes
+              {t("overlay.search_filter.features.yes")}
             </ToggleGroupItem>
             <ToggleGroupItem
               value="no"
-              aria-label="No"
+              aria-label={t("overlay.search_filter.features.no")}
               className="data-[state=on]:bg-selected data-[state=on]:text-white data-[state=on]:hover:bg-selected data-[state=on]:hover:text-white"
             >
-              No
+              {t("overlay.search_filter.features.no")}
             </ToggleGroupItem>
           </ToggleGroup>
         </div>

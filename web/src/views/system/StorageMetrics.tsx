@@ -13,6 +13,7 @@ import { FrigateConfig } from "@/types/frigateConfig";
 import { useTimezone } from "@/hooks/use-date-utils";
 import { RecordingsSummary } from "@/types/review";
 import { formatUnixTimestampToDateTime } from "@/utils/dateUtil";
+import { useTranslation } from "react-i18next";
 
 type CameraStorage = {
   [key: string]: {
@@ -28,6 +29,7 @@ type StorageMetricsProps = {
 export default function StorageMetrics({
   setLastUpdated,
 }: StorageMetricsProps) {
+  const { t } = useTranslation(["views"]);
   const { data: cameraStorage } = useSWR<CameraStorage>("recordings/storage");
   const { data: stats } = useSWR<FrigateStats>("stats");
   const { data: config } = useSWR<FrigateConfig>("config", {
@@ -75,11 +77,13 @@ export default function StorageMetrics({
 
   return (
     <div className="scrollbar-container mt-4 flex size-full flex-col overflow-y-auto">
-      <div className="text-sm font-medium text-muted-foreground">Overview</div>
+      <div className="text-sm font-medium text-muted-foreground">
+        {t("system.metrics.storage.overview.title")}
+      </div>
       <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <div className="flex-col rounded-lg bg-background_alt p-2.5 md:rounded-2xl">
           <div className="mb-5 flex flex-row items-center justify-between">
-            Recordings
+            {t("system.metrics.storage.overview.recordings.title")}
             <Popover>
               <PopoverTrigger asChild>
                 <button
@@ -94,9 +98,7 @@ export default function StorageMetrics({
               </PopoverTrigger>
               <PopoverContent className="w-80">
                 <div className="space-y-2">
-                  This value represents the total storage used by the recordings
-                  in Frigate's database. Frigate does not track storage usage
-                  for all files on your disk.
+                  {t("system.metrics.storage.overview.recordings.info")}
                 </div>
               </PopoverContent>
             </Popover>
@@ -108,7 +110,7 @@ export default function StorageMetrics({
           />
           {earliestDate && (
             <div className="mt-2 text-xs text-primary-variant">
-              <span className="font-medium">Earliest recording available:</span>{" "}
+              <span className="font-medium">{t("system.metrics.storage.overview.recordings.earliest")}</span>{" "}
               {formatUnixTimestampToDateTime(earliestDate, {
                 timezone: timezone,
                 strftime_fmt:
@@ -118,7 +120,7 @@ export default function StorageMetrics({
           )}
         </div>
         <div className="flex-col rounded-lg bg-background_alt p-2.5 md:rounded-2xl">
-          <div className="mb-5">/tmp/cache</div>
+          <div className="mb-5">{t("system.metrics.storage.overview.cache.title")}</div>
           <StorageGraph
             graphId="general-cache"
             used={stats.service.storage["/tmp/cache"]["used"]}
@@ -126,7 +128,7 @@ export default function StorageMetrics({
           />
         </div>
         <div className="flex-col rounded-lg bg-background_alt p-2.5 md:rounded-2xl">
-          <div className="mb-5">/dev/shm</div>
+          <div className="mb-5">{t("system.metrics.storage.overview.shm.title")}</div>
           <StorageGraph
             graphId="general-shared-memory"
             used={stats.service.storage["/dev/shm"]["used"]}
@@ -135,7 +137,7 @@ export default function StorageMetrics({
         </div>
       </div>
       <div className="mt-4 text-sm font-medium text-muted-foreground">
-        Camera Storage
+        {t("system.metrics.storage.camera.title")}
       </div>
       <div className="mt-4 bg-background_alt p-2.5 md:rounded-2xl">
         <CombinedStorageGraph

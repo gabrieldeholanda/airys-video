@@ -1,0 +1,19 @@
+{
+  "required_field": "Este campo é obrigatório",
+  "invalid_format": "Formato inválido",
+  "network_error": "Ocorreu um erro de rede",
+  "unknown_error": "Ocorreu um erro desconhecido",
+  "validation": {
+    "required": "{{field}} é obrigatório",
+    "min_length": "{{field}} deve ter pelo menos {{count}} caracteres",
+    "max_length": "{{field}} deve ter no máximo {{count}} caracteres",
+    "pattern": "{{field}} tem um formato inválido",
+    "email": "Por favor, insira um endereço de e-mail válido",
+    "url": "Por favor, insira uma URL válida",
+    "number": "Por favor, insira um número válido",
+    "integer": "Por favor, insira um número inteiro válido",
+    "positive": "Por favor, insira um número positivo",
+    "negative": "Por favor, insira um número negativo",
+    "date": "Por favor, insira uma data válida"
+  }
+} 

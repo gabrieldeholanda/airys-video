@@ -27,15 +27,17 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LuImagePlus, LuRefreshCw, LuScanFace, LuTrash2 } from "react-icons/lu";
 import { toast } from "sonner";
 import useSWR from "swr";
+import { useTranslation } from "react-i18next";
 
 export default function FaceLibrary() {
+  const { t } = useTranslation(["views"]);
   const { data: config } = useSWR<FrigateConfig>("config");
 
   // title
 
   useEffect(() => {
-    document.title = "Face Library - Frigate";
-  }, []);
+    document.title = `${t("face_library.title")} - Airys`;
+  }, [t]);
 
   const [page, setPage] = useState<string>();
   const [pageToggle, setPageToggle] = useOptimisticState(page, setPage, 100);
@@ -93,7 +95,7 @@ export default function FaceLibrary() {
           if (resp.status == 200) {
             setUpload(false);
             refreshFaces();
-            toast.success("Successfully uploaded image.", {
+            toast.success(t("face_library.upload.success"), {
               position: "top-center",
             });
           }
@@ -101,17 +103,17 @@ export default function FaceLibrary() {
         .catch((error) => {
           if (error.response?.data?.message) {
             toast.error(
-              `Failed to upload image: ${error.response.data.message}`,
+              t("face_library.upload.error", { message: error.response.data.message }),
               { position: "top-center" },
             );
           } else {
-            toast.error(`Failed to upload image: ${error.message}`, {
+            toast.error(t("face_library.upload.error", { message: error.message }), {
               position: "top-center",
             });
           }
         });
     },
-    [pageToggle, refreshFaces],
+    [pageToggle, refreshFaces, t],
   );
 
   const onAddName = useCallback(
@@ -126,7 +128,7 @@ export default function FaceLibrary() {
           if (resp.status == 200) {
             setAddFace(false);
             refreshFaces();
-            toast.success("Successfully add face library.", {
+            toast.success(t("face_library.create.success"), {
               position: "top-center",
             });
           }
@@ -134,17 +136,17 @@ export default function FaceLibrary() {
         .catch((error) => {
           if (error.response?.data?.message) {
             toast.error(
-              `Failed to set face name: ${error.response.data.message}`,
+              t("face_library.create.error", { message: error.response.data.message }),
               { position: "top-center" },
             );
           } else {
-            toast.error(`Failed to set face name: ${error.message}`, {
+            toast.error(t("face_library.create.error", { message: error.message }), {
               position: "top-center",
             });
           }
         });
     },
-    [refreshFaces],
+    [refreshFaces, t],
   );
 
   if (!config) {
@@ -157,15 +159,15 @@ export default function FaceLibrary() {
 
       <UploadImageDialog
         open={upload}
-        title="Upload Face Image"
-        description={`Upload an image to scan for faces and include for ${pageToggle}`}
+        title={t("face_library.upload.title")}
+        description={t("face_library.upload.description", { name: pageToggle })}
         setOpen={setUpload}
         onSave={onUploadImage}
       />
 
       <TextEntryDialog
-        title="Create Face Library"
-        description="Create a new face library"
+        title={t("face_library.create.title")}
+        description={t("face_library.create.description")}
         open={addFace}
         setOpen={setAddFace}
         onSave={onAddName}
@@ -193,7 +195,7 @@ export default function FaceLibrary() {
                     data-nav-item="train"
                     aria-label="Select train"
                   >
-                    <div>Train</div>
+                    <div>{t("face_library.train.title")}</div>
                   </ToggleGroupItem>
                   <div>|</div>
                 </>
@@ -219,11 +221,11 @@ export default function FaceLibrary() {
         <div className="flex items-center justify-center gap-2">
           <Button className="flex gap-2" onClick={() => setAddFace(true)}>
             <LuScanFace className="size-7 rounded-md p-1 text-secondary-foreground" />
-            Add Face
+            {t("face_library.buttons.addFace")}
           </Button>
           <Button className="flex gap-2" onClick={() => setUpload(true)}>
             <LuImagePlus className="size-7 rounded-md p-1 text-secondary-foreground" />
-            Upload Image
+            {t("face_library.buttons.uploadImage")}
           </Button>
         </div>
       </div>
@@ -285,6 +287,7 @@ function FaceAttempt({
   threshold,
   onRefresh,
 }: FaceAttemptProps) {
+  const { t } = useTranslation(["views"]);
   const data = useMemo(() => {
     const parts = image.split("-");
 
@@ -301,7 +304,7 @@ function FaceAttempt({
         .post(`/faces/train/${trainName}/classify`, { training_file: image })
         .then((resp) => {
           if (resp.status == 200) {
-            toast.success(`Successfully trained face.`, {
+            toast.success(t("face_library.train.success"), {
               position: "top-center",
             });
             onRefresh();
@@ -309,17 +312,18 @@ function FaceAttempt({
         })
         .catch((error) => {
           if (error.response?.data?.message) {
-            toast.error(`Failed to train: ${error.response.data.message}`, {
-              position: "top-center",
-            });
+            toast.error(
+              t("face_library.train.error", { message: error.response.data.message }),
+              { position: "top-center" },
+            );
           } else {
-            toast.error(`Failed to train: ${error.message}`, {
+            toast.error(t("face_library.train.error", { message: error.message }), {
               position: "top-center",
             });
           }
         });
     },
-    [image, onRefresh],
+    [image, onRefresh, t],
   );
 
   const onReprocess = useCallback(() => {
@@ -327,7 +331,7 @@ function FaceAttempt({
       .post(`/faces/reprocess`, { training_file: image })
       .then((resp) => {
         if (resp.status == 200) {
-          toast.success(`Successfully trained face.`, {
+          toast.success(t("face_library.reprocess.success"), {
             position: "top-center",
           });
           onRefresh();
@@ -335,23 +339,24 @@ function FaceAttempt({
       })
       .catch((error) => {
         if (error.response?.data?.message) {
-          toast.error(`Failed to train: ${error.response.data.message}`, {
-            position: "top-center",
-          });
+          toast.error(
+            t("face_library.reprocess.error", { message: error.response.data.message }),
+            { position: "top-center" },
+          );
         } else {
-          toast.error(`Failed to train: ${error.message}`, {
+          toast.error(t("face_library.reprocess.error", { message: error.message }), {
             position: "top-center",
           });
         }
       });
-  }, [image, onRefresh]);
+  }, [image, onRefresh, t]);
 
   const onDelete = useCallback(() => {
     axios
       .post(`/faces/train/delete`, { ids: [image] })
       .then((resp) => {
         if (resp.status == 200) {
-          toast.success(`Successfully deleted face.`, {
+          toast.success(t("face_library.delete.success"), {
             position: "top-center",
           });
           onRefresh();
@@ -359,16 +364,17 @@ function FaceAttempt({
       })
       .catch((error) => {
         if (error.response?.data?.message) {
-          toast.error(`Failed to delete: ${error.response.data.message}`, {
-            position: "top-center",
-          });
+          toast.error(
+            t("face_library.delete.error", { message: error.response.data.message }),
+            { position: "top-center" },
+          );
         } else {
-          toast.error(`Failed to delete: ${error.message}`, {
+          toast.error(t("face_library.delete.error", { message: error.message }), {
             position: "top-center",
           });
         }
       });
-  }, [image, onRefresh]);
+  }, [image, onRefresh, t]);
 
   return (
     <div className="relative flex flex-col rounded-lg">
@@ -398,7 +404,7 @@ function FaceAttempt({
                   </TooltipTrigger>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuLabel>Train Face as:</DropdownMenuLabel>
+                  <DropdownMenuLabel>{t("face_library.train.label")}</DropdownMenuLabel>
                   {faceNames.map((faceName) => (
                     <DropdownMenuItem
                       key={faceName}
@@ -410,7 +416,7 @@ function FaceAttempt({
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-              <TooltipContent>Train Face as Person</TooltipContent>
+              <TooltipContent>{t("face_library.train.tooltip")}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger>
@@ -419,7 +425,7 @@ function FaceAttempt({
                   onClick={() => onReprocess()}
                 />
               </TooltipTrigger>
-              <TooltipContent>Delete Face Attempt</TooltipContent>
+              <TooltipContent>{t("face_library.reprocess.tooltip")}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger>
@@ -428,7 +434,7 @@ function FaceAttempt({
                   onClick={onDelete}
                 />
               </TooltipTrigger>
-              <TooltipContent>Delete Face Attempt</TooltipContent>
+              <TooltipContent>{t("face_library.delete.tooltip")}</TooltipContent>
             </Tooltip>
           </div>
         </div>
@@ -463,12 +469,13 @@ type FaceImageProps = {
   onRefresh: () => void;
 };
 function FaceImage({ name, image, onRefresh }: FaceImageProps) {
+  const { t } = useTranslation(["views"]);
   const onDelete = useCallback(() => {
     axios
       .post(`/faces/${name}/delete`, { ids: [image] })
       .then((resp) => {
         if (resp.status == 200) {
-          toast.success(`Successfully deleted face.`, {
+          toast.success(t("face_library.delete.success"), {
             position: "top-center",
           });
           onRefresh();
@@ -476,16 +483,17 @@ function FaceImage({ name, image, onRefresh }: FaceImageProps) {
       })
       .catch((error) => {
         if (error.response?.data?.message) {
-          toast.error(`Failed to delete: ${error.response.data.message}`, {
-            position: "top-center",
-          });
+          toast.error(
+            t("face_library.delete.error", { message: error.response.data.message }),
+            { position: "top-center" },
+          );
         } else {
-          toast.error(`Failed to delete: ${error.message}`, {
+          toast.error(t("face_library.delete.error", { message: error.message }), {
             position: "top-center",
           });
         }
       });
-  }, [name, image, onRefresh]);
+  }, [name, image, onRefresh, t]);
 
   return (
     <div className="relative flex flex-col rounded-lg">
@@ -505,7 +513,7 @@ function FaceImage({ name, image, onRefresh }: FaceImageProps) {
                   onClick={onDelete}
                 />
               </TooltipTrigger>
-              <TooltipContent>Delete Face Attempt</TooltipContent>
+              <TooltipContent>{t("face_library.delete.tooltip")}</TooltipContent>
             </Tooltip>
           </div>
         </div>

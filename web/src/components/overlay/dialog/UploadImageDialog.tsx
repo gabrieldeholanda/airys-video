@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 
 type UploadImageDialogProps = {
   open: boolean;
@@ -28,8 +29,10 @@ export default function UploadImageDialog({
   setOpen,
   onSave,
 }: UploadImageDialogProps) {
+  const { t } = useTranslation("components/overlay/upload_image");
+  
   const formSchema = z.object({
-    file: z.instanceof(FileList, { message: "Please select an image file." }),
+    file: z.instanceof(FileList, { message: t("validation.selectImage") }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -75,9 +78,9 @@ export default function UploadImageDialog({
               )}
             />
             <DialogFooter className="pt-4">
-              <Button onClick={() => setOpen(false)}>Cancel</Button>
+              <Button onClick={() => setOpen(false)}>{t("button.cancel")}</Button>
               <Button variant="select" type="submit">
-                Save
+                {t("button.save")}
               </Button>
             </DialogFooter>
           </form>

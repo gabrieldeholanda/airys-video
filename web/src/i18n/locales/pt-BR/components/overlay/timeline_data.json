@@ -1,0 +1,6 @@
+{
+  "measurements": {
+    "area": "Área: {{value}} px",
+    "ratio": "Proporção: {{value}}"
+  }
+} 

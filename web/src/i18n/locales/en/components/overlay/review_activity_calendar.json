@@ -1,0 +1,8 @@
+{
+  "activity": {
+    "alert": "Alert",
+    "detection": "Detection",
+    "none": "No activity",
+    "recordings": "Has recordings"
+  }
+} 

@@ -31,6 +31,7 @@ import useSWR from "swr";
 import { LuCheck, LuExternalLink, LuInfo, LuX } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { LiveStreamMetadata } from "@/types/live";
+import { useTranslation } from "react-i18next";
 
 type CameraStreamingDialogProps = {
   camera: string;
@@ -49,6 +50,7 @@ export function CameraStreamingDialog({
   setIsDialogOpen,
   onSave,
 }: CameraStreamingDialogProps) {
+  const { t } = useTranslation();
   const { data: config } = useSWR<FrigateConfig>("config");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -193,7 +195,7 @@ export function CameraStreamingDialog({
                   this camera.
                   <div className="mt-2 flex items-center text-primary">
                     <Link
-                      to="https://docs.frigate.video/configuration/live"
+                      to="https://chat.airys.com.br/hc/help/pt_BR/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline"
@@ -249,7 +251,7 @@ export function CameraStreamingDialog({
                           in go2rtc for this stream.
                           <div className="mt-2 flex items-center text-primary">
                             <Link
-                              to="https://docs.frigate.video/configuration/live"
+                              to="https://chat.airys.com.br/hc/help/pt_BR/"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline"
@@ -302,14 +304,12 @@ export function CameraStreamingDialog({
           {streamType === "continuous" && (
             <>
               <p className="text-sm text-muted-foreground">
-                Camera image will always be a live stream when visible on the
-                dashboard, even if no activity is being detected.
+                {t("streaming.continuous.description")}
               </p>
               <div className="flex items-center gap-2">
                 <IoIosWarning className="mr-2 size-5 text-danger" />
                 <div className="max-w-[85%] text-sm">
-                  Continuous streaming may cause high bandwidth usage and
-                  performance issues. Use with caution.
+                  {t("streaming.continuous.warning")}
                 </div>
               </div>
             </>
@@ -327,14 +327,12 @@ export function CameraStreamingDialog({
               htmlFor="compatibility"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Compatibility mode
+              {t("streaming.compatibility.title")}
             </Label>
           </div>
           <div className="flex flex-col gap-2 leading-none">
             <p className="text-sm text-muted-foreground">
-              Enable this option only if your camera's live stream is displaying
-              color artifacts and has a diagonal line on the right side of the
-              image.
+              {t("streaming.compatibility.description")}
             </p>
           </div>
         </div>

@@ -1,0 +1,27 @@
+{
+  "actions": {
+    "download": {
+      "video": "Baixar vídeo",
+      "snapshot": "Baixar imagem"
+    },
+    "view_lifecycle": "Ver ciclo de vida do objeto",
+    "find_similar": "Encontrar similares",
+    "submit_plus": "Enviar para Frigate+",
+    "delete": "Excluir"
+  },
+  "delete_dialog": {
+    "title": "Confirmar Exclusão",
+    "description": "Excluir este objeto rastreado remove a imagem, quaisquer incorporações salvas e todas as entradas associadas ao ciclo de vida do objeto. As filmagens gravadas deste objeto rastreado na visualização do Histórico <em>NÃO</em> serão excluídas.",
+    "confirm": "Tem certeza que deseja prosseguir?",
+    "actions": {
+      "cancel": "Cancelar",
+      "delete": "Excluir"
+    }
+  },
+  "messages": {
+    "delete": {
+      "success": "Objeto rastreado excluído com sucesso.",
+      "error": "Falha ao excluir objeto rastreado."
+    }
+  }
+} 

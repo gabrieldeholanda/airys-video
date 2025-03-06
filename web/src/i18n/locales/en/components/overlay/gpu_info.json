@@ -1,0 +1,24 @@
+{
+  "title": {
+    "vainfo": "Vainfo Output",
+    "nvidia": "Nvidia SMI Output"
+  },
+  "return_code": "Return Code:",
+  "process": {
+    "output": "Process Output",
+    "error": "Process Error"
+  },
+  "nvidia": {
+    "name": "Name:",
+    "driver": "Driver:",
+    "cuda": "Cuda Compute Capability:",
+    "vbios": "VBios Info:"
+  },
+  "button": {
+    "close": "Close",
+    "copy": "Copy"
+  },
+  "success": {
+    "copy": "Copied GPU info to clipboard."
+  }
+} 

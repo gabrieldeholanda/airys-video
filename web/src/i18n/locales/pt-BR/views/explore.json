@@ -1,0 +1,34 @@
+{
+  "unavailable": {
+    "title": "Explorar está Indisponível",
+    "reindexing": {
+      "message": "Explorar poderá ser usado após a reindexação das incorporações dos objetos rastreados ser concluída.",
+      "status": {
+        "starting": "Iniciando...",
+        "time_remaining": "Tempo estimado restante:",
+        "finishing": "Finalizando em breve",
+        "thumbnails": "Miniaturas incorporadas:",
+        "descriptions": "Descrições incorporadas:",
+        "objects": "Objetos rastreados processados:"
+      }
+    },
+    "models": {
+      "message": "O Frigate está baixando os modelos de incorporação necessários para suportar o recurso de Busca Semântica. Isso pode levar vários minutos dependendo da velocidade da sua conexão de rede.",
+      "components": {
+        "vision": "Modelo de visão",
+        "vision_extractor": "Extrator de características do modelo de visão",
+        "text": "Modelo de texto",
+        "tokenizer": "Tokenizador"
+      },
+      "error": "Ocorreu um erro. Verifique os logs do Frigate.",
+      "reindex_note": "Você pode querer reindexar as incorporações dos seus objetos rastreados depois que os modelos forem baixados.",
+      "documentation": "Ler a documentação"
+    }
+  },
+  "errors": {
+    "fetch": "Erro ao buscar objetos rastreados: {{message}}"
+  },
+  "title": "Explorar",
+  "trackedObjects": "objetos rastreados",
+  "exploreMore": "Explorar Mais {{label}}"
+} 

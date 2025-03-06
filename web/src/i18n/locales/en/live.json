@@ -1,0 +1,54 @@
+{
+  "dashboard": {
+    "title": "Live Dashboard",
+    "noGroups": "No camera groups found",
+    "addGroup": "Add Camera Group",
+    "editGroup": "Edit Camera Group",
+    "deleteGroup": "Delete Camera Group",
+    "groupName": "Group Name",
+    "cameras": "Cameras",
+    "noCameras": "No cameras in this group"
+  },
+  "camera": {
+    "status": {
+      "offline": "Camera Offline",
+      "loading": "Loading Camera...",
+      "error": "Error Loading Camera",
+      "noSignal": "No Signal",
+      "recording": "Recording",
+      "live": "Live"
+    },
+    "controls": {
+      "fullscreen": "Fullscreen",
+      "snapshot": "Take Snapshot",
+      "record": "Record",
+      "stopRecording": "Stop Recording",
+      "settings": "Camera Settings",
+      "ptz": "PTZ Controls"
+    },
+    "streaming": {
+      "title": "Streaming",
+      "continuous": {
+        "description": "Camera image will always be a live stream when visible on the dashboard, even if no activity is being detected.",
+        "warning": "Continuous streaming may cause high bandwidth usage and performance issues. Use with caution."
+      },
+      "compatibility": {
+        "title": "Compatibility mode",
+        "description": "Enable this option only if your camera's live stream is displaying color artifacts and has a diagonal line on the right side of the image."
+      }
+    }
+  },
+  "alerts": {
+    "title": "Recent Alerts",
+    "noAlerts": "No recent alerts",
+    "viewAll": "View All Alerts",
+    "clear": "Clear Alerts",
+    "object": {
+      "person": "Person",
+      "vehicle": "Vehicle",
+      "animal": "Animal",
+      "insect": "Insect",
+      "other": "Other"
+    }
+  }
+} 

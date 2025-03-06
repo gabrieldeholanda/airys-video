@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import ActivityIndicator from "@/components/indicators/activity-indicator";
 import { baseUrl } from "@/api/baseUrl";
+import { useTranslation } from "react-i18next";
 
 type RestartDialogProps = {
   isOpen: boolean;
@@ -30,6 +31,7 @@ export default function RestartDialog({
   onClose,
   onRestart,
 }: RestartDialogProps) {
+  const { t } = useTranslation("components/overlay/restart_dialog");
   const [restartDialogOpen, setRestartDialogOpen] = useState(isOpen);
   const [restartingSheetOpen, setRestartingSheetOpen] = useState(false);
   const [countdown, setCountdown] = useState(60);
@@ -78,14 +80,12 @@ export default function RestartDialog({
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              Are you sure you want to restart Frigate?
-            </AlertDialogTitle>
+            <AlertDialogTitle>{t("dialog.title")}</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>{t("dialog.cancel")}</AlertDialogCancel>
             <AlertDialogAction onClick={handleRestart}>
-              Restart
+              {t("dialog.restart")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -100,19 +100,19 @@ export default function RestartDialog({
             <ActivityIndicator />
             <SheetHeader className="mt-5 text-center">
               <SheetTitle className="text-center">
-                Frigate is Restarting
+                {t("sheet.title")}
               </SheetTitle>
               <SheetDescription className="text-center">
-                <div>This page will reload in {countdown} seconds.</div>
+                <div>{t("sheet.description", { seconds: countdown })}</div>
               </SheetDescription>
             </SheetHeader>
             <Button
               size="lg"
               className="mt-5"
-              aria-label="Force reload now"
+              aria-label={t("sheet.forceReload")}
               onClick={handleForceReload}
             >
-              Force Reload Now
+              {t("sheet.forceReload")}
             </Button>
           </div>
         </SheetContent>

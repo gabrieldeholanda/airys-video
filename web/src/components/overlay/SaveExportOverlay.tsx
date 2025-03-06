@@ -2,6 +2,7 @@ import { LuVideo, LuX } from "react-icons/lu";
 import { Button } from "../ui/button";
 import { FaCompactDisc } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 type SaveExportOverlayProps = {
   className: string;
@@ -17,6 +18,8 @@ export default function SaveExportOverlay({
   onSave,
   onCancel,
 }: SaveExportOverlayProps) {
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.save_export" });
+
   return (
     <div className={className}>
       <div
@@ -28,31 +31,31 @@ export default function SaveExportOverlay({
       >
         <Button
           className="flex items-center gap-1 text-primary"
-          aria-label="Cancel"
+          aria-label={t("button.cancel")}
           size="sm"
           onClick={onCancel}
         >
           <LuX />
-          Cancel
+          {t("button.cancel")}
         </Button>
         <Button
           className="flex items-center gap-1"
-          aria-label="Preview export"
+          aria-label={t("button.preview")}
           size="sm"
           onClick={onPreview}
         >
           <LuVideo />
-          Preview Export
+          {t("button.preview")}
         </Button>
         <Button
           className="flex items-center gap-1"
-          aria-label="Save export"
+          aria-label={t("button.save")}
           variant="select"
           size="sm"
           onClick={onSave}
         >
           <FaCompactDisc />
-          Save Export
+          {t("button.save")}
         </Button>
       </div>
     </div>

@@ -1,0 +1,23 @@
+{
+  "selection": {
+    "count": "{{count}} selecionados",
+    "unselect": "Desmarcar"
+  },
+  "actions": {
+    "export": "Exportar",
+    "mark_reviewed": "Marcar como revisado",
+    "delete": "Excluir",
+    "delete_now": "Excluir Agora"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Confirmar Exclusão",
+      "description": "Tem certeza que deseja excluir todos os vídeos gravados associados aos itens de revisão selecionados?",
+      "bypass_hint": "Mantenha a tecla <em>Shift</em> pressionada para ignorar este diálogo no futuro.",
+      "actions": {
+        "cancel": "Cancelar",
+        "confirm": "Excluir"
+      }
+    }
+  }
+} 

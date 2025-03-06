@@ -1,0 +1,8 @@
+{
+  "filter": "Filtrar",
+  "filterAriaLabel": "Filtrar por máscara de zona",
+  "allMasksAndZones": "Todas as Máscaras e Zonas",
+  "zones": "Zonas",
+  "motionMasks": "Máscaras de Movimento",
+  "objectMasks": "Máscaras de Objeto"
+} 

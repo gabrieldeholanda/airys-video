@@ -1,0 +1,26 @@
+{
+  "title": {
+    "new": "New Object Mask",
+    "edit": "Edit Object Mask"
+  },
+  "description": "Object filter masks are used to filter out false positives for a given object type based on location.",
+  "points": {
+    "count_zero": "0 points",
+    "count_one": "1 point",
+    "count_other": "{{count}} points"
+  },
+  "draw_instructions": "Click to draw a polygon on the image.",
+  "form": {
+    "objects": {
+      "label": "Objects",
+      "placeholder": "Select an object type",
+      "all": "All object types",
+      "description": "The object type that applies to this object mask."
+    }
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  }
+} 

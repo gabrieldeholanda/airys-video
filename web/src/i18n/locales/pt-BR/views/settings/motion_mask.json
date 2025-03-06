@@ -1,0 +1,19 @@
+{
+  "title": {
+    "new": "Nova Máscara de Movimento",
+    "edit": "Editar Máscara de Movimento"
+  },
+  "description": "Máscaras de movimento são usadas para evitar que tipos indesejados de movimento acionem a detecção (exemplo: galhos de árvores, marcadores de tempo da câmera). Máscaras de movimento devem ser usadas com muita moderação, o excesso de mascaramento dificultará o rastreamento de objetos.",
+  "points": {
+    "count_zero": "0 pontos",
+    "count_one": "1 ponto",
+    "count_other": "{{count}} pontos"
+  },
+  "draw_instructions": "Clique para desenhar um polígono na imagem.",
+  "documentation": "Leia a documentação",
+  "actions": {
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  }
+} 

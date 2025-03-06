@@ -1,0 +1,28 @@
+{
+  "aria": {
+    "loading": "Loading, please wait",
+    "disabled": "This button is disabled",
+    "toggle": "Toggle {{name}}"
+  },
+  "states": {
+    "loading": "Loading...",
+    "processing": "Processing...",
+    "saving": "Saving...",
+    "deleting": "Deleting...",
+    "uploading": "Uploading..."
+  },
+  "actions": {
+    "refresh": "Refresh",
+    "upload": "Upload",
+    "download": "Download",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "more": "Show more",
+    "less": "Show less",
+    "next": "Next",
+    "previous": "Previous",
+    "first": "First",
+    "last": "Last"
+  }
+} 

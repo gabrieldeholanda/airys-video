@@ -1,0 +1,75 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: airys-video
+  labels:
+    cloud.googleapis.com/location: us-central1
+  annotations:
+    run.googleapis.com/launch-stage: BETA
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/minScale: "1"
+        run.googleapis.com/startup-cpu-boost: "true"
+        run.googleapis.com/cpu-throttling: "false"
+        run.googleapis.com/execution-environment: "gen2"
+        run.googleapis.com/vpc-access-connector: "airys-vpc-connector"
+        run.googleapis.com/cloudsql-instances: ""
+        run.googleapis.com/accelerator: L4
+        run.googleapis.com/launch-stage: BETA
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 3600
+      serviceAccountName: airys-cloud-run@airys-production.iam.gserviceaccount.com
+      containers:
+        - image: gcr.io/airys-production/airys-video:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "8"
+              memory: 16Gi
+              nvidia.com/gpu: "1"
+          env:
+            - name: GOOGLE_CLOUD_PROJECT
+              value: "airys-production"
+            - name: GOOGLE_CLOUD_STORAGE_BUCKET
+              value: "airys-video-storage"
+            - name: FRIGATE_RTSP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: frigate-rtsp-password
+                  key: "1"
+            - name: YOLO_MODELS
+              value: "yolov4-tiny-416"
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "all"
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: "compute,video,utility"
+            - name: CUDA_VISIBLE_DEVICES
+              value: "0"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: storage
+              mountPath: /media/frigate
+            - name: videos
+              mountPath: /videos
+            - name: cache
+              mountPath: /tmp/cache
+      volumes:
+        - name: config
+          secret:
+            secretName: frigate-config
+            items:
+              - key: "1"
+                path: config.yml
+        - name: storage
+          emptyDir: {}
+        - name: videos
+          emptyDir: {}
+        - name: cache
+          emptyDir:
+            sizeLimit: 2Gi 

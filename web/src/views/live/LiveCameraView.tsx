@@ -113,6 +113,7 @@ import { Switch } from "@/components/ui/switch";
 import axios from "axios";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
+import { useTranslation } from "react-i18next";
 
 type LiveCameraViewProps = {
   config?: FrigateConfig;
@@ -128,6 +129,7 @@ export default function LiveCameraView({
   fullscreen,
   toggleFullscreen,
 }: LiveCameraViewProps) {
+  const { t: translate } = useTranslation(['views']);
   const navigate = useNavigate();
   const { isPortrait } = useMobileOrientation();
   const mainRef = useRef<HTMLDivElement | null>(null);
@@ -397,16 +399,16 @@ export default function LiveCameraView({
             >
               <Button
                 className={`flex items-center gap-2.5 rounded-lg`}
-                aria-label="Go back"
+                aria-label={translate('live.camera.actions.back')}
                 size="sm"
                 onClick={() => navigate(-1)}
               >
                 <IoMdArrowRoundBack className="size-5 text-secondary-foreground" />
-                {isDesktop && <div className="text-primary">Back</div>}
+                {isDesktop && <div className="text-primary">{translate('live.camera.actions.back')}</div>}
               </Button>
               <Button
                 className="flex items-center gap-2.5 rounded-lg"
-                aria-label="Show historical footage"
+                aria-label={translate('live.camera.actions.history')}
                 size="sm"
                 onClick={() => {
                   navigate("review", {
@@ -422,7 +424,7 @@ export default function LiveCameraView({
                 }}
               >
                 <LuHistory className="size-5 text-secondary-foreground" />
-                {isDesktop && <div className="text-primary">History</div>}
+                {isDesktop && <div className="text-primary">{translate('live.camera.actions.history')}</div>}
               </Button>
             </div>
           ) : (
@@ -435,13 +437,13 @@ export default function LiveCameraView({
               {fullscreen && (
                 <Button
                   className="bg-gray-500 bg-gradient-to-br from-gray-400 to-gray-500 text-primary"
-                  aria-label="Go back"
+                  aria-label={translate('live.camera.actions.back')}
                   size="sm"
                   onClick={() => navigate(-1)}
                 >
                   <IoMdArrowRoundBack className="size-5 text-secondary-foreground" />
                   {isDesktop && (
-                    <div className="text-secondary-foreground">Back</div>
+                    <div className="text-secondary-foreground">{translate('live.camera.actions.back')}</div>
                   )}
                 </Button>
               )}
@@ -451,7 +453,7 @@ export default function LiveCameraView({
                   variant={fullscreen ? "overlay" : "primary"}
                   Icon={fullscreen ? FaCompress : FaExpand}
                   isActive={fullscreen}
-                  title={fullscreen ? "Close" : "Fullscreen"}
+                  title={fullscreen ? translate('live.camera.actions.fullscreen.exit') : translate('live.camera.actions.fullscreen.enter')}
                   onClick={toggleFullscreen}
                 />
               )}
@@ -461,7 +463,7 @@ export default function LiveCameraView({
                   variant={fullscreen ? "overlay" : "primary"}
                   Icon={LuPictureInPicture}
                   isActive={pip}
-                  title={pip ? "Close" : "Picture in Picture"}
+                  title={pip ? translate('live.camera.actions.pip.exit') : translate('live.camera.actions.pip.enter')}
                   onClick={() => {
                     if (!pip) {
                       setPip(true);
@@ -478,7 +480,7 @@ export default function LiveCameraView({
                   variant={fullscreen ? "overlay" : "primary"}
                   Icon={mic ? FaMicrophone : FaMicrophoneSlash}
                   isActive={mic}
-                  title={`${mic ? "Disable" : "Enable"} Two Way Talk`}
+                  title={mic ? translate('live.camera.actions.talk.disable') : translate('live.camera.actions.talk.enable')}
                   onClick={() => {
                     setMic(!mic);
                     // Turn on audio when enabling the mic if audio is currently off
@@ -494,7 +496,7 @@ export default function LiveCameraView({
                   variant={fullscreen ? "overlay" : "primary"}
                   Icon={audio ? GiSpeaker : GiSpeakerOff}
                   isActive={audio ?? false}
-                  title={`${audio ? "Disable" : "Enable"} Camera Audio`}
+                  title={audio ? translate('live.camera.actions.audio.disable') : translate('live.camera.actions.audio.enable')}
                   onClick={() => setAudio(!audio)}
                 />
               )}
@@ -634,6 +636,7 @@ function PtzControlPanel({
   clickOverlay: boolean;
   setClickOverlay: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { t: translate } = useTranslation(['views']);
   const { data: ptz } = useSWR<CameraPtzInfo>(`${camera}/ptz/info`);
 
   const { send: sendPtz } = usePtzCommand(camera);
@@ -719,7 +722,7 @@ function PtzControlPanel({
       {ptz?.features?.includes("pt") && (
         <>
           <TooltipButton
-            label="Move camera left"
+            label={translate('live.camera.ptz.actions.left')}
             onMouseDown={(e) => {
               e.preventDefault();
               sendPtz("MOVE_LEFT");
@@ -734,7 +737,7 @@ function PtzControlPanel({
             <FaAngleLeft />
           </TooltipButton>
           <TooltipButton
-            label="Move camera up"
+            label={translate('live.camera.ptz.actions.up')}
             onMouseDown={(e) => {
               e.preventDefault();
               sendPtz("MOVE_UP");
@@ -749,7 +752,7 @@ function PtzControlPanel({
             <FaAngleUp />
           </TooltipButton>
           <TooltipButton
-            label="Move camera down"
+            label={translate('live.camera.ptz.actions.down')}
             onMouseDown={(e) => {
               e.preventDefault();
               sendPtz("MOVE_DOWN");
@@ -764,7 +767,7 @@ function PtzControlPanel({
             <FaAngleDown />
           </TooltipButton>
           <TooltipButton
-            label="Move camera right"
+            label={translate('live.camera.ptz.actions.right')}
             onMouseDown={(e) => {
               e.preventDefault();
               sendPtz("MOVE_RIGHT");
@@ -783,7 +786,7 @@ function PtzControlPanel({
       {ptz?.features?.includes("zoom") && (
         <>
           <TooltipButton
-            label="Zoom in"
+            label={translate('live.camera.ptz.actions.zoom_in')}
             onMouseDown={(e) => {
               e.preventDefault();
               sendPtz("ZOOM_IN");
@@ -798,7 +801,7 @@ function PtzControlPanel({
             <MdZoomIn />
           </TooltipButton>
           <TooltipButton
-            label="Zoom out"
+            label={translate('live.camera.ptz.actions.zoom_out')}
             onMouseDown={(e) => {
               e.preventDefault();
               sendPtz("ZOOM_OUT");
@@ -821,14 +824,14 @@ function PtzControlPanel({
             <TooltipTrigger asChild>
               <Button
                 className={`${clickOverlay ? "text-selected" : "text-primary"}`}
-                aria-label="Click in the frame to center the camera"
+                aria-label={clickOverlay ? translate('live.camera.ptz.actions.click_move.disable') : translate('live.camera.ptz.actions.click_move.enable')}
                 onClick={() => setClickOverlay(!clickOverlay)}
               >
                 <TbViewfinder />
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>{clickOverlay ? "Disable" : "Enable"} click to move</p>
+              <p>{clickOverlay ? translate('live.camera.ptz.actions.click_move.disable') : translate('live.camera.ptz.actions.click_move.enable')}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -839,7 +842,7 @@ function PtzControlPanel({
             <TooltipTrigger asChild>
               <DropdownMenu modal={!isDesktop}>
                 <DropdownMenuTrigger asChild>
-                  <Button aria-label="PTZ camera presets">
+                  <Button aria-label={translate('live.camera.ptz.actions.presets')}>
                     <BsThreeDotsVertical />
                   </Button>
                 </DropdownMenuTrigger>
@@ -861,7 +864,7 @@ function PtzControlPanel({
               </DropdownMenu>
             </TooltipTrigger>
             <TooltipContent>
-              <p>PTZ camera presets</p>
+              <p>{translate('live.camera.ptz.actions.presets')}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -871,6 +874,7 @@ function PtzControlPanel({
 }
 
 function OnDemandRetentionMessage({ camera }: { camera: CameraConfig }) {
+  const { t: translate } = useTranslation(['views']);
   const rankMap = { all: 0, motion: 1, active_objects: 2 };
   const getValidMode = (retain?: { mode?: string }): keyof typeof rankMap => {
     const mode = retain?.mode;
@@ -889,9 +893,11 @@ function OnDemandRetentionMessage({ camera }: { camera: CameraConfig }) {
 
   return effectiveRetainMode !== "all" ? (
     <div>
-      Your {source} recording retention configuration is set to{" "}
-      <code>mode: {effectiveRetainMode}</code>, so this on-demand recording will
-      only keep segments with {effectiveRetainMode.replaceAll("_", " ")}.
+      {translate('live.camera.features.on_demand.retention.mode', {
+        source: source,
+        mode: effectiveRetainMode,
+        mode_text: effectiveRetainMode.replaceAll("_", " ")
+      })}
     </div>
   ) : null;
 }
@@ -932,36 +938,25 @@ function FrigateCameraFeatures({
   supportsAudioOutput,
   supports2WayTalk,
 }: FrigateCameraFeaturesProps) {
-  const { payload: detectState, send: sendDetect } = useDetectState(
-    camera.name,
-  );
-  const { payload: recordState, send: sendRecord } = useRecordingsState(
-    camera.name,
-  );
-  const { payload: snapshotState, send: sendSnapshot } = useSnapshotsState(
-    camera.name,
-  );
+  const { t: translate } = useTranslation(['views']);
+  const { payload: detectState, send: sendDetect } = useDetectState(camera.name);
+  const { payload: recordState, send: sendRecord } = useRecordingsState(camera.name);
+  const { payload: snapshotState, send: sendSnapshot } = useSnapshotsState(camera.name);
   const { payload: audioState, send: sendAudio } = useAudioState(camera.name);
-  const { payload: autotrackingState, send: sendAutotracking } =
-    useAutotrackingState(camera.name);
+  const { payload: autotrackingState, send: sendAutotracking } = useAutotrackingState(camera.name);
 
   // manual event
 
   const recordingEventIdRef = useRef<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
-  const [activeToastId, setActiveToastId] = useState<string | number | null>(
-    null,
-  );
+  const [activeToastId, setActiveToastId] = useState<string | number | null>(null);
 
   const createEvent = useCallback(async () => {
     try {
-      const response = await axios.post(
-        `events/${camera.name}/on_demand/create`,
-        {
-          include_recording: true,
-          duration: null,
-        },
-      );
+      const response = await axios.post(`events/${camera.name}/on_demand/create`, {
+        include_recording: true,
+        duration: null,
+      });
 
       if (response.data.success) {
         recordingEventIdRef.current = response.data.event_id;
@@ -969,12 +964,11 @@ function FrigateCameraFeatures({
         const toastId = toast.success(
           <div className="flex flex-col space-y-3">
             <div className="font-semibold">
-              Started manual on-demand recording.
+              {translate('live.camera.features.on_demand.success.start')}
             </div>
             {!camera.record.enabled || camera.record.retain.days == 0 ? (
               <div>
-                Since recording is disabled or restricted in the config for this
-                camera, only a snapshot will be saved.
+                {translate('live.camera.features.on_demand.retention.recording_disabled')}
               </div>
             ) : (
               <OnDemandRetentionMessage camera={camera} />
@@ -988,11 +982,11 @@ function FrigateCameraFeatures({
         setActiveToastId(toastId);
       }
     } catch (error) {
-      toast.error("Failed to start manual on-demand recording.", {
+      toast.error(translate('live.camera.features.on_demand.error.start'), {
         position: "top-center",
       });
     }
-  }, [camera]);
+  }, [camera, translate]);
 
   const endEvent = useCallback(() => {
     if (activeToastId) {
@@ -1005,16 +999,16 @@ function FrigateCameraFeatures({
         });
         recordingEventIdRef.current = null;
         setIsRecording(false);
-        toast.success("Ended manual on-demand recording.", {
+        toast.success(translate('live.camera.features.on_demand.success.end'), {
           position: "top-center",
         });
       }
     } catch (error) {
-      toast.error("Failed to end manual on-demand recording.", {
+      toast.error(translate('live.camera.features.on_demand.error.end'), {
         position: "top-center",
       });
     }
-  }, [activeToastId]);
+  }, [activeToastId, translate]);
 
   const handleEventButtonClick = useCallback(() => {
     if (isRecording) {
@@ -1048,7 +1042,7 @@ function FrigateCameraFeatures({
           variant={fullscreen ? "overlay" : "primary"}
           Icon={detectState == "ON" ? MdPersonSearch : MdPersonOff}
           isActive={detectState == "ON"}
-          title={`${detectState == "ON" ? "Disable" : "Enable"} Detect`}
+          title={detectState == "ON" ? translate('live.camera.features.detect.disable') : translate('live.camera.features.detect.enable')}
           onClick={() => sendDetect(detectState == "ON" ? "OFF" : "ON")}
         />
         <CameraFeatureToggle
@@ -1056,7 +1050,7 @@ function FrigateCameraFeatures({
           variant={fullscreen ? "overlay" : "primary"}
           Icon={recordState == "ON" ? LuVideo : LuVideoOff}
           isActive={recordState == "ON"}
-          title={`${recordState == "ON" ? "Disable" : "Enable"} Recording`}
+          title={recordState == "ON" ? translate('live.camera.features.recording.disable') : translate('live.camera.features.recording.enable')}
           onClick={() => sendRecord(recordState == "ON" ? "OFF" : "ON")}
         />
         <CameraFeatureToggle
@@ -1064,7 +1058,7 @@ function FrigateCameraFeatures({
           variant={fullscreen ? "overlay" : "primary"}
           Icon={snapshotState == "ON" ? MdPhotoCamera : MdNoPhotography}
           isActive={snapshotState == "ON"}
-          title={`${snapshotState == "ON" ? "Disable" : "Enable"} Snapshots`}
+          title={snapshotState == "ON" ? translate('live.camera.features.snapshots.disable') : translate('live.camera.features.snapshots.enable')}
           onClick={() => sendSnapshot(snapshotState == "ON" ? "OFF" : "ON")}
         />
         {audioDetectEnabled && (
@@ -1073,7 +1067,7 @@ function FrigateCameraFeatures({
             variant={fullscreen ? "overlay" : "primary"}
             Icon={audioState == "ON" ? LuEar : LuEarOff}
             isActive={audioState == "ON"}
-            title={`${audioState == "ON" ? "Disable" : "Enable"} Audio Detect`}
+            title={audioState == "ON" ? translate('live.camera.features.audio_detect.disable') : translate('live.camera.features.audio_detect.enable')}
             onClick={() => sendAudio(audioState == "ON" ? "OFF" : "ON")}
           />
         )}
@@ -1083,7 +1077,7 @@ function FrigateCameraFeatures({
             variant={fullscreen ? "overlay" : "primary"}
             Icon={autotrackingState == "ON" ? TbViewfinder : TbViewfinderOff}
             isActive={autotrackingState == "ON"}
-            title={`${autotrackingState == "ON" ? "Disable" : "Enable"} Autotracking`}
+            title={autotrackingState == "ON" ? translate('live.camera.features.autotracking.disable') : translate('live.camera.features.autotracking.enable')}
             onClick={() =>
               sendAutotracking(autotrackingState == "ON" ? "OFF" : "ON")
             }
@@ -1097,7 +1091,7 @@ function FrigateCameraFeatures({
           variant={fullscreen ? "overlay" : "primary"}
           Icon={isRecording ? TbRecordMail : TbRecordMailOff}
           isActive={isRecording}
-          title={`${isRecording ? "Stop" : "Start"} on-demand recording`}
+          title={isRecording ? translate('live.camera.features.on_demand.stop') : translate('live.camera.features.on_demand.start')}
           onClick={handleEventButtonClick}
         />
 
@@ -1117,10 +1111,10 @@ function FrigateCameraFeatures({
             <div className="flex flex-col gap-5 p-4">
               {!isRestreamed && (
                 <div className="flex flex-col gap-2">
-                  <Label>Stream</Label>
+                  <Label>{translate('live.camera.settings.stream.title')}</Label>
                   <div className="flex flex-row items-center gap-1 text-sm text-muted-foreground">
                     <LuX className="size-4 text-danger" />
-                    <div>Restreaming is not enabled for this camera.</div>
+                    <div>{translate('live.camera.settings.stream.not_enabled.message')}</div>
                     <Popover>
                       <PopoverTrigger asChild>
                         <div className="cursor-pointer p-0">
@@ -1129,16 +1123,15 @@ function FrigateCameraFeatures({
                         </div>
                       </PopoverTrigger>
                       <PopoverContent className="w-80 text-xs">
-                        Set up go2rtc for additional live view options and audio
-                        for this camera.
+                        {translate('live.camera.settings.stream.not_enabled.description')}
                         <div className="mt-2 flex items-center text-primary">
                           <Link
-                            to="https://docs.frigate.video/configuration/live"
+                            to="https://chat.airys.com.br/hc/help/pt_BR/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline"
                           >
-                            Read the documentation{" "}
+                            {translate('live.camera.settings.stream.not_enabled.documentation')}{" "}
                             <LuExternalLink className="ml-2 inline-flex size-3" />
                           </Link>
                         </div>
@@ -1147,50 +1140,88 @@ function FrigateCameraFeatures({
                   </div>
                 </div>
               )}
-              {isRestreamed &&
-                Object.values(camera.live.streams).length > 0 && (
-                  <div className="flex flex-col gap-1">
-                    <Label htmlFor="streaming-method">Stream</Label>
-                    <Select
-                      value={streamName}
-                      onValueChange={(value) => {
-                        setStreamName?.(value);
-                      }}
-                    >
-                      <SelectTrigger className="w-full">
-                        {Object.keys(camera.live.streams).find(
-                          (key) => camera.live.streams[key] === streamName,
+              {isRestreamed && Object.values(camera.live.streams).length > 0 && (
+                <div className="flex flex-col gap-1">
+                  <Label htmlFor="streaming-method">{translate('live.camera.settings.stream.title')}</Label>
+                  <Select
+                    value={streamName}
+                    onValueChange={(value) => {
+                      setStreamName?.(value);
+                    }}
+                  >
+                    <SelectTrigger className="w-full">
+                      {Object.keys(camera.live.streams).find(
+                        (key) => camera.live.streams[key] === streamName,
+                      )}
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      <SelectGroup>
+                        {Object.entries(camera.live.streams).map(
+                          ([stream, name]) => (
+                            <SelectItem
+                              key={stream}
+                              className="cursor-pointer"
+                              value={name}
+                            >
+                              {stream}
+                            </SelectItem>
+                          ),
                         )}
-                      </SelectTrigger>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
 
-                      <SelectContent>
-                        <SelectGroup>
-                          {Object.entries(camera.live.streams).map(
-                            ([stream, name]) => (
-                              <SelectItem
-                                key={stream}
-                                className="cursor-pointer"
-                                value={name}
-                              >
-                                {stream}
-                              </SelectItem>
-                            ),
-                          )}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-
-                    {preferredLiveMode != "jsmpeg" && isRestreamed && (
+                  {preferredLiveMode != "jsmpeg" && isRestreamed && (
+                    <div className="flex flex-row items-center gap-1 text-sm text-muted-foreground">
+                      {supportsAudioOutput ? (
+                        <>
+                          <LuCheck className="size-4 text-success" />
+                          <div>{translate('live.camera.settings.stream.audio.available')}</div>
+                        </>
+                      ) : (
+                        <>
+                          <LuX className="size-4 text-danger" />
+                          <div>{translate('live.camera.settings.stream.audio.unavailable.message')}</div>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <div className="cursor-pointer p-0">
+                                <LuInfo className="size-4" />
+                                <span className="sr-only">Info</span>
+                              </div>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-80 text-xs">
+                              {translate('live.camera.settings.stream.audio.unavailable.description')}
+                              <div className="mt-2 flex items-center text-primary">
+                                <Link
+                                  to="https://chat.airys.com.br/hc/help/pt_BR/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline"
+                                >
+                                  {translate('live.camera.settings.stream.audio.unavailable.documentation')}{" "}
+                                  <LuExternalLink className="ml-2 inline-flex size-3" />
+                                </Link>
+                              </div>
+                            </PopoverContent>
+                          </Popover>
+                        </>
+                      )}
+                    </div>
+                  )}
+                  {preferredLiveMode != "jsmpeg" &&
+                    isRestreamed &&
+                    supportsAudioOutput && (
                       <div className="flex flex-row items-center gap-1 text-sm text-muted-foreground">
-                        {supportsAudioOutput ? (
+                        {supports2WayTalk ? (
                           <>
                             <LuCheck className="size-4 text-success" />
-                            <div>Audio is available for this stream</div>
+                            <div>{translate('live.camera.settings.stream.talk.available')}</div>
                           </>
                         ) : (
                           <>
                             <LuX className="size-4 text-danger" />
-                            <div>Audio is unavailable for this stream</div>
+                            <div>{translate('live.camera.settings.stream.talk.unavailable.message')}</div>
                             <Popover>
                               <PopoverTrigger asChild>
                                 <div className="cursor-pointer p-0">
@@ -1199,16 +1230,15 @@ function FrigateCameraFeatures({
                                 </div>
                               </PopoverTrigger>
                               <PopoverContent className="w-80 text-xs">
-                                Audio must be output from your camera and
-                                configured in go2rtc for this stream.
+                                {translate('live.camera.settings.stream.talk.unavailable.description')}
                                 <div className="mt-2 flex items-center text-primary">
                                   <Link
-                                    to="https://docs.frigate.video/configuration/live"
+                                    to="https://chat.airys.com.br/hc/help/pt_BR/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline"
                                   >
-                                    Read the documentation{" "}
+                                    {translate('live.camera.settings.stream.talk.unavailable.documentation')}{" "}
                                     <LuExternalLink className="ml-2 inline-flex size-3" />
                                   </Link>
                                 </div>
@@ -1218,77 +1248,32 @@ function FrigateCameraFeatures({
                         )}
                       </div>
                     )}
-                    {preferredLiveMode != "jsmpeg" &&
-                      isRestreamed &&
-                      supportsAudioOutput && (
-                        <div className="flex flex-row items-center gap-1 text-sm text-muted-foreground">
-                          {supports2WayTalk ? (
-                            <>
-                              <LuCheck className="size-4 text-success" />
-                              <div>
-                                Two-way talk is available for this stream
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <LuX className="size-4 text-danger" />
-                              <div>
-                                Two-way talk is unavailable for this stream
-                              </div>
-                              <Popover>
-                                <PopoverTrigger asChild>
-                                  <div className="cursor-pointer p-0">
-                                    <LuInfo className="size-4" />
-                                    <span className="sr-only">Info</span>
-                                  </div>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-80 text-xs">
-                                  Your device must suppport the feature and
-                                  WebRTC must be configured for two-way talk.
-                                  <div className="mt-2 flex items-center text-primary">
-                                    <Link
-                                      to="https://docs.frigate.video/configuration/live/#webrtc-extra-configuration"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline"
-                                    >
-                                      Read the documentation{" "}
-                                      <LuExternalLink className="ml-2 inline-flex size-3" />
-                                    </Link>
-                                  </div>
-                                </PopoverContent>
-                              </Popover>
-                            </>
-                          )}
-                        </div>
-                      )}
 
-                    {preferredLiveMode == "jsmpeg" && isRestreamed && (
-                      <div className="flex flex-col items-center gap-3">
-                        <div className="flex flex-row items-center gap-2">
-                          <IoIosWarning className="mr-1 size-8 text-danger" />
+                  {preferredLiveMode == "jsmpeg" && isRestreamed && (
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="flex flex-row items-center gap-2">
+                        <IoIosWarning className="mr-1 size-8 text-danger" />
 
-                          <p className="text-sm">
-                            Live view is in low-bandwidth mode due to buffering
-                            or stream errors.
-                          </p>
-                        </div>
-                        <Button
-                          className={`flex items-center gap-2.5 rounded-lg`}
-                          aria-label="Reset the stream"
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setLowBandwidth(false)}
-                        >
-                          <MdOutlineRestartAlt className="size-5 text-primary-variant" />
-                          <div className="text-primary-variant">
-                            Reset stream
-                          </div>
-                        </Button>
+                        <p className="text-sm">
+                          {translate('live.camera.settings.stream.low_bandwidth.message')}
+                        </p>
                       </div>
-                    )}
-                  </div>
-                )}
+                      <Button
+                        className={`flex items-center gap-2.5 rounded-lg`}
+                        aria-label={translate('live.camera.actions.reset_stream')}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setLowBandwidth(false)}
+                      >
+                        <MdOutlineRestartAlt className="size-5 text-primary-variant" />
+                        <div className="text-primary-variant">
+                          {translate('live.camera.actions.reset_stream')}
+                        </div>
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              )}
               {isRestreamed && (
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center justify-between">
@@ -1296,7 +1281,7 @@ function FrigateCameraFeatures({
                       className="mx-0 cursor-pointer text-primary"
                       htmlFor="backgroundplay"
                     >
-                      Play in background
+                      {translate('live.camera.settings.background_play.title')}
                     </Label>
                     <Switch
                       className="ml-1"
@@ -1308,8 +1293,7 @@ function FrigateCameraFeatures({
                     />
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Enable this option to continue streaming when the player is
-                    hidden.
+                    {translate('live.camera.settings.background_play.description')}
                   </p>
                 </div>
               )}
@@ -1319,7 +1303,7 @@ function FrigateCameraFeatures({
                     className="mx-0 cursor-pointer text-primary"
                     htmlFor="showstats"
                   >
-                    Show stream stats
+                    {translate('live.camera.settings.stats.title')}
                   </Label>
                   <Switch
                     className="ml-1"
@@ -1329,13 +1313,12 @@ function FrigateCameraFeatures({
                   />
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Enable this option to show stream statistics as an overlay on
-                  the camera feed.
+                  {translate('live.camera.settings.stats.description')}
                 </p>
               </div>
               <div className="flex flex-col gap-1">
                 <div className="flex items-center justify-between text-sm font-medium leading-none">
-                  Debug View
+                  {translate('live.camera.settings.debug.title')}
                   <LuExternalLink
                     onClick={() =>
                       navigate(`/settings?page=debug&camera=${camera.name}`)
@@ -1414,10 +1397,10 @@ function FrigateCameraFeatures({
         <div className="mt-3 flex flex-col gap-5">
           {!isRestreamed && (
             <div className="flex flex-col gap-2 p-2">
-              <Label>Stream</Label>
+              <Label>{translate('live.camera.settings.stream.title')}</Label>
               <div className="flex flex-row items-center gap-1 text-sm text-muted-foreground">
                 <LuX className="size-4 text-danger" />
-                <div>Restreaming is not enabled for this camera.</div>
+                <div>{translate('live.camera.settings.stream.not_enabled.message')}</div>
                 <Popover>
                   <PopoverTrigger asChild>
                     <div className="cursor-pointer p-0">
@@ -1426,16 +1409,15 @@ function FrigateCameraFeatures({
                     </div>
                   </PopoverTrigger>
                   <PopoverContent className="w-80 text-xs">
-                    Set up go2rtc for additional live view options and audio for
-                    this camera.
+                    {translate('live.camera.settings.stream.not_enabled.description')}
                     <div className="mt-2 flex items-center text-primary">
                       <Link
-                        to="https://docs.frigate.video/configuration/live"
+                        to="https://chat.airys.com.br/hc/help/pt_BR/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline"
                       >
-                        Read the documentation{" "}
+                        {translate('live.camera.settings.stream.not_enabled.documentation')}{" "}
                         <LuExternalLink className="ml-2 inline-flex size-3" />
                       </Link>
                     </div>
@@ -1480,12 +1462,12 @@ function FrigateCameraFeatures({
                   {supportsAudioOutput ? (
                     <>
                       <LuCheck className="size-4 text-success" />
-                      <div>Audio is available for this stream</div>
+                      <div>{translate('live.camera.settings.stream.audio.available')}</div>
                     </>
                   ) : (
                     <>
                       <LuX className="size-4 text-danger" />
-                      <div>Audio is unavailable for this stream</div>
+                      <div>{translate('live.camera.settings.stream.audio.unavailable.message')}</div>
                       <Popover>
                         <PopoverTrigger asChild>
                           <div className="cursor-pointer p-0">
@@ -1494,16 +1476,15 @@ function FrigateCameraFeatures({
                           </div>
                         </PopoverTrigger>
                         <PopoverContent className="w-52 text-xs">
-                          Audio must be output from your camera and configured
-                          in go2rtc for this stream.
+                          {translate('live.camera.settings.stream.audio.unavailable.description')}
                           <div className="mt-2 flex items-center text-primary">
                             <Link
-                              to="https://docs.frigate.video/configuration/live"
+                              to="https://chat.airys.com.br/hc/help/pt_BR/"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline"
                             >
-                              Read the documentation{" "}
+                              {translate('live.camera.settings.stream.audio.unavailable.documentation')}{" "}
                               <LuExternalLink className="ml-2 inline-flex size-3" />
                             </Link>
                           </div>
@@ -1520,12 +1501,12 @@ function FrigateCameraFeatures({
                     {supports2WayTalk ? (
                       <>
                         <LuCheck className="size-4 text-success" />
-                        <div>Two-way talk is available for this stream</div>
+                        <div>{translate('live.camera.settings.stream.talk.available')}</div>
                       </>
                     ) : (
                       <>
                         <LuX className="size-4 text-danger" />
-                        <div>Two-way talk is unavailable for this stream</div>
+                        <div>{translate('live.camera.settings.stream.talk.unavailable.message')}</div>
                         <Popover>
                           <PopoverTrigger asChild>
                             <div className="cursor-pointer p-0">
@@ -1534,16 +1515,15 @@ function FrigateCameraFeatures({
                             </div>
                           </PopoverTrigger>
                           <PopoverContent className="w-52 text-xs">
-                            Your device must suppport the feature and WebRTC
-                            must be configured for two-way talk.
+                            {translate('live.camera.settings.stream.talk.unavailable.description')}
                             <div className="mt-2 flex items-center text-primary">
                               <Link
-                                to="https://docs.frigate.video/configuration/live/#webrtc-extra-configuration"
+                                to="https://chat.airys.com.br/hc/help/pt_BR/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline"
                               >
-                                Read the documentation{" "}
+                                {translate('live.camera.settings.stream.talk.unavailable.documentation')}{" "}
                                 <LuExternalLink className="ml-2 inline-flex size-3" />
                               </Link>
                             </div>
@@ -1559,8 +1539,7 @@ function FrigateCameraFeatures({
                     <IoIosWarning className="mr-1 size-8 text-danger" />
 
                     <p className="text-sm">
-                      Live view is in low-bandwidth mode due to buffering or
-                      stream errors.
+                      {translate('live.camera.settings.stream.low_bandwidth.message')}
                     </p>
                   </div>
                   <Button

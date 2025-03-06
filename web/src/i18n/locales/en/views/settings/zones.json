@@ -1,0 +1,54 @@
+{
+  "title": "Masks & Zones",
+  "masks": {
+    "title": "Masks",
+    "description": "Define areas to ignore in detection",
+    "add": "Add Mask",
+    "edit": "Edit Mask",
+    "delete": "Delete Mask",
+    "types": {
+      "motion": "Motion Mask",
+      "objects": "Object Mask",
+      "zones": "Zone Mask"
+    }
+  },
+  "zones": {
+    "title": "Zones",
+    "description": "Define areas of interest for detection",
+    "add": "Add Zone",
+    "edit": "Edit Zone",
+    "delete": "Delete Zone",
+    "settings": {
+      "name": "Zone Name",
+      "coordinates": "Coordinates",
+      "triggers": {
+        "title": "Triggers",
+        "motion": "Motion",
+        "objects": "Objects",
+        "people": "People",
+        "vehicles": "Vehicles",
+        "animals": "Animals"
+      },
+      "filters": {
+        "title": "Filters",
+        "minArea": "Minimum Area",
+        "maxArea": "Maximum Area",
+        "threshold": "Threshold"
+      }
+    }
+  },
+  "editor": {
+    "tools": {
+      "draw": "Draw",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "actions": {
+      "undo": "Undo",
+      "redo": "Redo",
+      "clear": "Clear",
+      "save": "Save",
+      "cancel": "Cancel"
+    }
+  }
+} 

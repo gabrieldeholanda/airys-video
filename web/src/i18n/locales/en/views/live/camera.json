@@ -1,0 +1,191 @@
+{
+  "controls": {
+    "ptz": {
+      "title": "PTZ Controls",
+      "click_overlay": "Click Overlay",
+      "up": "Move Up",
+      "down": "Move Down",
+      "left": "Move Left",
+      "right": "Move Right",
+      "zoom_in": "Zoom In",
+      "zoom_out": "Zoom Out",
+      "home": "Home Position"
+    },
+    "audio": {
+      "output": {
+        "enable": "Enable Audio",
+        "disable": "Disable Audio",
+        "not_supported": "Audio output not supported"
+      },
+      "input": {
+        "start": "Start Two-way Audio",
+        "stop": "Stop Two-way Audio",
+        "not_supported": "Two-way audio not supported"
+      }
+    },
+    "recording": {
+      "start": "Start Recording",
+      "stop": "Stop Recording",
+      "snapshot": "Take Snapshot",
+      "not_supported": "Recording not supported"
+    },
+    "detection": {
+      "enable": "Enable Detection",
+      "disable": "Disable Detection",
+      "autotrack": {
+        "enable": "Enable Auto-tracking",
+        "disable": "Disable Auto-tracking"
+      }
+    },
+    "view": {
+      "pip": {
+        "enter": "Enter Picture-in-Picture",
+        "exit": "Exit Picture-in-Picture",
+        "not_supported": "Picture-in-Picture not supported"
+      },
+      "history": "View Recording History",
+      "restart": "Restart Camera",
+      "settings": "Camera Settings"
+    }
+  },
+  "stream": {
+    "select": "Select Stream",
+    "quality": {
+      "high": "High Quality",
+      "low": "Low Bandwidth",
+      "description": "Reduce bandwidth usage with lower quality stream"
+    },
+    "error": {
+      "load": "Error loading stream",
+      "codec": "Video codec not supported",
+      "network": "Network error occurred",
+      "reconnect": "Attempting to reconnect..."
+    }
+  },
+  "retention": {
+    "title": "Retention Settings",
+    "mode": {
+      "all": "Record Everything",
+      "motion": "Record on Motion",
+      "manual": "Manual Recording Only"
+    },
+    "warning": "Warning: On-demand retention is enabled"
+  },
+  "actions": {
+    "back": "Back",
+    "history": "History",
+    "fullscreen": {
+      "enter": "Fullscreen",
+      "exit": "Close"
+    },
+    "pip": {
+      "enter": "Picture in Picture",
+      "exit": "Close"
+    },
+    "audio": {
+      "enable": "Enable Camera Audio",
+      "disable": "Disable Camera Audio"
+    },
+    "talk": {
+      "enable": "Enable Two Way Talk",
+      "disable": "Disable Two Way Talk"
+    },
+    "reset_stream": "Reset stream"
+  },
+  "features": {
+    "detect": {
+      "enable": "Enable Detect",
+      "disable": "Disable Detect"
+    },
+    "recording": {
+      "enable": "Enable Recording",
+      "disable": "Disable Recording"
+    },
+    "snapshots": {
+      "enable": "Enable Snapshots",
+      "disable": "Disable Snapshots"
+    },
+    "audio_detect": {
+      "enable": "Enable Audio Detect",
+      "disable": "Disable Audio Detect"
+    },
+    "autotracking": {
+      "enable": "Enable Autotracking",
+      "disable": "Disable Autotracking"
+    },
+    "on_demand": {
+      "title": "On-Demand Recording",
+      "start": "Start on-demand recording",
+      "stop": "Stop on-demand recording",
+      "description": "Start a manual event based on this camera's recording retention settings.",
+      "success": {
+        "start": "Started manual on-demand recording.",
+        "end": "Ended manual on-demand recording."
+      },
+      "error": {
+        "start": "Failed to start manual on-demand recording.",
+        "end": "Failed to end manual on-demand recording."
+      },
+      "retention": {
+        "recording_disabled": "Since recording is disabled or restricted in the config for this camera, only a snapshot will be saved.",
+        "mode": "Your {{source}} recording retention configuration is set to mode: {{mode}}, so this on-demand recording will only keep segments with {{mode_text}}."
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "stream": {
+      "title": "Stream",
+      "not_enabled": {
+        "message": "Restreaming is not enabled for this camera.",
+        "description": "Set up go2rtc for additional live view options and audio for this camera.",
+        "documentation": "Read the documentation"
+      },
+      "audio": {
+        "available": "Audio is available for this stream",
+        "unavailable": {
+          "message": "Audio is unavailable for this stream",
+          "description": "Audio must be output from your camera and configured in go2rtc for this stream.",
+          "documentation": "Read the documentation"
+        }
+      },
+      "talk": {
+        "available": "Two-way talk is available for this stream",
+        "unavailable": {
+          "message": "Two-way talk is unavailable for this stream",
+          "description": "Your device must suppport the feature and WebRTC must be configured for two-way talk.",
+          "documentation": "Read the documentation"
+        }
+      },
+      "low_bandwidth": {
+        "message": "Live view is in low-bandwidth mode due to buffering or stream errors."
+      }
+    },
+    "background_play": {
+      "title": "Play in background",
+      "description": "Enable this option to continue streaming when the player is hidden."
+    },
+    "stats": {
+      "title": "Show stream stats",
+      "description": "Enable this option to show stream statistics as an overlay on the camera feed."
+    },
+    "debug": {
+      "title": "Debug View"
+    }
+  },
+  "ptz": {
+    "actions": {
+      "left": "Move camera left",
+      "right": "Move camera right",
+      "up": "Move camera up",
+      "down": "Move camera down",
+      "zoom_in": "Zoom in",
+      "zoom_out": "Zoom out",
+      "click_move": {
+        "enable": "Enable click to move",
+        "disable": "Disable click to move"
+      },
+      "presets": "PTZ camera presets"
+    }
+  }
+} 

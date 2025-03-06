@@ -1,0 +1,40 @@
+{
+  "button": {
+    "moreFilters": "More Filters",
+    "apply": "Apply",
+    "reset": "Reset",
+    "resetAriaLabel": "Reset filters to default values"
+  },
+  "timeRange": {
+    "title": "Time Range",
+    "startTimeAriaLabel": "Select Start Time",
+    "endTimeAriaLabel": "Select End Time"
+  },
+  "zones": {
+    "title": "Zones",
+    "allZones": "All Zones"
+  },
+  "subLabels": {
+    "title": "Sub Labels",
+    "allSubLabels": "All Sub Labels"
+  },
+  "score": {
+    "title": "Score"
+  },
+  "speed": {
+    "title": "Estimated Speed",
+    "metric": "kph",
+    "imperial": "mph"
+  },
+  "features": {
+    "title": "Features",
+    "hasSnapshot": "Has a snapshot",
+    "hasClip": "Has a video clip",
+    "submittedToFrigatePlus": "Submitted to Frigate+",
+    "yes": "Yes",
+    "no": "No",
+    "tooltip": {
+      "frigatePlusDisabled": "You must first filter on tracked objects that have a snapshot.\n\nTracked objects without a snapshot cannot be submitted to Frigate+."
+    }
+  }
+} 

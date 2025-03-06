@@ -1,0 +1,12 @@
+{
+  "dialog": {
+    "title": "Are you sure you want to restart Frigate?",
+    "cancel": "Cancel",
+    "restart": "Restart"
+  },
+  "sheet": {
+    "title": "Frigate is Restarting",
+    "description": "This page will reload in {seconds} seconds.",
+    "forceReload": "Force Reload Now"
+  }
+} 

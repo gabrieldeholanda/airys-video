@@ -1,0 +1,13 @@
+{
+  "live": "Live View",
+  "events": "Events",
+  "explore": "Explore",
+  "exports": "Exports",
+  "system": "System",
+  "settings": "Settings",
+  "config": "Configuration",
+  "logs": "Logs",
+  "faces": "Faces",
+  "playground": "UI Playground",
+  "face_library": "Face Library"
+} 

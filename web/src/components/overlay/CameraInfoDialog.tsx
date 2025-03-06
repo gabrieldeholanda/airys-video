@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { Toaster } from "../ui/sonner";
+import { useTranslation } from "react-i18next";
 
 type CameraInfoDialogProps = {
   camera: CameraConfig;
@@ -27,6 +28,7 @@ export default function CameraInfoDialog({
   setShowCameraInfoDialog,
 }: CameraInfoDialogProps) {
   const [ffprobeInfo, setFfprobeInfo] = useState<Ffprobe[]>();
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.camera_info" });
 
   useEffect(() => {
     axios
@@ -39,13 +41,13 @@ export default function CameraInfoDialog({
         if (res.status === 200) {
           setFfprobeInfo(res.data);
         } else {
-          toast.error(`Unable to probe camera: ${res.statusText}`, {
+          toast.error(t("error.probe", { message: res.statusText }), {
             position: "top-center",
           });
         }
       })
       .catch((error) => {
-        toast.error(`Unable to probe camera: ${error.response.data.message}`, {
+        toast.error(t("error.probe", { message: error.response.data.message }), {
           position: "top-center",
         });
       });
@@ -55,7 +57,7 @@ export default function CameraInfoDialog({
 
   const onCopyFfprobe = async () => {
     copy(JSON.stringify(ffprobeInfo));
-    toast.success("Copied probe data to clipboard.");
+    toast.success(t("error.copy"));
   };
 
   function gcd(a: number, b: number): number {
@@ -72,11 +74,11 @@ export default function CameraInfoDialog({
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="capitalize">
-              {camera.name.replaceAll("_", " ")} Camera Probe Info
+              {camera.name.replaceAll("_", " ")} {t("title")}
             </DialogTitle>
           </DialogHeader>
           <DialogDescription>
-            Stream data is obtained with <code>ffprobe</code>.
+            {t("description")}
           </DialogDescription>
 
           <div className="mb-2 p-4">
@@ -85,7 +87,7 @@ export default function CameraInfoDialog({
                 {ffprobeInfo.map((stream, idx) => (
                   <div key={idx} className="mb-5">
                     <div className="mb-1 rounded-md bg-secondary p-2 text-lg text-primary">
-                      Stream {idx + 1}
+                      {t("stream", { number: idx + 1 })}
                     </div>
                     {stream.return_code == 0 ? (
                       <div>
@@ -93,10 +95,10 @@ export default function CameraInfoDialog({
                           <div className="" key={idx}>
                             {codec.width ? (
                               <div className="text-muted-foreground">
-                                <div className="ml-2">Video:</div>
+                                <div className="ml-2">{t("video.title")}</div>
                                 <div className="ml-5">
                                   <div>
-                                    Codec:
+                                    {t("video.codec")}
                                     <span className="text-primary">
                                       {" "}
                                       {codec.codec_long_name}
@@ -105,32 +107,30 @@ export default function CameraInfoDialog({
                                   <div>
                                     {codec.width && codec.height ? (
                                       <>
-                                        Resolution:{" "}
+                                        {t("video.resolution.label")}{" "}
                                         <span className="text-primary">
-                                          {" "}
-                                          {codec.width}x{codec.height} (
-                                          {codec.width /
-                                            gcd(codec.width, codec.height)}
-                                          /
-                                          {codec.height /
-                                            gcd(codec.width, codec.height)}{" "}
-                                          aspect ratio)
+                                          {t("video.resolution.format", {
+                                            width: codec.width,
+                                            height: codec.height,
+                                            aspectWidth: codec.width / gcd(codec.width, codec.height),
+                                            aspectHeight: codec.height / gcd(codec.width, codec.height)
+                                          })}
                                         </span>
                                       </>
                                     ) : (
                                       <span>
-                                        Resolution:{" "}
+                                        {t("video.resolution.label")}{" "}
                                         <span className="text-primary">
-                                          Unknown
+                                          {t("video.resolution.unknown")}
                                         </span>
                                       </span>
                                     )}
                                   </div>
                                   <div>
-                                    FPS:{" "}
+                                    {t("video.fps.label")}{" "}
                                     <span className="text-primary">
                                       {codec.avg_frame_rate == "0/0"
-                                        ? "Unknown"
+                                        ? t("video.fps.unknown")
                                         : codec.avg_frame_rate}
                                     </span>
                                   </div>
@@ -138,9 +138,9 @@ export default function CameraInfoDialog({
                               </div>
                             ) : (
                               <div className="text-muted-foreground">
-                                <div className="ml-2 mt-1">Audio:</div>
+                                <div className="ml-2 mt-1">{t("audio.title")}</div>
                                 <div className="ml-4">
-                                  Codec:{" "}
+                                  {t("audio.codec")}{" "}
                                   <span className="text-primary">
                                     {codec.codec_long_name}
                                   </span>
@@ -152,7 +152,7 @@ export default function CameraInfoDialog({
                       </div>
                     ) : (
                       <div className="px-2">
-                        <div>Error: {stream.stderr}</div>
+                        <div>{t("error.label")} {stream.stderr}</div>
                       </div>
                     )}
                   </div>
@@ -161,7 +161,7 @@ export default function CameraInfoDialog({
             ) : (
               <div className="flex flex-col items-center">
                 <ActivityIndicator />
-                <div className="mt-2">Fetching Camera Data</div>
+                <div className="mt-2">{t("loading")}</div>
               </div>
             )}
           </div>
@@ -169,10 +169,10 @@ export default function CameraInfoDialog({
           <DialogFooter>
             <Button
               variant="select"
-              aria-label="Copy"
+              aria-label={t("button.copy")}
               onClick={() => onCopyFfprobe()}
             >
-              Copy
+              {t("button.copy")}
             </Button>
           </DialogFooter>
         </DialogContent>

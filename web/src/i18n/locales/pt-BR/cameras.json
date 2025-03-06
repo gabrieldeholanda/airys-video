@@ -1,0 +1,12 @@
+{
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "disabled": "Desativada"
+  },
+  "actions": {
+    "snapshot": "Tirar Foto",
+    "record": "Gravar",
+    "restart": "Reiniciar Câmera"
+  }
+} 

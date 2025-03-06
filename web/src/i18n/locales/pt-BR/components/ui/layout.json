@@ -1,0 +1,21 @@
+{
+  "sidebar": {
+    "toggle": "Alternar barra lateral",
+    "collapse": "Recolher barra lateral",
+    "expand": "Expandir barra lateral"
+  },
+  "header": {
+    "menu": "Menu",
+    "notifications": "Notificações",
+    "profile": "Perfil",
+    "settings": "Configurações"
+  },
+  "main": {
+    "skip_to_content": "Pular para o conteúdo principal",
+    "loading": "Carregando conteúdo..."
+  },
+  "footer": {
+    "version": "Versão {{version}}",
+    "copyright": "© {{year}} Todos os direitos reservados"
+  }
+} 

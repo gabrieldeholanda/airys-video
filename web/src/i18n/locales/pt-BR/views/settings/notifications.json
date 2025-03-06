@@ -1,0 +1,65 @@
+{
+  "title": "Configurações de Notificações",
+  "description": {
+    "intro": "O Frigate pode enviar notificações push nativamente para seu dispositivo quando estiver rodando no navegador ou instalado como PWA.",
+    "documentation": "Ler a Documentação"
+  },
+  "form": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "exemplo@email.com",
+      "description": "É necessário inserir um e-mail válido, pois ele é usado pelo servidor de push em caso de problemas."
+    },
+    "cameras": {
+      "title": "Câmeras",
+      "all_cameras": "Todas as Câmeras",
+      "no_cameras": "Nenhuma câmera disponível.",
+      "description": "Selecione as câmeras para ativar as notificações."
+    }
+  },
+  "actions": {
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  },
+  "messages": {
+    "success": "Configurações de notificação foram salvas.",
+    "error": {
+      "save": "Falha ao salvar alterações de configuração: {{error}}"
+    },
+    "unsaved": {
+      "settings": "Configurações de notificação não salvas",
+      "registrations": "Registros de Notificação não salvos"
+    }
+  },
+  "device": {
+    "title": "Configurações Específicas do Dispositivo",
+    "register": "Registrar este dispositivo",
+    "unregister": "Desregistrar este dispositivo",
+    "test": "Enviar uma notificação de teste",
+    "registration": {
+      "success": "Registrado com sucesso para notificações. É necessário reiniciar o Frigate antes que qualquer notificação (incluindo uma notificação de teste) possa ser enviada.",
+      "error": "Falha ao salvar registro de notificação."
+    }
+  },
+  "global": {
+    "title": "Configurações Globais",
+    "description": "Suspender temporariamente as notificações para câmeras específicas em todos os dispositivos registrados.",
+    "camera": {
+      "active": "Notificações Ativas",
+      "suspended": "Notificações suspensas até {{time}}",
+      "suspended_restart": "reiniciar o Frigate.",
+      "suspend": {
+        "title": "Suspender",
+        "5min": "Suspender por 5 minutos",
+        "10min": "Suspender por 10 minutos",
+        "30min": "Suspender por 30 minutos",
+        "1hour": "Suspender por 1 hora",
+        "12hours": "Suspender por 12 horas",
+        "24hours": "Suspender por 24 horas",
+        "restart": "Suspender até reiniciar"
+      },
+      "cancel": "Cancelar Suspensão"
+    }
+  }
+} 

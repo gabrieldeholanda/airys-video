@@ -1,0 +1,24 @@
+{
+  "title": {
+    "vainfo": "Saída do Vainfo",
+    "nvidia": "Saída do Nvidia SMI"
+  },
+  "return_code": "Código de Retorno:",
+  "process": {
+    "output": "Saída do Processo",
+    "error": "Erro do Processo"
+  },
+  "nvidia": {
+    "name": "Nome:",
+    "driver": "Driver:",
+    "cuda": "Capacidade de Computação Cuda:",
+    "vbios": "Informação do VBios:"
+  },
+  "button": {
+    "close": "Fechar",
+    "copy": "Copiar"
+  },
+  "success": {
+    "copy": "Informações da GPU copiadas para a área de transferência."
+  }
+} 

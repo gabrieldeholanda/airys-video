@@ -1,0 +1,25 @@
+{
+  "title": "Motion Detection Tuner",
+  "description": "Frigate uses motion detection as a first line check to see if there is anything happening in the frame worth checking with object detection.",
+  "documentation": "Read the Motion Tuning Guide",
+  "threshold": {
+    "label": "Threshold",
+    "description": "The threshold value dictates how much of a change in a pixel's luminance is required to be considered motion.",
+    "default": "Default: {{value}}"
+  },
+  "contour_area": {
+    "label": "Contour Area",
+    "description": "The contour area value is used to decide which groups of changed pixels qualify as motion.",
+    "default": "Default: {{value}}"
+  },
+  "improve_contrast": {
+    "label": "Improve Contrast",
+    "description": "Improve contrast for darker scenes.",
+    "default": "Default: {{value}}"
+  },
+  "actions": {
+    "reset": "Reset",
+    "save": "Save",
+    "saving": "Saving..."
+  }
+} 

@@ -1,0 +1,15 @@
+{
+  "loading": "Loading...",
+  "error": "Error",
+  "success": "Success",
+  "warning": "Warning",
+  "info": "Information",
+  "healthy": "System is healthy",
+  "cpu": "CPU {{percent}}%",
+  "gpu": {
+    "amd-vaapi": "AMD GPU",
+    "intel-vaapi": "Intel GPU",
+    "intel-qsv": "Intel QSV",
+    "usage": "{{name}} {{percent}}%"
+  }
+} 

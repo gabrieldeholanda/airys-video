@@ -1,0 +1,63 @@
+{
+  "layout": {
+    "grid": "Grid View",
+    "list": "List View",
+    "edit": "Edit Layout",
+    "save": "Save Layout",
+    "cancel": "Cancel Edit"
+  },
+  "camera": {
+    "select": "Select Camera",
+    "group": "Camera Group",
+    "birdseye": "Birdseye View",
+    "status": {
+      "offline": "Camera Offline",
+      "loading": "Loading Camera",
+      "error": "Camera Error",
+      "reconnecting": "Reconnecting..."
+    }
+  },
+  "controls": {
+    "fullscreen": {
+      "enter": "Enter Fullscreen",
+      "exit": "Exit Fullscreen"
+    },
+    "audio": {
+      "mute": "Mute Audio",
+      "unmute": "Unmute Audio",
+      "mute_all": "Mute All",
+      "unmute_all": "Unmute All"
+    },
+    "stats": {
+      "show": "Show Statistics",
+      "hide": "Hide Statistics",
+      "fps": "FPS",
+      "bitrate": "Bitrate",
+      "resolution": "Resolution"
+    }
+  },
+  "events": {
+    "title": "Recent Events",
+    "empty": "No recent events",
+    "loading": "Loading events...",
+    "error": "Error loading events"
+  },
+  "streaming": {
+    "mode": {
+      "title": "Streaming Mode",
+      "webrtc": "WebRTC",
+      "jsmpeg": "JSMPEG",
+      "mse": "MSE"
+    },
+    "quality": {
+      "title": "Stream Quality",
+      "high": "High Quality",
+      "low": "Low Bandwidth"
+    },
+    "settings": {
+      "title": "Streaming Settings",
+      "background": "Play in Background",
+      "autoplay": "Auto Play on Motion"
+    }
+  }
+} 

@@ -1,0 +1,315 @@
+{
+  "general": {
+    "title": "General Settings",
+    "language": {
+      "title": "Language",
+      "interface": "Interface Language",
+      "description": "Select your preferred language for the interface"
+    },
+    "liveDashboard": {
+      "title": "Live Dashboard",
+      "autoLive": "Auto Live",
+      "autoLiveDescription": "Automatically switch to live view when motion is detected",
+      "autoLiveNote": "This will only work when the dashboard is open",
+      "alertVideos": "Alert Videos",
+      "alertVideosDescription": "Show video clips for alerts in the dashboard"
+    },
+    "layouts": {
+      "title": "Layouts",
+      "description": "Manage your saved camera layouts",
+      "clearButton": "Clear Saved Layouts",
+      "cleared": "Layouts cleared successfully",
+      "clearError": "Error clearing layouts"
+    },
+    "streaming": {
+      "title": "Streaming",
+      "description": "Configure streaming settings",
+      "clearButton": "Clear Streaming Settings",
+      "cleared": "Streaming settings cleared",
+      "clearError": "Error clearing streaming settings"
+    },
+    "recordings": {
+      "title": "Recordings",
+      "playbackRate": "Default Playback Rate",
+      "playbackRateDescription": "Set the default playback speed for recordings"
+    },
+    "calendar": {
+      "title": "Calendar",
+      "firstWeekday": "First Day of Week",
+      "firstWeekdayDescription": "Set which day your week starts on"
+    }
+  },
+  "cameras": {
+    "title": "Camera Settings",
+    "add": {
+      "title": "Add Camera",
+      "description": "Add a new camera to monitor",
+      "button": "Add Camera"
+    },
+    "edit": {
+      "title": "Edit Camera",
+      "description": "Modify camera settings",
+      "button": "Save Changes"
+    },
+    "delete": {
+      "title": "Delete Camera",
+      "description": "Remove this camera",
+      "confirm": "Are you sure you want to delete this camera?",
+      "button": "Delete Camera"
+    },
+    "settings": {
+      "general": {
+        "title": "General Settings",
+        "name": "Camera Name",
+        "enabled": "Camera Enabled",
+        "url": "Camera URL",
+        "urlDescription": "RTSP, HTTP, or local device URL"
+      },
+      "video": {
+        "title": "Video Settings",
+        "width": "Width",
+        "height": "Height",
+        "fps": "FPS",
+        "quality": "Quality",
+        "codec": "Codec",
+        "hwaccel": "Hardware Acceleration"
+      },
+      "audio": {
+        "title": "Audio Settings",
+        "enabled": "Audio Enabled",
+        "input": "Audio Input",
+        "output": "Audio Output"
+      },
+      "onvif": {
+        "title": "ONVIF Settings",
+        "enabled": "ONVIF Enabled",
+        "host": "Host",
+        "port": "Port",
+        "username": "Username",
+        "password": "Password"
+      },
+      "review": {
+        "title": "Review",
+        "alerts": {
+          "title": "Alerts",
+          "description": "Enable/disable alerts and detections for this camera. When disabled, no new review items will be generated."
+        },
+        "classification": {
+          "title": "Review Classification",
+          "description": "Frigate categorizes review items as Alerts and Detections. By default, all person and car objects are considered Alerts. You can refine categorization of your review items by configuring required zones for them.",
+          "readDocs": "Read the Documentation",
+          "noZones": "No zones are defined for this camera.",
+          "alertsInfo": "All person, car objects on {{camera}} will be shown as Alerts.",
+          "detectionsInfo": "All objects not classified as Alerts on {{camera}} will be shown as Detections, regardless of zone."
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "save": "Save"
+        }
+      }
+    }
+  },
+  "search": {
+    "title": "Explore Settings",
+    "semantic": {
+      "title": "Semantic Search",
+      "description": "Semantic Search in Frigate allows you to find tracked objects within your review items using either the image itself, a user-defined text description, or an automatically generated one.",
+      "readDocs": "Read the Documentation",
+      "enabled": {
+        "title": "Enabled",
+        "description": "Enable or disable semantic search functionality."
+      },
+      "reindex": {
+        "title": "Re-Index On Startup",
+        "description": "Re-indexing will reprocess all thumbnails and descriptions (if enabled) on startup."
+      },
+      "model": {
+        "title": "Model Size",
+        "description": "The size of the model used for Semantic Search embeddings.",
+        "small": {
+          "title": "Small",
+          "description": "Using small employs a quantized version of the model that uses less RAM and runs faster on CPU with a very negligible difference in embedding quality."
+        },
+        "large": {
+          "title": "Large",
+          "description": "Using large employs the full Jina model and will automatically run on the GPU if applicable."
+        }
+      }
+    },
+    "messages": {
+      "saved": "Explore settings have been saved.",
+      "saveError": "Failed to save config changes: {{error}}",
+      "unsavedChanges": "Unsaved Explore settings changes"
+    }
+  },
+  "motion": {
+    "title": "Motion Tuner",
+    "description": "Adjust motion detection settings for optimal performance",
+    "settings": {
+      "threshold": {
+        "title": "Motion Threshold",
+        "description": "Minimum pixel difference to trigger motion detection",
+        "low": "Low (More Sensitive)",
+        "medium": "Medium",
+        "high": "High (Less Sensitive)"
+      },
+      "contours": {
+        "title": "Contour Settings",
+        "minArea": "Minimum Area",
+        "maxArea": "Maximum Area",
+        "threshold": "Contour Threshold"
+      },
+      "frames": {
+        "title": "Frame Settings",
+        "frameSkip": "Frame Skip",
+        "fps": "Target FPS",
+        "improve": "Improve Detection"
+      }
+    },
+    "preview": {
+      "title": "Motion Preview",
+      "original": "Original",
+      "detection": "Detection",
+      "mask": "Mask",
+      "refresh": "Refresh Preview"
+    }
+  },
+  "zones": {
+    "title": "Masks & Zones",
+    "masks": {
+      "title": "Masks",
+      "description": "Define areas to ignore in detection",
+      "add": "Add Mask",
+      "edit": "Edit Mask",
+      "delete": "Delete Mask",
+      "types": {
+        "motion": "Motion Mask",
+        "objects": "Object Mask",
+        "zones": "Zone Mask"
+      }
+    },
+    "zones": {
+      "title": "Zones",
+      "description": "Define areas of interest for detection",
+      "add": "Add Zone",
+      "edit": "Edit Zone",
+      "delete": "Delete Zone",
+      "settings": {
+        "name": "Zone Name",
+        "coordinates": "Coordinates",
+        "triggers": {
+          "title": "Triggers",
+          "motion": "Motion",
+          "objects": "Objects",
+          "people": "People",
+          "vehicles": "Vehicles",
+          "animals": "Animals"
+        },
+        "filters": {
+          "title": "Filters",
+          "minArea": "Minimum Area",
+          "maxArea": "Maximum Area",
+          "threshold": "Threshold"
+        }
+      }
+    }
+  },
+  "debug": {
+    "title": "Debug Settings",
+    "description": "Advanced settings for troubleshooting and debugging",
+    "settings": {
+      "logging": {
+        "title": "Logging",
+        "level": {
+          "title": "Log Level",
+          "debug": "Debug",
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error"
+        },
+        "retention": {
+          "title": "Log Retention",
+          "description": "Number of days to keep logs",
+          "days": "{{count}} days"
+        }
+      },
+      "performance": {
+        "title": "Performance Monitoring",
+        "enabled": "Enable Performance Monitoring",
+        "metrics": {
+          "title": "Metrics",
+          "cpu": "CPU Usage",
+          "memory": "Memory Usage",
+          "gpu": "GPU Usage",
+          "disk": "Disk Usage"
+        }
+      },
+      "diagnostics": {
+        "title": "Diagnostics",
+        "system": {
+          "title": "System Information",
+          "os": "Operating System",
+          "python": "Python Version",
+          "ffmpeg": "FFmpeg Version"
+        },
+        "network": {
+          "title": "Network",
+          "test": "Test Connection",
+          "status": "Connection Status"
+        }
+      }
+    }
+  },
+  "users": {
+    "title": "User Management",
+    "description": "Manage user accounts and permissions",
+    "users": {
+      "list": {
+        "title": "Users",
+        "empty": "No users found",
+        "headers": {
+          "username": "Username",
+          "role": "Role",
+          "lastLogin": "Last Login",
+          "status": "Status",
+          "actions": "Actions"
+        }
+      },
+      "roles": {
+        "admin": "Administrator",
+        "user": "User",
+        "viewer": "Viewer"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "locked": "Locked"
+      }
+    },
+    "actions": {
+      "add": {
+        "title": "Add User",
+        "button": "Add New User"
+      },
+      "edit": {
+        "title": "Edit User",
+        "button": "Save Changes"
+      },
+      "delete": {
+        "title": "Delete User",
+        "button": "Delete User",
+        "confirm": "Are you sure you want to delete this user?"
+      }
+    }
+  },
+  "menu": {
+    "ui": "UI Settings",
+    "explore": "Explore Settings",
+    "camera": "Camera Settings",
+    "masks_zones": "Masks & Zones",
+    "motion_tuner": "Motion Tuner",
+    "debug": "Debug View",
+    "users": "Users",
+    "notifications": "Notifications"
+  }
+} 

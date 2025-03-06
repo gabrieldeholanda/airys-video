@@ -1,0 +1,54 @@
+{
+  "actions": {
+    "back": "Voltar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "add": "Adicionar",
+    "remove": "Remover",
+    "apply": "Aplicar",
+    "reset": "Redefinir",
+    "confirm": "Confirmar",
+    "close": "Fechar"
+  },
+  "status": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "warning": "Aviso",
+    "info": "Informação",
+    "healthy": "Sistema saudável",
+    "cpu": "CPU {{percent}}%",
+    "gpu": {
+      "amd-vaapi": "GPU AMD",
+      "intel-vaapi": "GPU Intel",
+      "intel-qsv": "GPU Intel",
+      "usage": "{{name}} {{percent}}%"
+    },
+    "reindexing": "Reindexando embeddings ({{percent}}% concluído)"
+  },
+  "time": {
+    "seconds": "segundos",
+    "minutes": "minutos",
+    "hours": "horas",
+    "days": "dias",
+    "weeks": "semanas",
+    "months": "meses",
+    "years": "anos",
+    "ago": "há {{time}}",
+    "in": "em {{time}}"
+  },
+  "errors": {
+    "required": "Este campo é obrigatório",
+    "invalidFormat": "Formato inválido",
+    "networkError": "Erro de rede",
+    "unknownError": "Ocorreu um erro desconhecido"
+  },
+  "confirmation": {
+    "title": "Tem certeza?",
+    "message": "Esta ação não pode ser desfeita.",
+    "yes": "Sim",
+    "no": "Não"
+  }
+} 

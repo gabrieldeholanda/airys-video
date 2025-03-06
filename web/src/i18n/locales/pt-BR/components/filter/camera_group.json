@@ -1,0 +1,49 @@
+{
+  "all_cameras": "Todas as Câmeras",
+  "add": {
+    "button": "Adicionar grupo de câmeras",
+    "title": "Adicionar Grupo de Câmeras",
+    "description": "Editar grupos de câmeras"
+  },
+  "edit": {
+    "button": "Editar grupo de câmeras",
+    "title": "Editar Grupo de Câmeras",
+    "description": "Editar grupo de câmeras"
+  },
+  "form": {
+    "name": {
+      "label": "Nome",
+      "placeholder": "Digite um nome...",
+      "validation": {
+        "min_length": "O nome do grupo deve ter pelo menos 2 caracteres.",
+        "exists": "Nome do grupo já existe.",
+        "invalid_chars": "O nome do grupo não pode conter ponto.",
+        "reserved": "Nome de grupo inválido."
+      }
+    },
+    "cameras": {
+      "label": "Câmeras",
+      "description": "Selecione as câmeras para este grupo.",
+      "settings": "Configurações de transmissão da câmera"
+    },
+    "icon": {
+      "label": "Ícone"
+    }
+  },
+  "delete": {
+    "title": "Confirmar Exclusão",
+    "description": "Tem certeza que deseja excluir o grupo de câmeras <em>{{name}}</em>?",
+    "button": "Excluir"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Excluir",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  },
+  "messages": {
+    "save_success": "Grupo de câmeras ({{name}}) foi salvo.",
+    "save_error": "Falha ao salvar alterações de configuração: {{error}}"
+  }
+} 

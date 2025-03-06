@@ -1,0 +1,41 @@
+{
+  "tooltip": "Settings",
+  "current_user": "Current User: {{username}}",
+  "logout": "Logout",
+  "account": {
+    "tooltip": "Account",
+    "title": "Account"
+  },
+  "sections": {
+    "system": {
+      "title": "System",
+      "metrics": "System metrics",
+      "logs": "System logs"
+    },
+    "configuration": {
+      "title": "Configuration",
+      "settings": "Settings",
+      "editor": "Configuration editor"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "dark_mode": {
+        "title": "Dark Mode",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      },
+      "theme": {
+        "title": "Theme"
+      }
+    },
+    "help": {
+      "title": "Help",
+      "documentation": "Documentation",
+      "github": "GitHub"
+    }
+  },
+  "actions": {
+    "restart": "Restart Frigate"
+  }
+} 

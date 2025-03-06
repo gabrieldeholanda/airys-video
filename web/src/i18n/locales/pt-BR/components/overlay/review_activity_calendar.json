@@ -1,0 +1,8 @@
+{
+  "activity": {
+    "alert": "Alerta",
+    "detection": "Detecção",
+    "none": "Sem atividade",
+    "recordings": "Tem gravações"
+  }
+} 

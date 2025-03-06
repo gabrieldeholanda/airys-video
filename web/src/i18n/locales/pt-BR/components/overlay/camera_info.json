@@ -1,0 +1,31 @@
+{
+  "title": "Informações de Sonda da Câmera",
+  "description": "Os dados do stream são obtidos com ffprobe.",
+  "stream": "Stream {{number}}",
+  "video": {
+    "title": "Vídeo:",
+    "codec": "Codec:",
+    "resolution": {
+      "label": "Resolução:",
+      "unknown": "Desconhecida",
+      "format": "{{width}}x{{height}} (proporção {{aspectWidth}}/{{aspectHeight}})"
+    },
+    "fps": {
+      "label": "FPS:",
+      "unknown": "Desconhecido"
+    }
+  },
+  "audio": {
+    "title": "Áudio:",
+    "codec": "Codec:"
+  },
+  "error": {
+    "label": "Erro:",
+    "probe": "Não foi possível sondar a câmera: {{message}}",
+    "copy": "Dados da sonda copiados para a área de transferência."
+  },
+  "loading": "Buscando Dados da Câmera",
+  "button": {
+    "copy": "Copiar"
+  }
+} 

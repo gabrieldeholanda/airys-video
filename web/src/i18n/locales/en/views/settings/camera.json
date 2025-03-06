@@ -1,0 +1,83 @@
+{
+  "title": "Camera Settings",
+  "add": {
+    "title": "Add Camera",
+    "description": "Add a new camera to monitor",
+    "button": "Add Camera"
+  },
+  "edit": {
+    "title": "Edit Camera",
+    "description": "Modify camera settings",
+    "button": "Save Changes"
+  },
+  "delete": {
+    "title": "Delete Camera",
+    "description": "Remove this camera",
+    "confirm": "Are you sure you want to delete this camera?",
+    "button": "Delete Camera"
+  },
+  "settings": {
+    "general": {
+      "title": "General Settings",
+      "name": "Camera Name",
+      "enabled": "Camera Enabled",
+      "url": "Camera URL",
+      "urlDescription": "RTSP, HTTP, or local device URL"
+    },
+    "video": {
+      "title": "Video Settings",
+      "width": "Width",
+      "height": "Height",
+      "fps": "FPS",
+      "quality": "Quality",
+      "codec": "Codec",
+      "hwaccel": "Hardware Acceleration"
+    },
+    "audio": {
+      "title": "Audio Settings",
+      "enabled": "Audio Enabled",
+      "input": "Audio Input",
+      "output": "Audio Output"
+    },
+    "onvif": {
+      "title": "ONVIF Settings",
+      "enabled": "ONVIF Enabled",
+      "host": "Host",
+      "port": "Port",
+      "username": "Username",
+      "password": "Password"
+    },
+    "review": {
+      "title": "Review",
+      "alerts": {
+        "title": "Alerts",
+        "description": "Enable/disable alerts and detections for this camera. When disabled, no new review items will be generated."
+      },
+      "detections": {
+        "title": "Detections",
+        "limitZones": "Limit detections to specific zones"
+      },
+      "classification": {
+        "title": "Review Classification",
+        "description": "Frigate categorizes review items as Alerts and Detections. By default, all person and car objects are considered Alerts. You can refine categorization of your review items by configuring required zones for them.",
+        "readDocs": "Read the Documentation",
+        "noZones": "No zones are defined for this camera.",
+        "selectZones": "Select zones",
+        "alertsInfo": "All person, car objects on {{camera}} will be shown as Alerts.",
+        "detectionsInfo": "All {{objects}} objects not classified as Alerts {{zones.length ? 'that are detected in ' + zones : ''}} on {{camera}} will be shown as Detections{{zoneInfo}}",
+        "regardlessZone": ", regardless of zone"
+      },
+      "actions": {
+        "save": "Save",
+        "cancel": "Cancel"
+      }
+    }
+  },
+  "status": {
+    "online": "Camera Online",
+    "offline": "Camera Offline",
+    "disabled": "Camera Disabled",
+    "error": "Camera Error",
+    "reconnecting": "Reconnecting..."
+  }
+} 

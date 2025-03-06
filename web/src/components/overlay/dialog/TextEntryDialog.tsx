@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 
 type TextEntryDialogProps = {
   open: boolean;
@@ -28,6 +29,8 @@ export default function TextEntryDialog({
   setOpen,
   onSave,
 }: TextEntryDialogProps) {
+  const { t } = useTranslation("components/overlay/text_entry");
+  
   const formSchema = z.object({
     text: z.string(),
   });
@@ -75,9 +78,9 @@ export default function TextEntryDialog({
               )}
             />
             <DialogFooter className="pt-4">
-              <Button onClick={() => setOpen(false)}>Cancel</Button>
+              <Button onClick={() => setOpen(false)}>{t("button.cancel")}</Button>
               <Button variant="select" type="submit">
-                Save
+                {t("button.save")}
               </Button>
             </DialogFooter>
           </form>

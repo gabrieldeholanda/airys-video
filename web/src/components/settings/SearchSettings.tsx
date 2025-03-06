@@ -17,6 +17,7 @@ import FilterSwitch from "../filter/FilterSwitch";
 import { SearchFilter, SearchSource } from "@/types/search";
 import useSWR from "swr";
 import { FrigateConfig } from "@/types/frigateConfig";
+import { useTranslation } from "react-i18next";
 
 type SearchSettingsProps = {
   className?: string;
@@ -27,6 +28,7 @@ type SearchSettingsProps = {
   setDefaultView: (view: string) => void;
   onUpdateFilter: (filter: SearchFilter) => void;
 };
+
 export default function SearchSettings({
   className,
   columns,
@@ -36,6 +38,7 @@ export default function SearchSettings({
   setDefaultView,
   onUpdateFilter,
 }: SearchSettingsProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config } = useSWR<FrigateConfig>("config");
   const [open, setOpen] = useState(false);
 
@@ -46,21 +49,20 @@ export default function SearchSettings({
   const trigger = (
     <Button
       className="flex items-center gap-2"
-      aria-label="Explore Settings"
+      aria-label={translate('settings.search.settings.button')}
       size="sm"
     >
       <FaCog className="text-secondary-foreground" />
-      Settings
+      {translate('settings.search.settings.title')}
     </Button>
   );
   const content = (
     <div className={cn(className, "my-3 space-y-5 py-3 md:mt-0 md:py-0")}>
       <div className="space-y-4">
         <div className="space-y-0.5">
-          <div className="text-md">Default View</div>
+          <div className="text-md">{translate('settings.search.settings.defaultView.title')}</div>
           <div className="space-y-1 text-xs text-muted-foreground">
-            When no filters are selected, display a summary of the most recent
-            tracked objects per label, or display an unfiltered grid.
+            {translate('settings.search.settings.defaultView.description')}
           </div>
         </div>
         <Select
@@ -68,7 +70,9 @@ export default function SearchSettings({
           onValueChange={(value) => setDefaultView(value)}
         >
           <SelectTrigger className="w-full">
-            {defaultView == "summary" ? "Summary" : "Unfiltered Grid"}
+            {defaultView == "summary" 
+              ? translate('settings.search.settings.defaultView.summary') 
+              : translate('settings.search.settings.defaultView.grid')}
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -78,7 +82,9 @@ export default function SearchSettings({
                   className="cursor-pointer"
                   value={value}
                 >
-                  {value == "summary" ? "Summary" : "Unfiltered Grid"}
+                  {value == "summary" 
+                    ? translate('settings.search.settings.defaultView.summary')
+                    : translate('settings.search.settings.defaultView.grid')}
                 </SelectItem>
               ))}
             </SelectGroup>
@@ -90,9 +96,9 @@ export default function SearchSettings({
           <DropdownMenuSeparator />
           <div className="flex w-full flex-col space-y-4">
             <div className="space-y-0.5">
-              <div className="text-md">Grid Columns</div>
+              <div className="text-md">{translate('settings.search.settings.columns.title')}</div>
               <div className="space-y-1 text-xs text-muted-foreground">
-                Select the number of columns in the grid view.
+                {translate('settings.search.settings.columns.description')}
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -144,24 +150,26 @@ type SearchTypeContentProps = {
   searchSources: SearchSource[] | undefined;
   setSearchSources: (sources: SearchSource[] | undefined) => void;
 };
+
 export function SearchTypeContent({
   searchSources,
   setSearchSources,
 }: SearchTypeContentProps) {
+  const { t: translate } = useTranslation(['views']);
+
   return (
     <>
       <div className="overflow-x-hidden">
         <DropdownMenuSeparator className="mb-3" />
         <div className="space-y-0.5">
-          <div className="text-md">Search Source</div>
+          <div className="text-md">{translate('settings.search.settings.source.title')}</div>
           <div className="space-y-1 text-xs text-muted-foreground">
-            Choose whether to search the thumbnails or descriptions of your
-            tracked objects.
+            {translate('settings.search.settings.source.description')}
           </div>
         </div>
         <div className="mt-2.5 flex flex-col gap-2.5">
           <FilterSwitch
-            label="Thumbnail Image"
+            label={translate('settings.search.settings.source.thumbnail')}
             isChecked={searchSources?.includes("thumbnail") ?? false}
             onCheckedChange={(isChecked) => {
               const updatedSources = searchSources ? [...searchSources] : [];
@@ -179,7 +187,7 @@ export function SearchTypeContent({
             }}
           />
           <FilterSwitch
-            label="Description"
+            label={translate('settings.search.settings.source.description')}
             isChecked={searchSources?.includes("description") ?? false}
             onCheckedChange={(isChecked) => {
               const updatedSources = searchSources ? [...searchSources] : [];

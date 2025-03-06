@@ -1,0 +1,16 @@
+{
+  "status": {
+    "visible": "{{label}} detectado(a)",
+    "entered_zone": "{{label}} entrou em {{zones}}",
+    "active": "{{label}} tornou-se ativo(a)",
+    "stationary": "{{label}} parou",
+    "attribute": {
+      "face": "rosto detectado para {{label}}",
+      "license_plate": "placa detectada para {{label}}",
+      "other": "{{label}} reconhecido(a) como {{attribute}}"
+    },
+    "gone": "{{label}} saiu da cena",
+    "heard": "{{label}} foi ouvido(a)",
+    "external": "{{label}} detectado(a)"
+  }
+} 

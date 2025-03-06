@@ -11,8 +11,10 @@ import LiveCameraView from "@/views/live/LiveCameraView";
 import LiveDashboardView from "@/views/live/LiveDashboardView";
 import { useEffect, useMemo, useRef } from "react";
 import useSWR from "swr";
+import { useTranslation } from "react-i18next";
 
 function Live() {
+  const { t: translate } = useTranslation(['views']);
   const { data: config } = useSWR<FrigateConfig>("config");
 
   // selection
@@ -64,13 +66,15 @@ function Live() {
         .split("_")
         .filter((text) => text)
         .map((text) => text[0].toUpperCase() + text.substring(1));
-      document.title = `${capitalized.join(" ")} - Live - Frigate`;
+      document.title = translate('live.title.camera', { camera: capitalized.join(" ") });
     } else if (cameraGroup && cameraGroup != "default") {
-      document.title = `${cameraGroup[0].toUpperCase()}${cameraGroup.substring(1)} - Live - Frigate`;
+      document.title = translate('live.title.group', { 
+        group: cameraGroup[0].toUpperCase() + cameraGroup.substring(1) 
+      });
     } else {
-      document.title = "Live - Frigate";
+      document.title = translate('live.title.default');
     }
-  }, [cameraGroup, selectedCameraName]);
+  }, [cameraGroup, selectedCameraName, translate]);
 
   // settings
 

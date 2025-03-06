@@ -19,3 +19,31 @@ core
 !/web/**/*.ts
 .idea/*
 .ipynb_checkpoints
+storage/
+frigate_bckp/
+mosquitto/
+google-cloud-sdk/
+
+# Service Account Keys
+secure-keys/
+keys/
+*.json.key
+*service-account*.json
+*credentials*.json
+
+# Security-related files
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+*.priv
+node_modules
+media/
+frigate_bckp/storage/
+videos/

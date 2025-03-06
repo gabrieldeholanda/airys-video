@@ -1,0 +1,13 @@
+{
+  "measurements": {
+    "area": {
+      "title": "Area:",
+      "pixels": "px: {{value}}",
+      "percentage": "%: {{value}}"
+    },
+    "ratio": {
+      "title": "Ratio:",
+      "value": "{{value}}"
+    }
+  }
+} 

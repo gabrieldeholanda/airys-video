@@ -1,0 +1,87 @@
+mqtt:
+  host: localhost
+  port: 1883
+  enabled: false
+
+go2rtc:
+  api:
+    host: "127.0.0.1"
+    port: 1984
+    origin: "*"
+  streams:
+    airys-camera-1: rtsp://admin:AIRYS2025@192.168.15.127:34567/cam/realmonitor?channel=1&subtype=0
+
+cameras:
+  airys-camera-1:
+    ffmpeg:
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -i
+        - rtsp://admin:AIRYS2025@192.168.15.127:34567/cam/realmonitor?channel=1&subtype=0
+    detect:
+      width: 1280
+      height: 720
+      fps: 5
+    objects:
+      track:
+        - person
+        - car
+        - motorcycle
+        - bus
+        - truck
+        - bicycle
+    record:
+      enabled: false
+    snapshots:
+      enabled: true
+      timestamp: false
+      bounding_box: true
+      retain:
+        default: 7
+    rtmp:
+      enabled: false
+    live:
+      stream_name: airys-camera-1
+      height: 720
+      quality: 8
+    mqtt:
+      enabled: true
+      timestamp: true
+      bounding_box: true
+      crop: true
+      height: 270
+      required_zones: []
+    zones:
+      zone_1:
+        coordinates: 0,0,1,0,1,1,0,1
+        objects:
+          - person
+          - car
+          - motorcycle
+          - bus
+          - truck
+          - bicycle
+  camera1:
+    ffmpeg:
+      inputs:
+        - path: rtsp://camera1_ip:554/stream
+          roles:
+            - detect
+            - record
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 10
+    record:
+      enabled: true
+      retain_days: 7
+      events:
+        retain_days: 30
+        objects:
+          - person
+          - vehicle
+
+storage:
+  path: /media/frigate 

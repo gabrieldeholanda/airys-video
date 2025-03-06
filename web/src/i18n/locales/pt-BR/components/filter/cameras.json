@@ -1,0 +1,19 @@
+{
+  "button": {
+    "label": "Filtro de Câmeras",
+    "text": {
+      "default": "Câmeras",
+      "all": "Todas as Câmeras",
+      "selected": "{{count}} Câmera",
+      "selected_plural": "{{count}} Câmeras"
+    }
+  },
+  "filter": {
+    "title": "Câmeras",
+    "all_cameras": "Todas as Câmeras"
+  },
+  "actions": {
+    "apply": "Aplicar",
+    "reset": "Redefinir"
+  }
+} 

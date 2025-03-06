@@ -1,0 +1,54 @@
+{
+  "title": "Máscaras e Zonas",
+  "masks": {
+    "title": "Máscaras",
+    "description": "Definir áreas para ignorar na detecção",
+    "add": "Adicionar Máscara",
+    "edit": "Editar Máscara",
+    "delete": "Excluir Máscara",
+    "types": {
+      "motion": "Máscara de Movimento",
+      "objects": "Máscara de Objetos",
+      "zones": "Máscara de Zona"
+    }
+  },
+  "zones": {
+    "title": "Zonas",
+    "description": "Definir áreas de interesse para detecção",
+    "add": "Adicionar Zona",
+    "edit": "Editar Zona",
+    "delete": "Excluir Zona",
+    "settings": {
+      "name": "Nome da Zona",
+      "coordinates": "Coordenadas",
+      "triggers": {
+        "title": "Gatilhos",
+        "motion": "Movimento",
+        "objects": "Objetos",
+        "people": "Pessoas",
+        "vehicles": "Veículos",
+        "animals": "Animais"
+      },
+      "filters": {
+        "title": "Filtros",
+        "minArea": "Área Mínima",
+        "maxArea": "Área Máxima",
+        "threshold": "Limiar"
+      }
+    }
+  },
+  "editor": {
+    "tools": {
+      "draw": "Desenhar",
+      "edit": "Editar",
+      "delete": "Excluir"
+    },
+    "actions": {
+      "undo": "Desfazer",
+      "redo": "Refazer",
+      "clear": "Limpar",
+      "save": "Salvar",
+      "cancel": "Cancelar"
+    }
+  }
+} 

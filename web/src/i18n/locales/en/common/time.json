@@ -1,0 +1,35 @@
+{
+  "units": {
+    "second": "second",
+    "seconds": "seconds",
+    "minute": "minute",
+    "minutes": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days",
+    "week": "week",
+    "weeks": "weeks",
+    "month": "month",
+    "months": "months",
+    "year": "year",
+    "years": "years"
+  },
+  "relative": {
+    "just_now": "just now",
+    "seconds_ago": "{{count}} second ago",
+    "seconds_ago_plural": "{{count}} seconds ago",
+    "minutes_ago": "{{count}} minute ago",
+    "minutes_ago_plural": "{{count}} minutes ago",
+    "hours_ago": "{{count}} hour ago",
+    "hours_ago_plural": "{{count}} hours ago",
+    "days_ago": "{{count}} day ago",
+    "days_ago_plural": "{{count}} days ago",
+    "weeks_ago": "{{count}} week ago",
+    "weeks_ago_plural": "{{count}} weeks ago",
+    "months_ago": "{{count}} month ago",
+    "months_ago_plural": "{{count}} months ago",
+    "years_ago": "{{count}} year ago",
+    "years_ago_plural": "{{count}} years ago"
+  }
+} 

@@ -1,41 +1,40 @@
 version: "3"
 services:
-  devcontainer:
-    container_name: frigate-devcontainer
-    # add groups from host for render, plugdev, video
-    group_add:
-      - "109" # render
-      - "110" # render
-      - "44"  # video
-      - "46"  # plugdev
-    shm_size: "256mb"
+  frigate:
+    container_name: frigate
     build:
       context: .
       dockerfile: docker/main/Dockerfile
-      # Use target devcontainer-trt for TensorRT dev
-      target: devcontainer
-    ## Uncomment this block for nvidia gpu support
-    # deploy:
-    #       resources:
-    #           reservations:
-    #               devices:
-    #                   - driver: nvidia
-    #                     count: 1
-    #                     capabilities: [gpu]
-    environment:
-      YOLO_MODELS: ""
+      target: frigate
+    restart: unless-stopped
+    privileged: true
+    shm_size: "256mb"
     devices:
-      - /dev/bus/usb:/dev/bus/usb
-      # - /dev/dri:/dev/dri # for intel hwaccel, needs to be updated for your hardware
+      - /dev/bus/usb:/dev/bus/usb # USB Coral
+      # - /dev/dri:/dev/dri # Intel hwaccel, uncomment if you have Intel processor
     volumes:
-      - .:/workspace/frigate:cached
-      - ./web/dist:/opt/frigate/web:cached
-      - /etc/localtime:/etc/localtime:ro
       - ./config:/config
-      - ./debug:/media/frigate
-      - /dev/bus/usb:/dev/bus/usb
+      - ./storage:/media/frigate
+      - ./videos:/videos
+      - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
+    ports:
+      - "8971:8971"  # Web UI
+      - "5000:5000"  # Internal API
+      - "8554:8554"  # RTSP restreaming
+      - "8555:8555"  # WebRTC
+      - "8556:8556"  # STUN server
+    environment:
+      FRIGATE_RTSP_PASSWORD: "password"
+      YOLO_MODELS: "yolov4-tiny-416" # Default model, you can change this based on your needs
+
   mqtt:
     container_name: mqtt
-    image: eclipse-mosquitto:1.6
+    restart: unless-stopped
+    image: eclipse-mosquitto:2
     ports:
       - "1883:1883"
+    volumes:
+      - ./mosquitto:/mosquitto/config

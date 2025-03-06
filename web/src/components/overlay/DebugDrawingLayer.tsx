@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/popover";
 import Konva from "konva";
 import { useResizeObserver } from "@/hooks/resize-observer";
+import { useTranslation } from "react-i18next";
 
 type DebugDrawingLayerProps = {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -29,6 +30,7 @@ function DebugDrawingLayer({
   const [isDrawing, setIsDrawing] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const stageRef = useRef<Konva.Stage>(null);
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.debug_drawing" });
 
   const [{ width: containerWidth }] = useResizeObserver(containerRef);
 
@@ -151,19 +153,18 @@ function DebugDrawingLayer({
           <PopoverContent className="w-auto p-5 text-center">
             <div className="flex flex-col gap-2">
               <div className="flex flex-col text-primary">
-                Area:{" "}
+                {t("measurements.area.title")}{" "}
                 <span className="text-sm text-primary-variant">
-                  px: {calculateArea().toFixed(0)}
+                  {t("measurements.area.pixels", { value: calculateArea().toFixed(0) })}
                 </span>
                 <span className="text-sm text-primary-variant">
-                  %: {calculateAreaPercentage().toFixed(4)}
+                  {t("measurements.area.percentage", { value: calculateAreaPercentage().toFixed(4) })}
                 </span>
               </div>
               <div className="flex flex-col text-primary">
-                Ratio:{" "}
+                {t("measurements.ratio.title")}{" "}
                 <span className="text-sm text-primary-variant">
-                  {" "}
-                  {calculateRatio().toFixed(2)}
+                  {t("measurements.ratio.value", { value: calculateRatio().toFixed(2) })}
                 </span>
               </div>
             </div>

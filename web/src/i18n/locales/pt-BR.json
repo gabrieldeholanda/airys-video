@@ -1,0 +1,106 @@
+{
+  "common": {
+    "back": "Voltar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "add": "Adicionar",
+    "remove": "Remover",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso"
+  },
+  "navigation": {
+    "live": "Visualização ao Vivo",
+    "events": "Eventos",
+    "explore": "Explorar",
+    "exports": "Exportações",
+    "system": "Sistema",
+    "settings": "Configurações",
+    "config": "Configuração",
+    "logs": "Registros",
+    "faces": "Biblioteca de Rostos"
+  },
+  "settings": {
+    "general": {
+      "title": "Configurações Gerais",
+      "language": {
+        "title": "Idioma",
+        "interface": "Idioma da Interface",
+        "description": "Selecione o idioma para a interface do usuário."
+      },
+      "theme": "Tema",
+      "timezone": "Fuso Horário",
+      "timeFormat": "Formato de Hora",
+      "dateFormat": "Formato de Data",
+      "liveDashboard": {
+        "title": "Painel ao Vivo",
+        "autoLive": "Visualização ao Vivo Automática",
+        "autoLiveDescription": "Alternar automaticamente para a visualização ao vivo de uma câmera quando uma atividade é detectada. Desativar esta opção faz com que as imagens estáticas das câmeras em seus painéis sejam atualizadas apenas uma vez por minuto.",
+        "autoLiveNote": "Esta é uma configuração global, mas pode ser substituída em cada câmera apenas nos grupos de câmeras.",
+        "alertVideos": "Reproduzir Vídeos de Alerta",
+        "alertVideosDescription": "Por padrão, alertas recentes no painel ao vivo são reproduzidos como pequenos vídeos em loop. Desative esta opção para mostrar apenas uma imagem estática dos alertas recentes neste dispositivo/navegador."
+      },
+      "layouts": {
+        "title": "Layouts Armazenados",
+        "description": "O layout das câmeras em um grupo pode ser arrastado/redimensionado. As posições são armazenadas no armazenamento local do seu navegador.",
+        "clearButton": "Limpar Todos os Layouts",
+        "cleared": "Layout armazenado limpo para {{group}}",
+        "clearError": "Falha ao limpar layout armazenado: {{error}}"
+      },
+      "streaming": {
+        "title": "Configurações de Streaming dos Grupos de Câmeras",
+        "description": "As configurações de streaming para cada grupo de câmeras são armazenadas no armazenamento local do seu navegador.",
+        "clearButton": "Limpar Todas as Configurações de Streaming",
+        "cleared": "Configurações de streaming limpas para todos os grupos de câmeras.",
+        "clearError": "Falha ao limpar as configurações de streaming dos grupos de câmeras: {{error}}"
+      },
+      "recordings": {
+        "title": "Visualizador de Gravações",
+        "playbackRate": "Taxa de Reprodução Padrão",
+        "playbackRateDescription": "Taxa de reprodução padrão para reprodução de gravações."
+      },
+      "calendar": {
+        "title": "Calendário",
+        "firstWeekday": "Primeiro Dia da Semana",
+        "firstWeekdayDescription": "O dia em que as semanas do calendário de revisão começam."
+      }
+    },
+    "cameras": {
+      "title": "Configurações de Câmera",
+      "addCamera": "Adicionar Câmera",
+      "editCamera": "Editar Câmera",
+      "deleteCamera": "Excluir Câmera"
+    }
+  },
+  "cameras": {
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "disabled": "Desativada"
+    },
+    "actions": {
+      "snapshot": "Capturar Imagem",
+      "record": "Gravar",
+      "restart": "Reiniciar Câmera"
+    }
+  },
+  "events": {
+    "noEvents": "Nenhum evento encontrado",
+    "timeRange": "Intervalo de Tempo",
+    "filtered": "Filtrado",
+    "detected": "Detectado"
+  },
+  "status": {
+    "healthy": "Sistema saudável",
+    "cpu": "CPU {{percent}}%",
+    "gpu": {
+      "amd-vaapi": "GPU AMD",
+      "intel-vaapi": "GPU Intel",
+      "intel-qsv": "GPU Intel",
+      "usage": "{{name}} {{percent}}%"
+    },
+    "reindexing": "Reindexando embeddings ({{percent}}% concluído)"
+  }
+} 

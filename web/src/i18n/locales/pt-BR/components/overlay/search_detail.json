@@ -1,0 +1,101 @@
+{
+  "title": "Detalhes do Objeto Rastreado",
+  "description": "Detalhes do objeto rastreado",
+  "tabs": {
+    "details": "Detalhes",
+    "snapshot": "Captura",
+    "video": "Vídeo",
+    "object_lifecycle": "Ciclo de Vida do Objeto"
+  },
+  "details": {
+    "fields": {
+      "label": "Rótulo",
+      "score": {
+        "title": "Pontuação Máxima",
+        "info": "A pontuação máxima é a maior pontuação mediana para o objeto rastreado, portanto pode ser diferente da pontuação mostrada na miniatura do resultado da busca."
+      },
+      "speed": {
+        "title": "Velocidade Estimada",
+        "unit": {
+          "imperial": "mph",
+          "metric": "km/h"
+        }
+      },
+      "camera": "Câmera",
+      "timestamp": "Data e Hora",
+      "zones": "Zonas",
+      "ratio": "Proporção",
+      "area": {
+        "title": "Área",
+        "px": "px: {{value}}",
+        "percent": "%: {{value}}"
+      }
+    },
+    "description": {
+      "title": "Descrição",
+      "placeholder": "Descrição do objeto rastreado",
+      "waiting": {
+        "title": "O Frigate não solicitará uma descrição do seu provedor de IA Generativa até que o ciclo de vida do objeto rastreado seja finalizado."
+      },
+      "actions": {
+        "regenerate": {
+          "button": "Regenerar",
+          "from_snapshot": "Regenerar da Captura",
+          "from_thumbnails": "Regenerar das Miniaturas",
+          "success": "Uma nova descrição foi solicitada de {{provider}}. Dependendo da velocidade do seu provedor, a nova descrição pode levar algum tempo para ser regenerada.",
+          "error": "Falha ao chamar {{provider}} para uma nova descrição: {{error}}"
+        },
+        "save": {
+          "button": "Salvar",
+          "success": "Descrição salva com sucesso",
+          "error": "Falha ao atualizar a descrição"
+        }
+      }
+    },
+    "similar": {
+      "button": "Encontrar Similares"
+    }
+  },
+  "snapshot": {
+    "actions": {
+      "download": "Baixar"
+    },
+    "plus": {
+      "title": "Enviar para Frigate+",
+      "description": "Objetos em locais que você quer evitar não são falsos positivos. Enviá-los como falsos positivos irá confundir o modelo.",
+      "actions": {
+        "confirm": "Isto é {{article}} {{label}}",
+        "reject": "Isto não é {{article}} {{label}}",
+        "submitted": "Enviado"
+      }
+    }
+  },
+  "video": {
+    "actions": {
+      "history": "Ver no Histórico",
+      "download": "Baixar"
+    }
+  },
+  "lifecycle": {
+    "title": "Ciclo de Vida do Objeto",
+    "description": "Role a tela para ver os momentos significativos do ciclo de vida deste objeto.",
+    "settings": {
+      "button": "Ajustar configurações de anotação",
+      "title": "Configurações de Anotação",
+      "zones": {
+        "label": "Mostrar Zonas",
+        "description": "Mostrar contornos das zonas na imagem"
+      },
+      "offset": {
+        "label": "Deslocamento da Anotação",
+        "description": "Ajustar a posição da caixa delimitadora"
+      }
+    },
+    "counter": "{{current}} de {{total}}",
+    "actions": {
+      "cancel": "Voltar",
+      "save": "Salvar",
+      "saving": "Salvando..."
+    }
+  }
+} 

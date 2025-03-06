@@ -20,6 +20,7 @@ import { LuPictureInPicture } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import useSWR from "swr";
+import { useTranslation } from "react-i18next";
 
 type LiveBirdseyeViewProps = {
   supportsFullscreen: boolean;
@@ -32,6 +33,7 @@ export default function LiveBirdseyeView({
   fullscreen,
   toggleFullscreen,
 }: LiveBirdseyeViewProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config } = useSWR<FrigateConfig>("config");
   const navigate = useNavigate();
   const { isPortrait } = useMobileOrientation();
@@ -144,12 +146,12 @@ export default function LiveBirdseyeView({
           {!fullscreen ? (
             <Button
               className={`flex items-center gap-2 rounded-lg ${isMobile ? "ml-2" : "ml-0"}`}
-              aria-label="Go Back"
+              aria-label={translate('live.birdseye.actions.back.label')}
               size={isMobile ? "icon" : "sm"}
               onClick={() => navigate(-1)}
             >
               <IoMdArrowBack className="size-5" />
-              {isDesktop && <div className="text-primary">Back</div>}
+              {isDesktop && <div className="text-primary">{translate('live.birdseye.actions.back.text')}</div>}
             </Button>
           ) : (
             <div />
@@ -164,7 +166,7 @@ export default function LiveBirdseyeView({
                   variant={fullscreen ? "overlay" : "primary"}
                   Icon={fullscreen ? FaCompress : FaExpand}
                   isActive={fullscreen}
-                  title={fullscreen ? "Close" : "Fullscreen"}
+                  title={fullscreen ? translate('live.birdseye.actions.fullscreen.exit') : translate('live.birdseye.actions.fullscreen.enter')}
                   onClick={toggleFullscreen}
                 />
               )}
@@ -174,7 +176,7 @@ export default function LiveBirdseyeView({
                   variant={fullscreen ? "overlay" : "primary"}
                   Icon={LuPictureInPicture}
                   isActive={pip}
-                  title={pip ? "Close" : "Picture in Picture"}
+                  title={pip ? translate('live.birdseye.actions.pip.exit') : translate('live.birdseye.actions.pip.enter')}
                   onClick={() => {
                     if (!pip) {
                       setPip(true);

@@ -38,6 +38,7 @@ import { Link } from "react-router-dom";
 import { isDesktop } from "react-device-detect";
 import { StatusBarMessagesContext } from "@/context/statusbar-provider";
 import { useSearchEffect } from "@/hooks/use-overlay-state";
+import { useTranslation } from "react-i18next";
 
 type MasksAndZoneViewProps = {
   selectedCamera: string;
@@ -50,6 +51,7 @@ export default function MasksAndZonesView({
   selectedZoneMask,
   setUnsavedChanges,
 }: MasksAndZoneViewProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config } = useSWR<FrigateConfig>("config");
   const [allPolygons, setAllPolygons] = useState<Polygon[]>([]);
   const [editingPolygons, setEditingPolygons] = useState<Polygon[]>([]);
@@ -182,7 +184,7 @@ export default function MasksAndZonesView({
     setActivePolygonIndex(undefined);
     setHoveredPolygonIndex(null);
     setUnsavedChanges(false);
-    document.title = "Mask and Zone Editor - Frigate";
+    document.title = "Mask and Zone Editor - Airys";
   }, [allPolygons, setUnsavedChanges]);
 
   const handleSave = useCallback(() => {
@@ -418,8 +420,8 @@ export default function MasksAndZonesView({
   });
 
   useEffect(() => {
-    document.title = "Mask and Zone Editor - Frigate";
-  }, []);
+    document.title = translate('settings.masks_zones.title', 'Mask and Zone Editor - Airys');
+  }, [translate]);
 
   if (!cameraConfig && !selectedCamera) {
     return <ActivityIndicator />;
@@ -480,7 +482,7 @@ export default function MasksAndZonesView({
             {editPane === undefined && (
               <>
                 <Heading as="h3" className="my-2">
-                  Masks / Zones
+                  {translate('settings.masks_zones.title')}
                 </Heading>
                 <div className="flex w-full flex-col">
                   {(selectedZoneMask === undefined ||
@@ -489,24 +491,21 @@ export default function MasksAndZonesView({
                       <div className="my-3 flex flex-row items-center justify-between">
                         <HoverCard>
                           <HoverCardTrigger asChild>
-                            <div className="text-md cursor-default">Zones</div>
+                            <div className="text-md cursor-default">{translate('settings.masks_zones.zones.title')}</div>
                           </HoverCardTrigger>
                           <HoverCardContent>
                             <div className="my-2 flex flex-col gap-2 text-sm text-primary-variant">
                               <p>
-                                Zones allow you to define a specific area of the
-                                frame so you can determine whether or not an
-                                object is within a particular area.
+                                {translate('settings.masks_zones.zones.description')}
                               </p>
                               <div className="flex items-center text-primary">
                                 <Link
-                                  to="https://docs.frigate.video/configuration/zones"
+                                  to="https://chat.airys.com.br/hc/help/pt_BR/"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline"
                                 >
-                                  Documentation{" "}
-                                  <LuExternalLink className="ml-2 inline-flex size-3" />
+                                  {translate('settings.masks_zones.documentation')} <LuExternalLink className="ml-2 inline-flex size-3" />
                                 </Link>
                               </div>
                             </div>
@@ -517,7 +516,7 @@ export default function MasksAndZonesView({
                             <Button
                               variant="secondary"
                               className="size-6 rounded-md bg-secondary-foreground p-1 text-background"
-                              aria-label="Add a new zone"
+                              aria-label={translate('settings.masks_zones.zones.add')}
                               onClick={() => {
                                 setEditPane("zone");
                                 handleNewPolygon("zone");
@@ -526,7 +525,7 @@ export default function MasksAndZonesView({
                               <LuPlus />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Add Zone</TooltipContent>
+                          <TooltipContent>{translate('settings.masks_zones.zones.add')}</TooltipContent>
                         </Tooltip>
                       </div>
                       {allPolygons
@@ -556,26 +555,22 @@ export default function MasksAndZonesView({
                         <HoverCard>
                           <HoverCardTrigger asChild>
                             <div className="text-md cursor-default">
-                              Motion Masks
+                              {translate('settings.masks_zones.motion_masks.title')}
                             </div>
                           </HoverCardTrigger>
                           <HoverCardContent>
                             <div className="my-2 flex flex-col gap-2 text-sm text-primary-variant">
                               <p>
-                                Motion masks are used to prevent unwanted types
-                                of motion from triggering detection. Over
-                                masking will make it more difficult for objects
-                                to be tracked.
+                                {translate('settings.masks_zones.motion_masks.description')}
                               </p>
                               <div className="flex items-center text-primary">
                                 <Link
-                                  to="https://docs.frigate.video/configuration/masks#motion-masks"
+                                  to="https://chat.airys.com.br/hc/help/pt_BR/"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline"
                                 >
-                                  Documentation{" "}
-                                  <LuExternalLink className="ml-2 inline-flex size-3" />
+                                  {translate('settings.masks_zones.documentation')} <LuExternalLink className="ml-2 inline-flex size-3" />
                                 </Link>
                               </div>
                             </div>
@@ -586,7 +581,7 @@ export default function MasksAndZonesView({
                             <Button
                               variant="secondary"
                               className="size-6 rounded-md bg-secondary-foreground p-1 text-background"
-                              aria-label="Add a new motion mask"
+                              aria-label={translate('settings.masks_zones.motion_masks.add')}
                               onClick={() => {
                                 setEditPane("motion_mask");
                                 handleNewPolygon("motion_mask");
@@ -595,7 +590,7 @@ export default function MasksAndZonesView({
                               <LuPlus />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Add Motion Mask</TooltipContent>
+                          <TooltipContent>{translate('settings.masks_zones.motion_masks.add')}</TooltipContent>
                         </Tooltip>
                       </div>
                       {allPolygons
@@ -627,25 +622,22 @@ export default function MasksAndZonesView({
                         <HoverCard>
                           <HoverCardTrigger asChild>
                             <div className="text-md cursor-default">
-                              Object Masks
+                              {translate('settings.masks_zones.object_masks.title')}
                             </div>
                           </HoverCardTrigger>
                           <HoverCardContent>
                             <div className="my-2 flex flex-col gap-2 text-sm text-primary-variant">
                               <p>
-                                Object filter masks are used to filter out false
-                                positives for a given object type based on
-                                location.
+                                {translate('settings.masks_zones.object_masks.description')}
                               </p>
                               <div className="flex items-center text-primary">
                                 <Link
-                                  to="https://docs.frigate.video/configuration/masks#object-filter-masks"
+                                  to="https://chat.airys.com.br/hc/help/pt_BR/"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline"
                                 >
-                                  Documentation{" "}
-                                  <LuExternalLink className="ml-2 inline-flex size-3" />
+                                  {translate('settings.masks_zones.documentation')} <LuExternalLink className="ml-2 inline-flex size-3" />
                                 </Link>
                               </div>
                             </div>
@@ -656,7 +648,7 @@ export default function MasksAndZonesView({
                             <Button
                               variant="secondary"
                               className="size-6 rounded-md bg-secondary-foreground p-1 text-background"
-                              aria-label="Add a new object mask"
+                              aria-label={translate('settings.masks_zones.object_masks.add')}
                               onClick={() => {
                                 setEditPane("object_mask");
                                 handleNewPolygon("object_mask");
@@ -665,7 +657,7 @@ export default function MasksAndZonesView({
                               <LuPlus />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Add Object Mask</TooltipContent>
+                          <TooltipContent>{translate('settings.masks_zones.object_masks.add')}</TooltipContent>
                         </Tooltip>
                       </div>
                       {allPolygons

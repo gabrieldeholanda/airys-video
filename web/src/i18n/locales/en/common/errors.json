@@ -1,0 +1,19 @@
+{
+  "required_field": "This field is required",
+  "invalid_format": "Invalid format",
+  "network_error": "Network error occurred",
+  "unknown_error": "An unknown error occurred",
+  "validation": {
+    "required": "{{field}} is required",
+    "min_length": "{{field}} must be at least {{count}} characters",
+    "max_length": "{{field}} must be at most {{count}} characters",
+    "pattern": "{{field}} has an invalid format",
+    "email": "Please enter a valid email address",
+    "url": "Please enter a valid URL",
+    "number": "Please enter a valid number",
+    "integer": "Please enter a valid integer",
+    "positive": "Please enter a positive number",
+    "negative": "Please enter a negative number",
+    "date": "Please enter a valid date"
+  }
+} 

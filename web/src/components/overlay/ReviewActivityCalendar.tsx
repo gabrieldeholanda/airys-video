@@ -7,6 +7,7 @@ import { type DayContentProps } from "react-day-picker";
 import { LAST_24_HOURS_KEY } from "@/types/filter";
 import { usePersistence } from "@/hooks/use-persistence";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 type WeekStartsOnType = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -23,6 +24,7 @@ export default function ReviewActivityCalendar({
   onSelect,
 }: ReviewActivityCalendarProps) {
   const [weekStartsOn] = usePersistence("weekStartsOn", 0);
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.review_activity_calendar" });
 
   const disabledDates = useMemo(() => {
     const tomorrow = new Date();
@@ -94,7 +96,7 @@ export default function ReviewActivityCalendar({
       onSelect={onSelect}
       modifiers={modifiers}
       components={{
-        DayContent: ReviewActivityDay,
+        DayContent: (props) => <ReviewActivityDay t={t} {...props} />,
       }}
       defaultMonth={selectedDay ?? new Date()}
       weekStartsOn={(weekStartsOn ?? 0) as WeekStartsOnType}
@@ -102,7 +104,11 @@ export default function ReviewActivityCalendar({
   );
 }
 
-function ReviewActivityDay({ date, activeModifiers }: DayContentProps) {
+type ReviewActivityDayProps = DayContentProps & {
+  t: (key: string) => string;
+};
+
+function ReviewActivityDay({ date, activeModifiers, t }: ReviewActivityDayProps) {
   const dayActivity = useMemo(() => {
     if (activeModifiers["alerts"]) {
       return "alert";
@@ -123,6 +129,7 @@ function ReviewActivityDay({ date, activeModifiers }: DayContentProps) {
             : "text-primary/40",
           activeModifiers.selected && "border-white text-white",
         )}
+        title={activeModifiers["recordings"] ? t("activity.recordings") : undefined}
       >
         {date.getDate()}
       </span>
@@ -135,6 +142,7 @@ function ReviewActivityDay({ date, activeModifiers }: DayContentProps) {
                 ? "fill-severity_alert"
                 : "fill-severity_detection",
             )}
+            title={t(`activity.${dayActivity}`)}
           />
         )}
       </div>

@@ -1,5 +1,6 @@
 import { ObjectLifecycleSequence } from "@/types/timeline";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type TimelineEventOverlayProps = {
   timeline: ObjectLifecycleSequence;
@@ -16,6 +17,8 @@ export default function TimelineEventOverlay({
   cameraConfig,
 }: TimelineEventOverlayProps) {
   const [isHovering, setIsHovering] = useState<boolean>(false);
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.timeline_data" });
+
   const getHoverStyle = () => {
     if (!timeline.data.box) {
       return {};
@@ -92,8 +95,8 @@ export default function TimelineEventOverlay({
           className="absolute block bg-white p-4 text-lg text-black dark:bg-slate-800 dark:text-white"
           style={getHoverStyle()}
         >
-          <div>{`Area: ${getObjectArea()} px`}</div>
-          <div>{`Ratio: ${getObjectRatio()}`}</div>
+          <div>{t("measurements.area", { value: getObjectArea() })}</div>
+          <div>{t("measurements.ratio", { value: getObjectRatio() })}</div>
         </div>
       )}
     </>

@@ -38,6 +38,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import useSWR from "swr";
+import { useTranslation } from "react-i18next";
 
 type SearchResultActionsProps = {
   searchResult: SearchResult;
@@ -58,6 +59,7 @@ export default function SearchResultActions({
   isContextMenu = false,
   children,
 }: SearchResultActionsProps) {
+  const { t: translate } = useTranslation(['ui']);
   const { data: config } = useSWR<FrigateConfig>("config");
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -67,14 +69,14 @@ export default function SearchResultActions({
       .delete(`events/${searchResult.id}`)
       .then((resp) => {
         if (resp.status == 200) {
-          toast.success("Tracked object deleted successfully.", {
+          toast.success(translate('menu.search.messages.delete.success'), {
             position: "top-center",
           });
           refreshResults();
         }
       })
       .catch(() => {
-        toast.error("Failed to delete tracked object.", {
+        toast.error(translate('menu.search.messages.delete.error'), {
           position: "top-center",
         });
       });
@@ -85,45 +87,45 @@ export default function SearchResultActions({
   const menuItems = (
     <>
       {searchResult.has_clip && (
-        <MenuItem aria-label="Download video">
+        <MenuItem aria-label={translate('menu.search.actions.download.video')}>
           <a
             className="flex items-center"
             href={`${baseUrl}api/events/${searchResult.id}/clip.mp4`}
             download={`${searchResult.camera}_${searchResult.label}.mp4`}
           >
             <LuDownload className="mr-2 size-4" />
-            <span>Download video</span>
+            <span>{translate('menu.search.actions.download.video')}</span>
           </a>
         </MenuItem>
       )}
       {searchResult.has_snapshot && (
-        <MenuItem aria-label="Download snapshot">
+        <MenuItem aria-label={translate('menu.search.actions.download.snapshot')}>
           <a
             className="flex items-center"
             href={`${baseUrl}api/events/${searchResult.id}/snapshot.jpg`}
             download={`${searchResult.camera}_${searchResult.label}.jpg`}
           >
             <LuCamera className="mr-2 size-4" />
-            <span>Download snapshot</span>
+            <span>{translate('menu.search.actions.download.snapshot')}</span>
           </a>
         </MenuItem>
       )}
       {searchResult.data.type == "object" && (
         <MenuItem
-          aria-label="Show the object lifecycle"
+          aria-label={translate('menu.search.actions.view_lifecycle')}
           onClick={showObjectLifecycle}
         >
           <FaArrowsRotate className="mr-2 size-4" />
-          <span>View object lifecycle</span>
+          <span>{translate('menu.search.actions.view_lifecycle')}</span>
         </MenuItem>
       )}
       {config?.semantic_search?.enabled && isContextMenu && (
         <MenuItem
-          aria-label="Find similar tracked objects"
+          aria-label={translate('menu.search.actions.find_similar')}
           onClick={findSimilar}
         >
           <MdImageSearch className="mr-2 size-4" />
-          <span>Find similar</span>
+          <span>{translate('menu.search.actions.find_similar')}</span>
         </MenuItem>
       )}
       {isMobileOnly &&
@@ -132,17 +134,17 @@ export default function SearchResultActions({
         searchResult.end_time &&
         searchResult.data.type == "object" &&
         !searchResult.plus_id && (
-          <MenuItem aria-label="Submit to Frigate Plus" onClick={showSnapshot}>
+          <MenuItem aria-label={translate('menu.search.actions.submit_plus')} onClick={showSnapshot}>
             <FrigatePlusIcon className="mr-2 size-4 cursor-pointer text-primary" />
-            <span>Submit to Frigate+</span>
+            <span>{translate('menu.search.actions.submit_plus')}</span>
           </MenuItem>
         )}
       <MenuItem
-        aria-label="Delete this tracked object"
+        aria-label={translate('menu.search.actions.delete')}
         onClick={() => setDeleteDialogOpen(true)}
       >
         <LuTrash2 className="mr-2 size-4" />
-        <span>Delete</span>
+        <span>{translate('menu.search.actions.delete')}</span>
       </MenuItem>
     </>
   );
@@ -155,24 +157,21 @@ export default function SearchResultActions({
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
+            <AlertDialogTitle>{translate('menu.search.delete_dialog.title')}</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogDescription>
-            Deleting this tracked object removes the snapshot, any saved
-            embeddings, and any associated object lifecycle entries. Recorded
-            footage of this tracked object in History view will <em>NOT</em> be
-            deleted.
+            {translate('menu.search.delete_dialog.description')}
             <br />
             <br />
-            Are you sure you want to proceed?
+            {translate('menu.search.delete_dialog.confirm')}
           </AlertDialogDescription>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>{translate('menu.search.delete_dialog.actions.cancel')}</AlertDialogCancel>
             <AlertDialogAction
               className={buttonVariants({ variant: "destructive" })}
               onClick={handleDelete}
             >
-              Delete
+              {translate('menu.search.delete_dialog.actions.delete')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -193,7 +192,7 @@ export default function SearchResultActions({
                     onClick={findSimilar}
                   />
                 </TooltipTrigger>
-                <TooltipContent>Find similar</TooltipContent>
+                <TooltipContent>{translate('menu.search.actions.find_similar')}</TooltipContent>
               </Tooltip>
             )}
 
@@ -210,7 +209,7 @@ export default function SearchResultActions({
                     onClick={showSnapshot}
                   />
                 </TooltipTrigger>
-                <TooltipContent>Submit to Frigate+</TooltipContent>
+                <TooltipContent>{translate('menu.search.actions.submit_plus')}</TooltipContent>
               </Tooltip>
             )}
 

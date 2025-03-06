@@ -1,0 +1,6 @@
+{
+  "tooltip": "Account",
+  "title": "Account",
+  "current_user": "Current User: {{username}}",
+  "logout": "Logout"
+} 

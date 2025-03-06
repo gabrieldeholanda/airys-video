@@ -1,0 +1,45 @@
+{
+  "title": "General Settings",
+  "language": {
+    "title": "Language",
+    "interface": "Interface Language",
+    "description": "Select your preferred language for the interface"
+  },
+  "liveDashboard": {
+    "title": "Live Dashboard",
+    "autoLive": "Auto Live",
+    "autoLiveDescription": "Automatically switch to live view when motion is detected",
+    "autoLiveNote": "This will only work when the dashboard is open",
+    "alertVideos": "Alert Videos",
+    "alertVideosDescription": "Show video clips for alerts in the dashboard"
+  },
+  "layouts": {
+    "title": "Layouts",
+    "description": "Manage your saved camera layouts",
+    "clearButton": "Clear Saved Layouts",
+    "cleared": "Layouts cleared successfully for {{group}}",
+    "clearError": "Error clearing layouts: {{error}}"
+  },
+  "streaming": {
+    "title": "Streaming",
+    "description": "Configure streaming settings",
+    "clearButton": "Clear Streaming Settings",
+    "cleared": "Streaming settings cleared successfully",
+    "clearError": "Error clearing streaming settings: {{error}}"
+  },
+  "recordings": {
+    "title": "Recordings",
+    "playbackRate": "Default Playback Rate",
+    "playbackRateDescription": "Set the default playback speed for recordings",
+    "playbackRateValue": "{{rate}}x"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "firstWeekday": "First Day of Week",
+    "firstWeekdayDescription": "Set which day your week starts on",
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday"
+    }
+  }
+} 

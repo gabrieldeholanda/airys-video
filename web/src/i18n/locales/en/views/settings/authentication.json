@@ -1,0 +1,61 @@
+{
+  "title": "Authentication Settings",
+  "users": {
+    "title": "Users",
+    "actions": {
+      "add": "Add User",
+      "add_aria": "Add a new user",
+      "update_password": "Update Password",
+      "update_password_aria": "Update the user's password",
+      "delete": "Delete",
+      "delete_aria": "Delete the user"
+    }
+  },
+  "errors": {
+    "set_password": "Error setting password",
+    "create_user": "Error creating user. Check server logs.",
+    "delete_user": "Error deleting user. Check server logs."
+  },
+  "dialogs": {
+    "create_user": {
+      "title": "Create User",
+      "description": "Create a new user account",
+      "form": {
+        "username": {
+          "label": "User",
+          "placeholder": "Enter username"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter password"
+        }
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "update_password": {
+      "title": "Update Password",
+      "description": "Update user password",
+      "form": {
+        "password": {
+          "label": "New Password",
+          "placeholder": "Enter new password"
+        }
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "update": "Update"
+      }
+    },
+    "delete_user": {
+      "title": "Delete User",
+      "description": "Are you sure you want to delete this user?",
+      "actions": {
+        "cancel": "Cancel",
+        "confirm": "Delete"
+      }
+    }
+  }
+} 

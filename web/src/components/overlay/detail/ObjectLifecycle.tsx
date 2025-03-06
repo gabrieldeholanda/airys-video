@@ -52,6 +52,7 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 type ObjectLifecycleProps = {
   className?: string;
@@ -66,6 +67,7 @@ export default function ObjectLifecycle({
   fullscreen = false,
   setPane,
 }: ObjectLifecycleProps) {
+  const { t: translate } = useTranslation(['ui', 'common']);
   const { data: eventSequence } = useSWR<ObjectLifecycleSequence[]>([
     "timeline",
     {
@@ -254,6 +256,57 @@ export default function ObjectLifecycle({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainApi, thumbnailApi]);
 
+  const getLifecycleItemDescription = useCallback((lifecycleItem: ObjectLifecycleSequence) => {
+    const rawLabel = (
+      (Array.isArray(lifecycleItem.data.sub_label)
+        ? lifecycleItem.data.sub_label[0]
+        : lifecycleItem.data.sub_label) || lifecycleItem.data.label
+    );
+
+    // Translate the label
+    const label = translate(`common:objects.${rawLabel}`, {
+      defaultValue: rawLabel.replaceAll("_", " ")
+    });
+
+    switch (lifecycleItem.class_type) {
+      case "visible":
+        return translate('overlay.lifecycle.status.visible', { label });
+      case "entered_zone":
+        return translate('overlay.lifecycle.status.entered_zone', { 
+          label,
+          zones: lifecycleItem.data.zones.join(" and ").replaceAll("_", " ")
+        });
+      case "active":
+        return translate('overlay.lifecycle.status.active', { label });
+      case "stationary":
+        return translate('overlay.lifecycle.status.stationary', { label });
+      case "attribute": {
+        if (
+          lifecycleItem.data.attribute == "face" ||
+          lifecycleItem.data.attribute == "license_plate"
+        ) {
+          return translate(`overlay.lifecycle.status.attribute.${lifecycleItem.data.attribute}`, { label });
+        } else {
+          const translatedAttribute = translate(`common:objects.${lifecycleItem.data.attribute}`, {
+            defaultValue: lifecycleItem.data.attribute.replaceAll("_", " ")
+          });
+          return translate('overlay.lifecycle.status.attribute.other', {
+            label: translate(`common:objects.${lifecycleItem.data.label}`, {
+              defaultValue: lifecycleItem.data.label.replaceAll("_", " ")
+            }),
+            attribute: translatedAttribute
+          });
+        }
+      }
+      case "gone":
+        return translate('overlay.lifecycle.status.gone', { label });
+      case "heard":
+        return translate('overlay.lifecycle.status.heard', { label });
+      case "external":
+        return translate('overlay.lifecycle.status.external', { label });
+    }
+  }, [translate]);
+
   if (!event.id || !eventSequence || !config || !timeIndex) {
     return <ActivityIndicator />;
   }
@@ -264,12 +317,12 @@ export default function ObjectLifecycle({
         <div className={cn("flex items-center gap-2")}>
           <Button
             className="mb-2 mt-3 flex items-center gap-2.5 rounded-lg md:mt-0"
-            aria-label="Go back"
+            aria-label={translate('overlay.search_detail.lifecycle.actions.cancel')}
             size="sm"
             onClick={() => setPane("overview")}
           >
             <IoMdArrowRoundBack className="size-5 text-secondary-foreground" />
-            {isDesktop && <div className="text-primary">Back</div>}
+            {isDesktop && <div className="text-primary">{translate('overlay.search_detail.lifecycle.actions.cancel')}</div>}
           </Button>
         </div>
       )}
@@ -382,7 +435,7 @@ export default function ObjectLifecycle({
       </div>
 
       <div className="mt-3 flex flex-row items-center justify-between">
-        <Heading as="h4">Object Lifecycle</Heading>
+        <Heading as="h4">{translate('overlay.search_detail.lifecycle.title')}</Heading>
 
         <div className="flex flex-row gap-2">
           <Tooltip>
@@ -390,7 +443,7 @@ export default function ObjectLifecycle({
               <Button
                 variant={showControls ? "select" : "default"}
                 className="size-7 p-1.5"
-                aria-label="Adjust annotation settings"
+                aria-label={translate('overlay.search_detail.lifecycle.settings.button')}
               >
                 <LuSettings
                   className="size-5"
@@ -399,17 +452,17 @@ export default function ObjectLifecycle({
               </Button>
             </TooltipTrigger>
             <TooltipPortal>
-              <TooltipContent>Adjust annotation settings</TooltipContent>
+              <TooltipContent>{translate('overlay.search_detail.lifecycle.settings.button')}</TooltipContent>
             </TooltipPortal>
           </Tooltip>
         </div>
       </div>
       <div className="flex flex-row items-center justify-between">
         <div className="mb-2 text-sm text-muted-foreground">
-          Scroll to view the significant moments of this object's lifecycle.
+          {translate('overlay.search_detail.lifecycle.description')}
         </div>
         <div className="min-w-20 text-right text-sm text-muted-foreground">
-          {current + 1} of {eventSequence.length}
+          {translate('overlay.search_detail.lifecycle.counter', { current: current + 1, total: eventSequence.length })}
         </div>
       </div>
       {showControls && (
@@ -467,78 +520,72 @@ export default function ObjectLifecycle({
                         </div>
                       </div>
                     </div>
-                    <div className="flex w-5/12 flex-row items-start justify-start">
+                    <div className="flex w-8/12 flex-row items-center justify-end">
                       <div className="text-md mr-2 w-1/3">
-                        <div className="flex flex-col items-end justify-start">
+                        <div className="flex flex-col items-end justify-end">
                           <p className="mb-1.5 text-sm text-primary-variant">
-                            Zones
+                            {translate('overlay.search_detail.details.fields.zones')}
                           </p>
-                          {item.class_type === "entered_zone"
-                            ? item.data.zones.map((zone, index) => (
+                          {item.data.zones && item.data.zones.length > 0 ? (
+                            item.data.zones.map((zone, index) => (
+                              <div
+                                key={index}
+                                className="flex flex-row items-center gap-1"
+                              >
                                 <div
-                                  key={index}
-                                  className="flex flex-row items-center gap-1"
+                                  className="size-3 rounded-lg"
+                                  style={{
+                                    backgroundColor: `rgb(${getZoneColor(zone)})`,
+                                  }}
+                                />
+                                <div
+                                  className="cursor-pointer capitalize"
+                                  onClick={() => setSelectedZone(zone)}
                                 >
-                                  {true && (
-                                    <div
-                                      className="size-3 rounded-lg"
-                                      style={{
-                                        backgroundColor: `rgb(${getZoneColor(zone)})`,
-                                      }}
-                                    />
-                                  )}
-                                  <div
-                                    key={index}
-                                    className="cursor-pointer capitalize"
-                                    onClick={() => setSelectedZone(zone)}
-                                  >
-                                    {zone.replaceAll("_", " ")}
-                                  </div>
+                                  {zone.replaceAll("_", " ")}
                                 </div>
-                              ))
-                            : "-"}
-                        </div>
-                      </div>
-                      <div className="text-md mr-2 w-1/3">
-                        <div className="flex flex-col items-end justify-start">
-                          <p className="mb-1.5 text-sm text-primary-variant">
-                            Ratio
-                          </p>
-                          {Array.isArray(item.data.box) &&
-                          item.data.box.length >= 4
-                            ? (
-                                aspectRatio *
-                                (item.data.box[2] / item.data.box[3])
-                              ).toFixed(2)
-                            : "N/A"}
-                        </div>
-                      </div>
-                      <div className="text-md mr-2 w-1/3">
-                        <div className="flex flex-col items-end justify-start">
-                          <p className="mb-1.5 text-sm text-primary-variant">
-                            Area
-                          </p>
-                          {Array.isArray(item.data.box) &&
-                          item.data.box.length >= 4 ? (
-                            <>
-                              <div className="flex flex-col text-xs">
-                                px:{" "}
-                                {Math.round(
-                                  detectArea *
-                                    (item.data.box[2] * item.data.box[3]),
-                                )}
                               </div>
-                              <div className="flex flex-col text-xs">
-                                %:{" "}
-                                {(
-                                  (detectArea *
-                                    (item.data.box[2] * item.data.box[3])) /
-                                  detectArea
-                                ).toFixed(4)}
+                            ))
+                          ) : (
+                            "-"
+                          )}
+                        </div>
+                      </div>
+                      <div className="text-md mr-2 w-1/3">
+                        <div className="flex flex-col items-end justify-end">
+                          <p className="mb-1.5 text-sm text-primary-variant">
+                            {translate('overlay.search_detail.details.fields.ratio')}
+                          </p>
+                          {Array.isArray(item.data.box) && item.data.box.length >= 4 ? (
+                            (aspectRatio * (item.data.box[2] / item.data.box[3])).toFixed(2)
+                          ) : "-"}
+                        </div>
+                      </div>
+                      <div className="text-md mr-2 w-1/3">
+                        <div className="flex flex-col items-end justify-end">
+                          <p className="mb-1.5 text-sm text-primary-variant">
+                            {translate('overlay.search_detail.details.fields.area.title')}
+                          </p>
+                          {Array.isArray(item.data.box) && item.data.box.length >= 4 ? (
+                            <>
+                              <div className="text-xs">
+                                {translate('overlay.search_detail.details.fields.area.px', {
+                                  value: Math.round(
+                                    detectArea * (item.data.box[2] * item.data.box[3])
+                                  ).toString()
+                                })}
+                              </div>
+                              <div className="text-xs">
+                                {translate('overlay.search_detail.details.fields.area.percent', {
+                                  value: (
+                                    (detectArea * (item.data.box[2] * item.data.box[3])) /
+                                    detectArea
+                                  ).toFixed(4)
+                                })}
                               </div>
                             </>
                           ) : (
-                            "N/A"
+                            "-"
                           )}
                         </div>
                       </div>
@@ -653,49 +700,5 @@ export function LifecycleIcon({
       return <LuCircleDot className={cn(className)} />;
     default:
       return null;
-  }
-}
-
-function getLifecycleItemDescription(lifecycleItem: ObjectLifecycleSequence) {
-  const label = (
-    (Array.isArray(lifecycleItem.data.sub_label)
-      ? lifecycleItem.data.sub_label[0]
-      : lifecycleItem.data.sub_label) || lifecycleItem.data.label
-  ).replaceAll("_", " ");
-
-  switch (lifecycleItem.class_type) {
-    case "visible":
-      return `${label} detected`;
-    case "entered_zone":
-      return `${label} entered ${lifecycleItem.data.zones
-        .join(" and ")
-        .replaceAll("_", " ")}`;
-    case "active":
-      return `${label} became active`;
-    case "stationary":
-      return `${label} became stationary`;
-    case "attribute": {
-      let title = "";
-      if (
-        lifecycleItem.data.attribute == "face" ||
-        lifecycleItem.data.attribute == "license_plate"
-      ) {
-        title = `${lifecycleItem.data.attribute.replaceAll(
-          "_",
-          " ",
-        )} detected for ${label}`;
-      } else {
-        title = `${
-          lifecycleItem.data.label
-        } recognized as ${lifecycleItem.data.attribute.replaceAll("_", " ")}`;
-      }
-      return title;
-    }
-    case "gone":
-      return `${label} left`;
-    case "heard":
-      return `${label} heard`;
-    case "external":
-      return `${label} detected`;
   }
 }

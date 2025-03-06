@@ -1,0 +1,315 @@
+{
+  "general": {
+    "title": "Configurações Gerais",
+    "language": {
+      "title": "Idioma",
+      "interface": "Idioma da Interface",
+      "description": "Selecione seu idioma preferido para a interface"
+    },
+    "liveDashboard": {
+      "title": "Painel ao Vivo",
+      "autoLive": "Visualização Automática",
+      "autoLiveDescription": "Alternar automaticamente para visualização ao vivo quando movimento for detectado",
+      "autoLiveNote": "Isso só funcionará quando o painel estiver aberto",
+      "alertVideos": "Vídeos de Alerta",
+      "alertVideosDescription": "Mostrar clipes de vídeo para alertas no painel"
+    },
+    "layouts": {
+      "title": "Layouts",
+      "description": "Gerenciar seus layouts de câmera salvos",
+      "clearButton": "Limpar Layouts Salvos",
+      "cleared": "Layouts limpos com sucesso",
+      "clearError": "Erro ao limpar layouts"
+    },
+    "streaming": {
+      "title": "Transmissão",
+      "description": "Configurar definições de transmissão",
+      "clearButton": "Limpar Configurações de Transmissão",
+      "cleared": "Configurações de transmissão limpas",
+      "clearError": "Erro ao limpar configurações de transmissão"
+    },
+    "recordings": {
+      "title": "Gravações",
+      "playbackRate": "Taxa de Reprodução Padrão",
+      "playbackRateDescription": "Definir a velocidade padrão de reprodução para gravações"
+    },
+    "calendar": {
+      "title": "Calendário",
+      "firstWeekday": "Primeiro Dia da Semana",
+      "firstWeekdayDescription": "Definir qual dia sua semana começa"
+    }
+  },
+  "cameras": {
+    "title": "Configurações da Câmera",
+    "add": {
+      "title": "Adicionar Câmera",
+      "description": "Adicionar uma nova câmera para monitorar",
+      "button": "Adicionar Câmera"
+    },
+    "edit": {
+      "title": "Editar Câmera",
+      "description": "Modificar configurações da câmera",
+      "button": "Salvar Alterações"
+    },
+    "delete": {
+      "title": "Excluir Câmera",
+      "description": "Remover esta câmera",
+      "confirm": "Tem certeza que deseja excluir esta câmera?",
+      "button": "Excluir Câmera"
+    },
+    "settings": {
+      "general": {
+        "title": "Configurações Gerais",
+        "name": "Nome da Câmera",
+        "enabled": "Câmera Ativada",
+        "url": "URL da Câmera",
+        "urlDescription": "URL RTSP, HTTP ou dispositivo local"
+      },
+      "video": {
+        "title": "Configurações de Vídeo",
+        "width": "Largura",
+        "height": "Altura",
+        "fps": "FPS",
+        "quality": "Qualidade",
+        "codec": "Codec",
+        "hwaccel": "Aceleração de Hardware"
+      },
+      "audio": {
+        "title": "Configurações de Áudio",
+        "enabled": "Áudio Ativado",
+        "input": "Entrada de Áudio",
+        "output": "Saída de Áudio"
+      },
+      "onvif": {
+        "title": "Configurações ONVIF",
+        "enabled": "ONVIF Ativado",
+        "host": "Host",
+        "port": "Porta",
+        "username": "Usuário",
+        "password": "Senha"
+      },
+      "review": {
+        "title": "Revisão",
+        "alerts": {
+          "title": "Alertas",
+          "description": "Ativar/desativar alertas e detecções para esta câmera. Quando desativado, nenhum novo item de revisão será gerado."
+        },
+        "classification": {
+          "title": "Classificação de Revisão",
+          "description": "O Frigate categoriza itens de revisão como Alertas e Detecções. Por padrão, todos os objetos de pessoa e carro são considerados Alertas. Você pode refinar a categorização de seus itens de revisão configurando zonas necessárias para eles.",
+          "readDocs": "Ler a Documentação",
+          "noZones": "Nenhuma zona está definida para esta câmera.",
+          "alertsInfo": "Todos os objetos de pessoa e carro em {{camera}} serão mostrados como Alertas.",
+          "detectionsInfo": "Todos os objetos não classificados como Alertas em {{camera}} serão mostrados como Detecções, independentemente da zona."
+        },
+        "actions": {
+          "cancel": "Cancelar",
+          "save": "Salvar"
+        }
+      }
+    }
+  },
+  "search": {
+    "title": "Configurações de Exploração",
+    "semantic": {
+      "title": "Busca Semântica",
+      "description": "A Busca Semântica no Frigate permite que você encontre objetos rastreados dentro de seus itens de revisão usando a própria imagem, uma descrição de texto definida pelo usuário ou uma gerada automaticamente.",
+      "readDocs": "Ler a Documentação",
+      "enabled": {
+        "title": "Ativada",
+        "description": "Ativar ou desativar a funcionalidade de busca semântica."
+      },
+      "reindex": {
+        "title": "Reindexar na Inicialização",
+        "description": "A reindexação irá reprocessar todas as miniaturas e descrições (se ativadas) na inicialização."
+      },
+      "model": {
+        "title": "Tamanho do Modelo",
+        "description": "O tamanho do modelo usado para incorporações de Busca Semântica.",
+        "small": {
+          "title": "Pequeno",
+          "description": "Usar o modelo pequeno emprega uma versão quantizada que usa menos RAM e executa mais rápido na CPU com uma diferença muito negligenciável na qualidade da incorporação."
+        },
+        "large": {
+          "title": "Grande",
+          "description": "Usar o modelo grande emprega o modelo Jina completo e será executado automaticamente na GPU, se aplicável."
+        }
+      }
+    },
+    "messages": {
+      "saved": "Configurações de exploração foram salvas.",
+      "saveError": "Falha ao salvar alterações de configuração: {{error}}",
+      "unsavedChanges": "Alterações não salvas nas configurações de exploração"
+    }
+  },
+  "motion": {
+    "title": "Ajuste de Movimento",
+    "description": "Ajustar configurações de detecção de movimento para desempenho ideal",
+    "settings": {
+      "threshold": {
+        "title": "Limiar de Movimento",
+        "description": "Diferença mínima de pixels para acionar a detecção de movimento",
+        "low": "Baixo (Mais Sensível)",
+        "medium": "Médio",
+        "high": "Alto (Menos Sensível)"
+      },
+      "contours": {
+        "title": "Configurações de Contorno",
+        "minArea": "Área Mínima",
+        "maxArea": "Área Máxima",
+        "threshold": "Limiar de Contorno"
+      },
+      "frames": {
+        "title": "Configurações de Quadros",
+        "frameSkip": "Pular Quadros",
+        "fps": "FPS Alvo",
+        "improve": "Melhorar Detecção"
+      }
+    },
+    "preview": {
+      "title": "Prévia de Movimento",
+      "original": "Original",
+      "detection": "Detecção",
+      "mask": "Máscara",
+      "refresh": "Atualizar Prévia"
+    }
+  },
+  "zones": {
+    "title": "Máscaras e Zonas",
+    "masks": {
+      "title": "Máscaras",
+      "description": "Definir áreas para ignorar na detecção",
+      "add": "Adicionar Máscara",
+      "edit": "Editar Máscara",
+      "delete": "Excluir Máscara",
+      "types": {
+        "motion": "Máscara de Movimento",
+        "objects": "Máscara de Objetos",
+        "zones": "Máscara de Zona"
+      }
+    },
+    "zones": {
+      "title": "Zonas",
+      "description": "Definir áreas de interesse para detecção",
+      "add": "Adicionar Zona",
+      "edit": "Editar Zona",
+      "delete": "Excluir Zona",
+      "settings": {
+        "name": "Nome da Zona",
+        "coordinates": "Coordenadas",
+        "triggers": {
+          "title": "Gatilhos",
+          "motion": "Movimento",
+          "objects": "Objetos",
+          "people": "Pessoas",
+          "vehicles": "Veículos",
+          "animals": "Animais"
+        },
+        "filters": {
+          "title": "Filtros",
+          "minArea": "Área Mínima",
+          "maxArea": "Área Máxima",
+          "threshold": "Limiar"
+        }
+      }
+    }
+  },
+  "debug": {
+    "title": "Configurações de Depuração",
+    "description": "Configurações avançadas para solução de problemas e depuração",
+    "settings": {
+      "logging": {
+        "title": "Registro",
+        "level": {
+          "title": "Nível de Registro",
+          "debug": "Depuração",
+          "info": "Informação",
+          "warning": "Aviso",
+          "error": "Erro"
+        },
+        "retention": {
+          "title": "Retenção de Registros",
+          "description": "Número de dias para manter os registros",
+          "days": "{{count}} dias"
+        }
+      },
+      "performance": {
+        "title": "Monitoramento de Desempenho",
+        "enabled": "Ativar Monitoramento de Desempenho",
+        "metrics": {
+          "title": "Métricas",
+          "cpu": "Uso de CPU",
+          "memory": "Uso de Memória",
+          "gpu": "Uso de GPU",
+          "disk": "Uso de Disco"
+        }
+      },
+      "diagnostics": {
+        "title": "Diagnósticos",
+        "system": {
+          "title": "Informações do Sistema",
+          "os": "Sistema Operacional",
+          "python": "Versão do Python",
+          "ffmpeg": "Versão do FFmpeg"
+        },
+        "network": {
+          "title": "Rede",
+          "test": "Testar Conexão",
+          "status": "Status da Conexão"
+        }
+      }
+    }
+  },
+  "users": {
+    "title": "Gerenciamento de Usuários",
+    "description": "Gerenciar contas e permissões de usuários",
+    "users": {
+      "list": {
+        "title": "Usuários",
+        "empty": "Nenhum usuário encontrado",
+        "headers": {
+          "username": "Nome de Usuário",
+          "role": "Função",
+          "lastLogin": "Último Acesso",
+          "status": "Status",
+          "actions": "Ações"
+        }
+      },
+      "roles": {
+        "admin": "Administrador",
+        "user": "Usuário",
+        "viewer": "Visualizador"
+      },
+      "status": {
+        "active": "Ativo",
+        "inactive": "Inativo",
+        "locked": "Bloqueado"
+      }
+    },
+    "actions": {
+      "add": {
+        "title": "Adicionar Usuário",
+        "button": "Adicionar Novo Usuário"
+      },
+      "edit": {
+        "title": "Editar Usuário",
+        "button": "Salvar Alterações"
+      },
+      "delete": {
+        "title": "Excluir Usuário",
+        "button": "Excluir Usuário",
+        "confirm": "Tem certeza que deseja excluir este usuário?"
+      }
+    }
+  },
+  "menu": {
+    "ui": "Configurações da Interface",
+    "explore": "Configurações de Exploração",
+    "camera": "Configurações da Câmera",
+    "masks_zones": "Máscaras e Zonas",
+    "motion_tuner": "Ajuste de Movimento",
+    "debug": "Visualização de Depuração",
+    "users": "Usuários",
+    "notifications": "Notificações"
+  }
+} 

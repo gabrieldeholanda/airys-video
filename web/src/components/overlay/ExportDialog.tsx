@@ -30,6 +30,7 @@ import { getUTCOffset } from "@/utils/dateUtil";
 import { baseUrl } from "@/api/baseUrl";
 import { cn } from "@/lib/utils";
 import { GenericVideoPlayer } from "../player/GenericVideoPlayer";
+import { useTranslation } from "react-i18next";
 
 const EXPORT_OPTIONS = [
   "1",
@@ -65,15 +66,16 @@ export default function ExportDialog({
   setShowPreview,
 }: ExportDialogProps) {
   const [name, setName] = useState("");
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.export" });
 
   const onStartExport = useCallback(() => {
     if (!range) {
-      toast.error("No valid time range selected", { position: "top-center" });
+      toast.error(t("errors.no_range"), { position: "top-center" });
       return;
     }
 
     if (range.before < range.after) {
-      toast.error("End time must be after start time", {
+      toast.error(t("errors.invalid_range"), {
         position: "top-center",
       });
       return;
@@ -89,10 +91,7 @@ export default function ExportDialog({
       )
       .then((response) => {
         if (response.status == 200) {
-          toast.success(
-            "Successfully started export. View the file in the /exports folder.",
-            { position: "top-center" },
-          );
+          toast.success(t("success.export_started"), { position: "top-center" });
           setName("");
           setRange(undefined);
           setMode("none");
@@ -101,16 +100,16 @@ export default function ExportDialog({
       .catch((error) => {
         if (error.response?.data?.message) {
           toast.error(
-            `Failed to start export: ${error.response.data.message}`,
+            t("errors.start_failed", { message: error.response.data.message }),
             { position: "top-center" },
           );
         } else {
-          toast.error(`Failed to start export: ${error.message}`, {
+          toast.error(t("errors.start_failed", { message: error.message }), {
             position: "top-center",
           });
         }
       });
-  }, [camera, name, range, setRange, setName, setMode]);
+  }, [camera, name, range, setRange, setMode, t]);
 
   const Overlay = isDesktop ? Dialog : Drawer;
   const Trigger = isDesktop ? DialogTrigger : DrawerTrigger;
@@ -142,7 +141,7 @@ export default function ExportDialog({
         <Trigger asChild>
           <Button
             className="flex items-center gap-2"
-            aria-label="Export"
+            aria-label={t("button.export")}
             size="sm"
             onClick={() => {
               const now = new Date(latestTime * 1000);
@@ -157,7 +156,7 @@ export default function ExportDialog({
             }}
           >
             <FaArrowDown className="rounded-md bg-secondary-foreground fill-secondary p-1" />
-            {isDesktop && <div className="text-primary">Export</div>}
+            {isDesktop && <div className="text-primary">{t("button.export")}</div>}
           </Button>
         </Trigger>
         <Content
@@ -207,6 +206,7 @@ export function ExportContent({
   onCancel,
 }: ExportContentProps) {
   const [selectedOption, setSelectedOption] = useState<ExportOption>("1");
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.export" });
 
   const onSelectTime = useCallback(
     (option: ExportOption) => {
@@ -253,7 +253,7 @@ export function ExportContent({
       {isDesktop && (
         <>
           <DialogHeader>
-            <DialogTitle>Export</DialogTitle>
+            <DialogTitle>{t("title")}</DialogTitle>
           </DialogHeader>
           <SelectSeparator className="my-4 bg-secondary" />
         </>
@@ -277,9 +277,11 @@ export function ExportContent({
               <Label className="cursor-pointer capitalize" htmlFor={opt}>
                 {isNaN(parseInt(opt))
                   ? opt == "timeline"
-                    ? "Select from Timeline"
-                    : `${opt}`
-                  : `Last ${opt > "1" ? `${opt} Hours` : "Hour"}`}
+                    ? t("time_options.timeline")
+                    : t("time_options.custom")
+                  : opt === "1"
+                  ? t("time_options.last_hour")
+                  : t("time_options.last_hours", { hours: opt })}
               </Label>
             </div>
           );
@@ -295,7 +297,7 @@ export function ExportContent({
       <Input
         className="text-md my-6"
         type="search"
-        placeholder="Name the Export"
+        placeholder={t("input.name")}
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
@@ -307,11 +309,11 @@ export function ExportContent({
           className={`cursor-pointer p-2 text-center ${isDesktop ? "" : "w-full"}`}
           onClick={onCancel}
         >
-          Cancel
+          {t("button.cancel")}
         </div>
         <Button
           className={isDesktop ? "" : "w-full"}
-          aria-label="Select or export"
+          aria-label={selectedOption == "timeline" ? t("button.select") : t("button.export")}
           variant="select"
           size="sm"
           onClick={() => {
@@ -325,7 +327,7 @@ export function ExportContent({
             }
           }}
         >
-          {selectedOption == "timeline" ? "Select" : "Export"}
+          {selectedOption == "timeline" ? t("button.select") : t("button.export")}
         </Button>
       </DialogFooter>
     </div>
@@ -343,6 +345,7 @@ function CustomTimeSelector({
   setRange,
 }: CustomTimeSelectorProps) {
   const { data: config } = useSWR<FrigateConfig>("config");
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.export" });
 
   // times
 
@@ -425,7 +428,7 @@ function CustomTimeSelector({
         <PopoverTrigger asChild>
           <Button
             className={`text-primary ${isDesktop ? "" : "text-xs"}`}
-            aria-label="Start time"
+            aria-label={t("time_selector.start.label")}
             variant={startOpen ? "select" : "default"}
             size="sm"
             onClick={() => {
@@ -491,7 +494,7 @@ function CustomTimeSelector({
         <PopoverTrigger asChild>
           <Button
             className={`text-primary ${isDesktop ? "" : "text-xs"}`}
-            aria-label="End time"
+            aria-label={t("time_selector.end.label")}
             variant={endOpen ? "select" : "default"}
             size="sm"
             onClick={() => {
@@ -562,6 +565,8 @@ export function ExportPreviewDialog({
   showPreview,
   setShowPreview,
 }: ExportPreviewDialogProps) {
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.export" });
+
   if (!range) {
     return null;
   }
@@ -579,9 +584,9 @@ export function ExportPreviewDialog({
         )}
       >
         <DialogHeader>
-          <DialogTitle>Preview Export</DialogTitle>
+          <DialogTitle>{t("preview.title")}</DialogTitle>
           <DialogDescription className="sr-only">
-            Preview Export
+            {t("preview.description")}
           </DialogDescription>
         </DialogHeader>
         <GenericVideoPlayer source={source} />

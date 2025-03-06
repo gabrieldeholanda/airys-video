@@ -1,0 +1,26 @@
+{
+  "selection": {
+    "count": "{{count}} selected",
+    "unselect": "Unselect"
+  },
+  "actions": {
+    "delete": "Delete",
+    "delete_now": "Delete Now"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Confirm Delete",
+      "description": "Deleting these {{count}} tracked objects removes the snapshot, any saved embeddings, and any associated object lifecycle entries. Recorded footage of these tracked objects in History view will <em>NOT</em> be deleted.",
+      "confirm": "Are you sure you want to proceed?",
+      "bypass_hint": "Hold the <em>Shift</em> key to bypass this dialog in the future.",
+      "actions": {
+        "cancel": "Cancel",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "messages": {
+    "success": "Tracked objects deleted successfully.",
+    "error": "Failed to delete tracked objects."
+  }
+} 

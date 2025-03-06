@@ -16,6 +16,7 @@ import {
   AlertDialogTitle,
 } from "../ui/alert-dialog";
 import useKeyboardListener from "@/hooks/use-keyboard-listener";
+import { useTranslation } from "react-i18next";
 
 type ReviewActionGroupProps = {
   selectedReviews: string[];
@@ -29,6 +30,7 @@ export default function ReviewActionGroup({
   onExport,
   pullLatestData,
 }: ReviewActionGroupProps) {
+  const { t: translate } = useTranslation(['ui']);
   const onClearSelected = useCallback(() => {
     setSelectedReviews([]);
   }, [setSelectedReviews]);
@@ -68,22 +70,21 @@ export default function ReviewActionGroup({
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
+            <AlertDialogTitle>{translate('review.actions.dialog.delete.title')}</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogDescription>
-            Are you sure you want to delete all recorded video associated with
-            the selected review items?
+            {translate('review.actions.dialog.delete.description')}
             <br />
             <br />
-            Hold the <em>Shift</em> key to bypass this dialog in the future.
+            <span dangerouslySetInnerHTML={{ __html: translate('review.actions.dialog.delete.bypass_hint') }} />
           </AlertDialogDescription>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>{translate('review.actions.dialog.delete.actions.cancel')}</AlertDialogCancel>
             <AlertDialogAction
               className={buttonVariants({ variant: "destructive" })}
               onClick={onDelete}
             >
-              Delete
+              {translate('review.actions.dialog.delete.actions.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -91,20 +92,20 @@ export default function ReviewActionGroup({
 
       <div className="absolute inset-x-2 inset-y-0 flex items-center justify-between gap-2 bg-background py-2 md:left-auto">
         <div className="mx-1 flex items-center justify-center text-sm text-muted-foreground">
-          <div className="p-1">{`${selectedReviews.length} selected`}</div>
+          <div className="p-1">{translate('review.actions.selection.count', { count: selectedReviews.length })}</div>
           <div className="p-1">{"|"}</div>
           <div
             className="cursor-pointer p-2 text-primary hover:rounded-lg hover:bg-secondary"
             onClick={onClearSelected}
           >
-            Unselect
+            {translate('review.actions.selection.unselect')}
           </div>
         </div>
         <div className="flex items-center gap-1 md:gap-2">
           {selectedReviews.length == 1 && (
             <Button
               className="flex items-center gap-2 p-2"
-              aria-label="Export"
+              aria-label={translate('review.actions.actions.export')}
               size="sm"
               onClick={() => {
                 onExport(selectedReviews[0]);
@@ -112,28 +113,28 @@ export default function ReviewActionGroup({
               }}
             >
               <FaCompactDisc className="text-secondary-foreground" />
-              {isDesktop && <div className="text-primary">Export</div>}
+              {isDesktop && <div className="text-primary">{translate('review.actions.actions.export')}</div>}
             </Button>
           )}
           <Button
             className="flex items-center gap-2 p-2"
-            aria-label="Mark as reviewed"
+            aria-label={translate('review.actions.actions.mark_reviewed')}
             size="sm"
             onClick={onMarkAsReviewed}
           >
             <FaCircleCheck className="text-secondary-foreground" />
-            {isDesktop && <div className="text-primary">Mark as reviewed</div>}
+            {isDesktop && <div className="text-primary">{translate('review.actions.actions.mark_reviewed')}</div>}
           </Button>
           <Button
             className="flex items-center gap-2 p-2"
-            aria-label="Delete"
+            aria-label={translate('review.actions.actions.delete')}
             size="sm"
             onClick={handleDelete}
           >
             <HiTrash className="text-secondary-foreground" />
             {isDesktop && (
               <div className="text-primary">
-                {bypassDialog ? "Delete Now" : "Delete"}
+                {bypassDialog ? translate('review.actions.actions.delete_now') : translate('review.actions.actions.delete')}
               </div>
             )}
           </Button>

@@ -1,5 +1,6 @@
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
+import { useTranslation } from "react-i18next";
 
 type FilterSwitchProps = {
   label: string;
@@ -13,6 +14,8 @@ export default function FilterSwitch({
   isChecked,
   onCheckedChange,
 }: FilterSwitchProps) {
+  const { t: translate } = useTranslation(['ui']);
+
   return (
     <div className="flex items-center justify-between gap-1">
       <Label
@@ -26,6 +29,7 @@ export default function FilterSwitch({
         disabled={disabled}
         checked={isChecked}
         onCheckedChange={onCheckedChange}
+        aria-label={translate('filter.switch.label.aria', { label: label })}
       />
     </div>
   );

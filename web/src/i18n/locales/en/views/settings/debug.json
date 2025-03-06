@@ -1,0 +1,68 @@
+{
+  "title": "Debug Settings",
+  "description": "Advanced settings for troubleshooting and debugging",
+  "settings": {
+    "logging": {
+      "title": "Logging",
+      "level": {
+        "title": "Log Level",
+        "debug": "Debug",
+        "info": "Info",
+        "warning": "Warning",
+        "error": "Error"
+      },
+      "retention": {
+        "title": "Log Retention",
+        "description": "Number of days to keep logs",
+        "days": "{{count}} days"
+      }
+    },
+    "performance": {
+      "title": "Performance Monitoring",
+      "enabled": "Enable Performance Monitoring",
+      "metrics": {
+        "title": "Metrics",
+        "cpu": "CPU Usage",
+        "memory": "Memory Usage",
+        "gpu": "GPU Usage",
+        "disk": "Disk Usage"
+      }
+    },
+    "diagnostics": {
+      "title": "Diagnostics",
+      "system": {
+        "title": "System Information",
+        "os": "Operating System",
+        "python": "Python Version",
+        "ffmpeg": "FFmpeg Version"
+      },
+      "network": {
+        "title": "Network",
+        "test": "Test Connection",
+        "status": "Connection Status"
+      }
+    }
+  },
+  "actions": {
+    "download": {
+      "title": "Download Logs",
+      "all": "Download All Logs",
+      "filtered": "Download Filtered Logs"
+    },
+    "test": {
+      "title": "Run Tests",
+      "start": "Start Test",
+      "stop": "Stop Test"
+    },
+    "clear": {
+      "title": "Clear Data",
+      "logs": "Clear Logs",
+      "cache": "Clear Cache"
+    }
+  },
+  "status": {
+    "testing": "Running tests...",
+    "success": "Tests completed successfully",
+    "error": "Error during tests: {{error}}"
+  }
+} 

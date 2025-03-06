@@ -7,6 +7,7 @@ import { PolygonType } from "@/types/canvas";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
 import { DropdownMenuSeparator } from "../ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
 
 type ZoneMaskFilterButtonProps = {
   selectedZoneMask?: PolygonType[];
@@ -16,12 +17,14 @@ export function ZoneMaskFilterButton({
   selectedZoneMask,
   updateZoneMaskFilter,
 }: ZoneMaskFilterButtonProps) {
+  const { t } = useTranslation("components/filter/zone_mask");
+  
   const trigger = (
     <Button
       size="sm"
       variant={selectedZoneMask?.length ? "select" : "default"}
       className="flex items-center gap-2 capitalize"
-      aria-label="Filter by zone mask"
+      aria-label={t("filterAriaLabel")}
     >
       <FaFilter
         className={`${selectedZoneMask?.length ? "text-selected-foreground" : "text-secondary-foreground"}`}
@@ -29,7 +32,7 @@ export function ZoneMaskFilterButton({
       <div
         className={`hidden md:block ${selectedZoneMask?.length ? "text-selected-foreground" : "text-primary"}`}
       >
-        Filter
+        {t("filter")}
       </div>
     </Button>
   );
@@ -67,6 +70,14 @@ export function GeneralFilterContent({
   selectedZoneMask,
   updateZoneMaskFilter,
 }: GeneralFilterContentProps) {
+  const { t } = useTranslation("components/filter/zone_mask");
+  
+  const maskTypes = {
+    zone: t("zones"),
+    motion_mask: t("motionMasks"),
+    object_mask: t("objectMasks")
+  };
+
   return (
     <>
       <div className="h-auto overflow-y-auto overflow-x-hidden">
@@ -75,7 +86,7 @@ export function GeneralFilterContent({
             className="mx-2 cursor-pointer text-primary"
             htmlFor="allLabels"
           >
-            All Masks and Zones
+            {t("allMasksAndZones")}
           </Label>
           <Switch
             className="ml-1"
@@ -90,22 +101,20 @@ export function GeneralFilterContent({
         </div>
         <DropdownMenuSeparator />
         <div className="my-2.5 flex flex-col gap-2.5">
-          {["zone", "motion_mask", "object_mask"].map((item) => (
-            <div key={item} className="flex items-center justify-between">
+          {Object.entries(maskTypes).map(([key, label]) => (
+            <div key={key} className="flex items-center justify-between">
               <Label
-                className="mx-2 w-full cursor-pointer capitalize text-primary"
-                htmlFor={item}
+                className="mx-2 w-full cursor-pointer text-primary"
+                htmlFor={key}
               >
-                {item
-                  .replace(/_/g, " ")
-                  .replace(/\b\w/g, (char) => char.toUpperCase()) + "s"}
+                {label}
               </Label>
               <Switch
-                key={item}
+                key={key}
                 className="ml-1"
-                id={item}
+                id={key}
                 checked={
-                  selectedZoneMask?.includes(item as PolygonType) ?? false
+                  selectedZoneMask?.includes(key as PolygonType) ?? false
                 }
                 onCheckedChange={(isChecked) => {
                   if (isChecked) {
@@ -113,7 +122,7 @@ export function GeneralFilterContent({
                       ? [...selectedZoneMask]
                       : [];
 
-                    updatedLabels.push(item as PolygonType);
+                    updatedLabels.push(key as PolygonType);
                     updateZoneMaskFilter(updatedLabels);
                   } else {
                     const updatedLabels = selectedZoneMask
@@ -123,7 +132,7 @@ export function GeneralFilterContent({
                     // can not deselect the last item
                     if (updatedLabels.length > 1) {
                       updatedLabels.splice(
-                        updatedLabels.indexOf(item as PolygonType),
+                        updatedLabels.indexOf(key as PolygonType),
                         1,
                       );
                       updateZoneMaskFilter(updatedLabels);

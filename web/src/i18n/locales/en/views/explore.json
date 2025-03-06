@@ -1,0 +1,34 @@
+{
+  "unavailable": {
+    "title": "Explore is Unavailable",
+    "reindexing": {
+      "message": "Explore can be used after tracked object embeddings have finished reindexing.",
+      "status": {
+        "starting": "Starting up...",
+        "time_remaining": "Estimated time remaining:",
+        "finishing": "Finishing shortly",
+        "thumbnails": "Thumbnails embedded:",
+        "descriptions": "Descriptions embedded:",
+        "objects": "Tracked objects processed:"
+      }
+    },
+    "models": {
+      "message": "Frigate is downloading the necessary embeddings models to support the Semantic Search feature. This may take several minutes depending on the speed of your network connection.",
+      "components": {
+        "vision": "Vision model",
+        "vision_extractor": "Vision model feature extractor",
+        "text": "Text model",
+        "tokenizer": "Text tokenizer"
+      },
+      "error": "An error has occurred. Check Frigate logs.",
+      "reindex_note": "You may want to reindex the embeddings of your tracked objects once the models are downloaded.",
+      "documentation": "Read the documentation"
+    }
+  },
+  "errors": {
+    "fetch": "Error fetching tracked objects: {{message}}"
+  },
+  "title": "Explore",
+  "trackedObjects": "tracked objects",
+  "exploreMore": "Explore More {{label}}"
+} 

@@ -1,0 +1,23 @@
+{
+  "selection": {
+    "count": "{{count}} selected",
+    "unselect": "Unselect"
+  },
+  "actions": {
+    "export": "Export",
+    "mark_reviewed": "Mark as reviewed",
+    "delete": "Delete",
+    "delete_now": "Delete Now"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Confirm Delete",
+      "description": "Are you sure you want to delete all recorded video associated with the selected review items?",
+      "bypass_hint": "Hold the <em>Shift</em> key to bypass this dialog in the future.",
+      "actions": {
+        "cancel": "Cancel",
+        "confirm": "Delete"
+      }
+    }
+  }
+} 

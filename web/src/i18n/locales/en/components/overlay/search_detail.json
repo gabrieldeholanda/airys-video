@@ -1,0 +1,101 @@
+{
+  "title": "Tracked Object Details",
+  "description": "Tracked object details",
+  "tabs": {
+    "details": "Details",
+    "snapshot": "Snapshot",
+    "video": "Video",
+    "object_lifecycle": "Object Lifecycle"
+  },
+  "details": {
+    "fields": {
+      "label": "Label",
+      "score": {
+        "title": "Top Score",
+        "info": "The top score is the highest median score for the tracked object, so this may differ from the score shown on the search result thumbnail."
+      },
+      "speed": {
+        "title": "Estimated Speed",
+        "unit": {
+          "imperial": "mph",
+          "metric": "kph"
+        }
+      },
+      "camera": "Camera",
+      "timestamp": "Timestamp",
+      "zones": "Zones",
+      "ratio": "Ratio",
+      "area": {
+        "title": "Area",
+        "px": "px: {{value}}",
+        "percent": "%: {{value}}"
+      }
+    },
+    "description": {
+      "title": "Description",
+      "placeholder": "Description of the tracked object",
+      "waiting": {
+        "title": "Frigate will not request a description from your Generative AI provider until the tracked object's lifecycle has ended."
+      },
+      "actions": {
+        "regenerate": {
+          "button": "Regenerate",
+          "from_snapshot": "Regenerate from Snapshot",
+          "from_thumbnails": "Regenerate from Thumbnails",
+          "success": "A new description has been requested from {{provider}}. Depending on the speed of your provider, the new description may take some time to regenerate.",
+          "error": "Failed to call {{provider}} for a new description: {{error}}"
+        },
+        "save": {
+          "button": "Save",
+          "success": "Successfully saved description",
+          "error": "Failed to update the description"
+        }
+      }
+    },
+    "similar": {
+      "button": "Find Similar"
+    }
+  },
+  "snapshot": {
+    "actions": {
+      "download": "Download"
+    },
+    "plus": {
+      "title": "Submit To Frigate+",
+      "description": "Objects in locations you want to avoid are not false positives. Submitting them as false positives will confuse the model.",
+      "actions": {
+        "confirm": "This is {{article}} {{label}}",
+        "reject": "This is not {{article}} {{label}}",
+        "submitted": "Submitted"
+      }
+    }
+  },
+  "video": {
+    "actions": {
+      "history": "View in History",
+      "download": "Download"
+    }
+  },
+  "lifecycle": {
+    "title": "Object Lifecycle",
+    "description": "Scroll to view the significant moments of this object's lifecycle.",
+    "settings": {
+      "button": "Adjust annotation settings",
+      "title": "Annotation Settings",
+      "zones": {
+        "label": "Show Zones",
+        "description": "Show zone outlines in the image"
+      },
+      "offset": {
+        "label": "Annotation Offset",
+        "description": "Adjust the position of the bounding box"
+      }
+    },
+    "counter": "{{current}} of {{total}}",
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving..."
+    }
+  }
+} 

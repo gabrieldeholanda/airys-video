@@ -1,0 +1,26 @@
+{
+  "title": "Review Item Details",
+  "description": "Review item details",
+  "actions": {
+    "share": "Share this review item",
+    "download": "Download",
+    "explore": "View in Explore",
+    "lifecycle": "View Object Lifecycle",
+    "similar": "Find Similar",
+    "plus": "Submit to Frigate+"
+  },
+  "fields": {
+    "camera": "Camera",
+    "timestamp": "Timestamp",
+    "objects": "Objects",
+    "zones": "Zones"
+  },
+  "unavailable": {
+    "message": {
+      "single": "1 object was",
+      "multiple": "{{count}} objects were",
+      "description": "unavailable {{objects}} detected and included in this review item. Those objects either did not qualify as an alert or detection or have already been cleaned up/deleted.",
+      "config": "Adjust your configuration if you want Frigate to save tracked objects for the following labels: {{labels}}"
+    }
+  }
+} 

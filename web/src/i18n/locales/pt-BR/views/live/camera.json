@@ -1,0 +1,191 @@
+{
+  "controls": {
+    "ptz": {
+      "title": "Controles PTZ",
+      "click_overlay": "Sobreposição de Clique",
+      "up": "Mover para Cima",
+      "down": "Mover para Baixo",
+      "left": "Mover para Esquerda",
+      "right": "Mover para Direita",
+      "zoom_in": "Aumentar Zoom",
+      "zoom_out": "Diminuir Zoom",
+      "home": "Posição Inicial"
+    },
+    "audio": {
+      "output": {
+        "enable": "Ativar Áudio",
+        "disable": "Desativar Áudio",
+        "not_supported": "Saída de áudio não suportada"
+      },
+      "input": {
+        "start": "Iniciar Áudio Bidirecional",
+        "stop": "Parar Áudio Bidirecional",
+        "not_supported": "Áudio bidirecional não suportado"
+      }
+    },
+    "recording": {
+      "start": "Iniciar Gravação",
+      "stop": "Parar Gravação",
+      "snapshot": "Tirar Foto",
+      "not_supported": "Gravação não suportada"
+    },
+    "detection": {
+      "enable": "Ativar Detecção",
+      "disable": "Desativar Detecção",
+      "autotrack": {
+        "enable": "Ativar Rastreamento Automático",
+        "disable": "Desativar Rastreamento Automático"
+      }
+    },
+    "view": {
+      "pip": {
+        "enter": "Entrar em Picture-in-Picture",
+        "exit": "Sair de Picture-in-Picture",
+        "not_supported": "Picture-in-Picture não suportado"
+      },
+      "history": "Ver Histórico de Gravações",
+      "restart": "Reiniciar Câmera",
+      "settings": "Configurações da Câmera"
+    }
+  },
+  "stream": {
+    "select": "Selecionar Transmissão",
+    "quality": {
+      "high": "Alta Qualidade",
+      "low": "Baixa Largura de Banda",
+      "description": "Reduzir uso de largura de banda com transmissão de menor qualidade"
+    },
+    "error": {
+      "load": "Erro ao carregar transmissão",
+      "codec": "Codec de vídeo não suportado",
+      "network": "Ocorreu um erro de rede",
+      "reconnect": "Tentando reconectar..."
+    }
+  },
+  "retention": {
+    "title": "Configurações de Retenção",
+    "mode": {
+      "all": "Gravar Tudo",
+      "motion": "Gravar em Movimento",
+      "manual": "Apenas Gravação Manual"
+    },
+    "warning": "Aviso: Retenção sob demanda está ativada"
+  },
+  "actions": {
+    "back": "Voltar",
+    "history": "Histórico",
+    "fullscreen": {
+      "enter": "Tela Cheia",
+      "exit": "Fechar"
+    },
+    "pip": {
+      "enter": "Picture in Picture",
+      "exit": "Fechar"
+    },
+    "audio": {
+      "enable": "Ativar Áudio da Câmera",
+      "disable": "Desativar Áudio da Câmera"
+    },
+    "talk": {
+      "enable": "Ativar Comunicação Bidirecional",
+      "disable": "Desativar Comunicação Bidirecional"
+    },
+    "reset_stream": "Reiniciar transmissão"
+  },
+  "features": {
+    "detect": {
+      "enable": "Ativar Detecção",
+      "disable": "Desativar Detecção"
+    },
+    "recording": {
+      "enable": "Ativar Gravação",
+      "disable": "Desativar Gravação"
+    },
+    "snapshots": {
+      "enable": "Ativar Capturas",
+      "disable": "Desativar Capturas"
+    },
+    "audio_detect": {
+      "enable": "Ativar Detecção de Áudio",
+      "disable": "Desativar Detecção de Áudio"
+    },
+    "autotracking": {
+      "enable": "Ativar Rastreamento Automático",
+      "disable": "Desativar Rastreamento Automático"
+    },
+    "on_demand": {
+      "title": "Gravação sob Demanda",
+      "start": "Iniciar gravação sob demanda",
+      "stop": "Parar gravação sob demanda",
+      "description": "Iniciar um evento manual baseado nas configurações de retenção desta câmera.",
+      "success": {
+        "start": "Gravação manual sob demanda iniciada.",
+        "end": "Gravação manual sob demanda finalizada."
+      },
+      "error": {
+        "start": "Falha ao iniciar gravação manual sob demanda.",
+        "end": "Falha ao finalizar gravação manual sob demanda."
+      },
+      "retention": {
+        "recording_disabled": "Como a gravação está desativada ou restrita na configuração desta câmera, apenas uma captura será salva.",
+        "mode": "Sua configuração de retenção de {{source}} está definida para o modo: {{mode}}, então esta gravação sob demanda manterá apenas segmentos com {{mode_text}}."
+      }
+    }
+  },
+  "settings": {
+    "title": "Configurações",
+    "stream": {
+      "title": "Transmissão",
+      "not_enabled": {
+        "message": "A retransmissão não está ativada para esta câmera.",
+        "description": "Configure o go2rtc para opções adicionais de visualização ao vivo e áudio para esta câmera.",
+        "documentation": "Ler a documentação"
+      },
+      "audio": {
+        "available": "Áudio está disponível para esta transmissão",
+        "unavailable": {
+          "message": "Áudio não está disponível para esta transmissão",
+          "description": "O áudio deve ser transmitido pela sua câmera e configurado no go2rtc para esta transmissão.",
+          "documentation": "Ler a documentação"
+        }
+      },
+      "talk": {
+        "available": "Comunicação bidirecional está disponível para esta transmissão",
+        "unavailable": {
+          "message": "Comunicação bidirecional não está disponível para esta transmissão",
+          "description": "Seu dispositivo deve suportar o recurso e o WebRTC deve estar configurado para comunicação bidirecional.",
+          "documentation": "Ler a documentação"
+        }
+      },
+      "low_bandwidth": {
+        "message": "Visualização ao vivo está em modo de baixa largura de banda devido a buffer ou erros de transmissão."
+      }
+    },
+    "background_play": {
+      "title": "Reproduzir em segundo plano",
+      "description": "Ative esta opção para continuar a transmissão quando o player estiver oculto."
+    },
+    "stats": {
+      "title": "Mostrar estatísticas da transmissão",
+      "description": "Ative esta opção para mostrar estatísticas da transmissão como sobreposição no feed da câmera."
+    },
+    "debug": {
+      "title": "Visualização de Depuração"
+    }
+  },
+  "ptz": {
+    "actions": {
+      "left": "Mover câmera para esquerda",
+      "right": "Mover câmera para direita",
+      "up": "Mover câmera para cima",
+      "down": "Mover câmera para baixo",
+      "zoom_in": "Aumentar zoom",
+      "zoom_out": "Diminuir zoom",
+      "click_move": {
+        "enable": "Ativar clique para mover",
+        "disable": "Desativar clique para mover"
+      },
+      "presets": "Predefinições da câmera PTZ"
+    }
+  }
+} 

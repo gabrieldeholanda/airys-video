@@ -21,6 +21,7 @@ import TimeAgo from "@/components/dynamic/TimeAgo";
 import SearchResultActions from "@/components/menu/SearchResultActions";
 import { SearchTab } from "@/components/overlay/detail/SearchDetailDialog";
 import { FrigateConfig } from "@/types/frigateConfig";
+import { useTranslation } from "react-i18next";
 
 type ExploreViewProps = {
   searchDetail: SearchResult | undefined;
@@ -35,11 +36,13 @@ export default function ExploreView({
   setSimilaritySearch,
   onSelectSearch,
 }: ExploreViewProps) {
+  const { t } = useTranslation(["views"]);
+
   // title
 
   useEffect(() => {
-    document.title = "Explore - Frigate";
-  }, []);
+    document.title = `${t("explore.title")} - Airys`;
+  }, [t]);
 
   // data
 
@@ -137,6 +140,7 @@ function ThumbnailRow({
   setSimilaritySearch,
   onSelectSearch,
 }: ThumbnailRowType) {
+  const { t } = useTranslation(["views"]);
   const navigate = useNavigate();
 
   const handleSearch = (label: string) => {
@@ -157,7 +161,7 @@ function ThumbnailRow({
               // @ts-expect-error we know this is correct
               searchResults[0].event_count
             }{" "}
-            tracked objects){" "}
+            {t("explore.trackedObjects")}){" "}
           </span>
         )}
         {isValidating && <ActivityIndicator className="ml-2 size-4" />}
@@ -284,10 +288,11 @@ function ExploreThumbnailImage({
 }
 
 function ExploreMoreLink({ objectType }: { objectType: string }) {
+  const { t } = useTranslation(["views"]);
   const formattedType = objectType.replaceAll("_", " ");
   const label = formattedType.endsWith("s")
     ? `${formattedType}es`
     : `${formattedType}s`;
 
-  return <div>Explore More {label}</div>;
+  return <div>{t("explore.exploreMore", { label })}</div>;
 }

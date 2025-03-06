@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 function NoMatch() {
   useEffect(() => {
-    document.title = "Not Found - Frigate";
+    document.title = "Not Found - Airys";
   }, []);
 
   return (

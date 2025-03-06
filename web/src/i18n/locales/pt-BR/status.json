@@ -1,0 +1,48 @@
+{
+  "title": "Status do Sistema",
+  "healthy": "Sistema saudável",
+  "cpu": "CPU {{percent}}%",
+  "gpu": {
+    "amd-vaapi": "GPU AMD",
+    "intel-vaapi": "GPU Intel",
+    "intel-qsv": "GPU Intel",
+    "usage": "{{name}} {{percent}}%"
+  },
+  "reindexing": "Reindexando embeddings ({{percent}}% concluído)",
+  "memory": {
+    "title": "Memória",
+    "used": "Usada",
+    "free": "Livre",
+    "total": "Total",
+    "usage": "{{used}} / {{total}} ({{percent}}%)"
+  },
+  "storage": {
+    "title": "Armazenamento",
+    "used": "Usado",
+    "free": "Livre",
+    "total": "Total",
+    "usage": "{{used}} / {{total}} ({{percent}}%)"
+  },
+  "network": {
+    "title": "Rede",
+    "up": "Upload",
+    "down": "Download",
+    "usage": "{{speed}} {{unit}}/s"
+  },
+  "cameras": {
+    "title": "Câmeras",
+    "online": "Online",
+    "offline": "Offline",
+    "recording": "Gravando",
+    "status": "{{online}} online, {{offline}} offline"
+  },
+  "problems": {
+    "title": "Problemas",
+    "noProblems": "Nenhum problema detectado",
+    "storage": "Pouco espaço de armazenamento",
+    "memory": "Alto uso de memória",
+    "cpu": "Alto uso de CPU",
+    "network": "Problemas de conectividade de rede",
+    "camera": "Problemas de conectividade de câmera"
+  }
+} 

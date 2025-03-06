@@ -1,0 +1,73 @@
+steps:
+  # Add timestamp tag for versioning
+  - name: 'gcr.io/cloud-builders/docker:latest'
+    id: 'build'
+    args: 
+      - 'build'
+      - '--no-cache'
+      - '--progress=plain'
+      - '-t'
+      - 'gcr.io/${PROJECT_ID}/airys-video:${_TAG}'
+      - '-t'
+      - 'gcr.io/${PROJECT_ID}/airys-video:latest'
+      - '.'
+    dir: 'docker/cloud-run'
+
+  # Push both tagged and latest images
+  - name: 'gcr.io/cloud-builders/docker:latest'
+    id: 'push'
+    args: ['push', '--all-tags', 'gcr.io/${PROJECT_ID}/airys-video']
+    waitFor: ['build']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+    id: 'deploy'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'airys-video'
+      - '--image'
+      - 'gcr.io/${PROJECT_ID}/airys-video:${_TAG}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--memory'
+      - '16Gi'
+      - '--cpu'
+      - '8'
+      - '--timeout'
+      - '3600'
+      - '--service-account'
+      - 'airys-cloud-run@${PROJECT_ID}.iam.gserviceaccount.com'
+      - '--set-env-vars'
+      - 'GOOGLE_CLOUD_PROJECT=${PROJECT_ID}'
+      - '--set-env-vars'
+      - 'GOOGLE_CLOUD_STORAGE_BUCKET=airys-video-storage'
+      - '--set-env-vars'
+      - 'NVIDIA_VISIBLE_DEVICES=all'
+      - '--set-env-vars'
+      - 'NVIDIA_DRIVER_CAPABILITIES=compute,video,utility'
+      - '--set-env-vars'
+      - 'CUDA_VISIBLE_DEVICES=0'
+      - '--update-secrets'
+      - 'FRIGATE_RTSP_PASSWORD=frigate-rtsp-password:1'
+      - '--annotation'
+      - 'run.googleapis.com/launch-stage=BETA'
+      - '--annotation'
+      - 'run.googleapis.com/accelerator=L4'
+    waitFor: ['push']
+
+images:
+  - 'gcr.io/${PROJECT_ID}/airys-video:${_TAG}'
+  - 'gcr.io/${PROJECT_ID}/airys-video:latest'
+
+substitutions:
+  _REGION: us-central1
+  _TAG: v$(date +%Y%m%d)-${SHORT_SHA}
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY
+  dynamic_substitutions: true 

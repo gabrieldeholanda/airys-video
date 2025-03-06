@@ -1,0 +1,10 @@
+{
+  "button": {
+    "label": "Select a date to filter by",
+    "default": "Last 24 Hours",
+    "range": {
+      "default": "Last 24 Hours",
+      "selected": "{{date}}"
+    }
+  }
+} 

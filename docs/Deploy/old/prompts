@@ -1,0 +1,170 @@
+I'll help you get started with the initial setup and document our progress. Let's begin with the most fundamental steps.
+
+First, I'll create/update the architecture documentation to track our progress.
+
+```markdown:docs/Deploy/Architect.md
+# Cloud Deployment Architecture
+
+## Progress Tracking
+- [x] Initial documentation
+- [ ] GCP Project Setup
+- [ ] Basic Infrastructure Setup
+- [ ] User Authentication
+- [ ] Database Setup
+- [ ] Subscription Management
+- [ ] Auto-scaling Configuration
+- [ ] Monitoring and Logging
+- [ ] Security Implementation
+
+## Current Status: Initial Setup Phase
+
+### Step 1: GCP Project Setup (In Progress)
+1. Install Google Cloud SDK
+2. Create GCP Project
+3. Enable required APIs
+4. Configure basic IAM roles
+
+### Next Steps:
+- Set up Cloud SQL
+- Configure Cloud Storage
+- Implement basic authentication
+
+## Detailed Architecture
+
+// ... existing code ...
+```
+
+
+Now, let's start with the actual implementation. I'll guide you through the first steps:
+
+1. **Install Google Cloud SDK**
+First, we need to install the Google Cloud SDK. I'll create a command to check if it's installed and install it if needed:
+
+```bash
+which gcloud || echo "Google Cloud SDK not installed"
+```
+
+
+I see that Google Cloud SDK is not installed. Let's install it:
+
+```bash
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-455.0.0-linux-x86_64.tar.gz && tar -xf google-cloud-cli-455.0.0-linux-x86_64.tar.gz && ./google-cloud-sdk/install.sh --quiet
+```
+
+
+Now we need to initialize the SDK and update it to the latest version. Let's add the SDK to your path first:
+
+```bash
+source ./google-cloud-sdk/path.bash.inc && source ./google-cloud-sdk/completion.bash.inc && gcloud components update --quiet
+```
+
+
+Now let's initialize your Google Cloud configuration:
+
+```bash
+gcloud init
+```
+
+
+Great! I see you've selected the `airys-production` project. Now let's enable the necessary Google Cloud APIs for our project:
+
+```bash
+gcloud services enable run.googleapis.com sql-component.googleapis.com cloudbuild.googleapis.com containerregistry.googleapis.com pubsub.googleapis.com cloudfunctions.googleapis.com iam.googleapis.com compute.googleapis.com storage-api.googleapis.com
+```
+
+
+I see we've hit our first important step - we need to enable billing for your Google Cloud project. This is a crucial step because many Google Cloud services require billing to be enabled, even if you're using the free tier.
+
+Here's what you need to do:
+
+1. Go to the Google Cloud Console: https://console.cloud.google.com
+2. Select your project "airys-production"
+3. Click on "Billing" in the left navigation menu
+4. Click "Link a billing account"
+5. Either select an existing billing account or create a new one
+6. Follow the prompts to set up your billing information
+
+Once you've done this, please let me know and we can continue with enabling the services. 
+
+Let me update our architecture document to reflect our current progress:
+
+```markdown:docs/Deploy/Architect.md
+# Cloud Deployment Architecture
+
+## Progress Tracking
+- [x] Initial documentation
+- [x] Install Google Cloud SDK
+- [x] Initialize GCP project configuration
+- [ ] Enable billing (BLOCKED)
+- [ ] Enable required APIs
+- [ ] Basic Infrastructure Setup
+- [ ] User Authentication
+- [ ] Database Setup
+- [ ] Subscription Management
+- [ ] Auto-scaling Configuration
+- [ ] Monitoring and Logging
+- [ ] Security Implementation
+
+## Current Status: Initial Setup Phase
+
+### Step 1: GCP Project Setup (In Progress)
+1. ✅ Install Google Cloud SDK
+2. ✅ Initialize GCP configuration
+3. 🚫 Enable billing (BLOCKED)
+   - Action needed: Set up billing account in GCP Console
+   - Visit: https://console.cloud.google.com
+   - Navigate to Billing
+   - Link a billing account to the project
+4. Enable required APIs (Pending billing setup)
+5. Configure basic IAM roles (Pending)
+
+### Next Steps (After Billing Setup):
+1. Enable required Google Cloud APIs:
+   - Cloud Run
+   - Cloud SQL
+   - Cloud Build
+   - Container Registry
+   - Cloud Pub/Sub
+   - Cloud Functions
+   - IAM
+   - Compute Engine
+   - Cloud Storage
+
+2. Set up basic infrastructure:
+   - Create Cloud Storage buckets
+   - Set up Cloud SQL instance
+   - Configure initial IAM roles
+
+### Remaining Architecture
+
+// ... existing code ...
+```
+
+
+Please follow the billing setup instructions I've outlined above. Once you've completed that step, let me know and we can proceed with:
+
+1. Enabling the required Google Cloud APIs
+2. Setting up the basic infrastructure
+3. Implementing user authentication and subscription management
+
+Would you like me to explain any part of the billing setup process in more detail, or would you prefer to proceed with setting up billing and then continue with the next steps?
+
+---
+
+Excellent! Now that billing is enabled, let's continue with enabling the required APIs and setting up the basic infrastructure. I'll update our progress document and then proceed with the next steps.
+
+Now, let's enable the required Google Cloud APIs:
+$ gcloud services enable run.googleapis.com sql-component.googleapis.com cloudbuild.googleapis.com containerregistry.googleapis.com pubsub.googleapis.com cloudfunctions.googleapis.com iam.googleapis.com compute.googleapis.com storage-api.googleapis.com
+
+Great! The APIs have been enabled successfully. Now let's start setting up the basic infrastructure. We'll begin with creating a Cloud Storage bucket for your video files and a Cloud SQL instance for user and subscription management.
+First, let's create a Cloud Storage bucket:
+
+$ gcloud storage buckets create gs://airys-video-storage --location=us-central1 --uniform-bucket-level-access
+
+Now, let's create a Cloud SQL instance for our database:
+
+$ gcloud sql instances create airys-video-db --database-version=POSTGRES_15 --tier=db-f1-micro --region=us-central1 --root-password=temp-password-123 --storage-size=10GB --availability-type=zonal
+
+Now, let's create a Cloud SQL instance for our database:
+
+$ gcloud sql instances create airys-video-db --database-version=POSTGRES_15 --tier=db-f1-micro --region=us-central1 --root-password=temp-password-123 --storage-size=10GB --availability-type=zonal

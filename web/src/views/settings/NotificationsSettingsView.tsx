@@ -39,6 +39,7 @@ import {
 } from "@/components/ui/select";
 import { formatUnixTimestampToDateTime } from "@/utils/dateUtil";
 import FilterSwitch from "@/components/filter/FilterSwitch";
+import { useTranslation } from "react-i18next";
 
 const NOTIFICATION_SERVICE_WORKER = "notifications-worker.js";
 
@@ -54,12 +55,22 @@ type NotificationsSettingsViewProps = {
 export default function NotificationView({
   setUnsavedChanges,
 }: NotificationsSettingsViewProps) {
+  const { t: translate, i18n } = useTranslation(['views', 'common']);
   const { data: config, mutate: updateConfig } = useSWR<FrigateConfig>(
     "config",
     {
       revalidateOnFocus: false,
     },
   );
+
+  // Add debug logging
+  useEffect(() => {
+    console.log('Current language:', i18n.language);
+    console.log('Available resources:', i18n.options.resources);
+    console.log('Translation test:', translate('settings.notifications.title'));
+    console.log('Translation test full:', translate('settings.notifications', { returnObjects: true }));
+    console.log('Translation namespace test:', translate('settings.notifications.title', { ns: 'views' }));
+  }, [i18n, translate]);
 
   const allCameras = useMemo(() => {
     if (!config) {
@@ -97,7 +108,7 @@ export default function NotificationView({
     if (changedValue) {
       addMessage(
         "notification_settings",
-        `Unsaved notification settings`,
+        translate('settings.notifications.messages.unsaved.settings'),
         undefined,
         `notification_settings`,
       );
@@ -120,7 +131,7 @@ export default function NotificationView({
       if (registration) {
         addMessage(
           "notification_settings",
-          "Unsaved Notification Registrations",
+          translate('settings.notifications.messages.unsaved.registrations'),
           undefined,
           "registration",
         );
@@ -136,7 +147,7 @@ export default function NotificationView({
                 sub: pushSubscription,
               })
               .catch(() => {
-                toast.error("Failed to save notification registration.", {
+                toast.error(translate('settings.notifications.device.registration.error'), {
                   position: "top-center",
                 });
                 pushSubscription.unsubscribe();
@@ -144,7 +155,7 @@ export default function NotificationView({
                 setRegistration(null);
               });
             toast.success(
-              "Successfully registered for notifications. Restarting Frigate is required before any notifications (including a test notification) can be sent.",
+              translate('settings.notifications.device.registration.success'),
               {
                 position: "top-center",
               },
@@ -152,7 +163,7 @@ export default function NotificationView({
           });
       }
     },
-    [publicKey, addMessage],
+    [publicKey, addMessage, translate],
   );
 
   // notification state
@@ -224,7 +235,7 @@ export default function NotificationView({
 
   const saveToConfig = useCallback(
     async (
-      { allEnabled, email, cameras }: NotificationSettingsValueType, // values submitted via the form
+      { allEnabled, email, cameras }: NotificationSettingsValueType,
     ) => {
       const allCameraNames = allCameras.map((cam) => cam.name);
 
@@ -251,19 +262,19 @@ export default function NotificationView({
         )
         .then((res) => {
           if (res.status === 200) {
-            toast.success("Notification settings have been saved.", {
+            toast.success(translate('settings.notifications.messages.success'), {
               position: "top-center",
             });
             updateConfig();
           } else {
-            toast.error(`Failed to save config changes: ${res.statusText}`, {
+            toast.error(translate('settings.notifications.messages.error.save', { error: res.statusText }), {
               position: "top-center",
             });
           }
         })
         .catch((error) => {
           toast.error(
-            `Failed to save config changes: ${error.response.data.message}`,
+            translate('settings.notifications.messages.error.save', { error: error.response.data.message }),
             { position: "top-center" },
           );
         })
@@ -271,7 +282,7 @@ export default function NotificationView({
           setIsLoading(false);
         });
     },
-    [updateConfig, setIsLoading, allCameras],
+    [updateConfig, setIsLoading, allCameras, translate],
   );
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -287,23 +298,22 @@ export default function NotificationView({
           <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
             <div className="col-span-1">
               <Heading as="h3" className="my-2">
-                Notification Settings
+                {translate('settings.notifications.title')}
               </Heading>
 
               <div className="max-w-6xl">
                 <div className="mb-5 mt-2 flex max-w-5xl flex-col gap-2 text-sm text-primary-variant">
                   <p>
-                    Frigate can natively send push notifications to your device
-                    when it is running in the browser or installed as a PWA.
+                    {translate('settings.notifications.description.intro')}
                   </p>
                   <div className="flex items-center text-primary">
                     <Link
-                      to="https://docs.frigate.video/configuration/notifications"
+                      to="https://chat.airys.com.br/hc/help/pt_BR/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline"
                     >
-                      Read the Documentation{" "}
+                      {translate('settings.notifications.description.documentation')}{" "}
                       <LuExternalLink className="ml-2 inline-flex size-3" />
                     </Link>
                   </div>
@@ -320,17 +330,16 @@ export default function NotificationView({
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>{translate('settings.notifications.form.email.label')}</FormLabel>
                         <FormControl>
                           <Input
                             className="text-md w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark] md:w-72"
-                            placeholder="example@email.com"
+                            placeholder={translate('settings.notifications.form.email.placeholder')}
                             {...field}
                           />
                         </FormControl>
                         <FormDescription>
-                          Entering a valid email is required, as this is used by
-                          the push server in case problems occur.
+                          {translate('settings.notifications.form.email.description')}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -346,7 +355,7 @@ export default function NotificationView({
                           <>
                             <div className="mb-2">
                               <FormLabel className="flex flex-row items-center text-base">
-                                Cameras
+                                {translate('settings.notifications.form.cameras.title')}
                               </FormLabel>
                             </div>
                             <div className="max-w-md space-y-2 rounded-lg bg-secondary p-4">
@@ -355,7 +364,7 @@ export default function NotificationView({
                                 name="allEnabled"
                                 render={({ field }) => (
                                   <FilterSwitch
-                                    label="All Cameras"
+                                    label={translate('settings.notifications.form.cameras.all_cameras')}
                                     isChecked={field.value}
                                     onCheckedChange={(checked) => {
                                       setChangedValue(true);
@@ -394,13 +403,13 @@ export default function NotificationView({
                           </>
                         ) : (
                           <div className="font-normal text-destructive">
-                            No cameras available.
+                            {translate('settings.notifications.form.cameras.no_cameras')}
                           </div>
                         )}
 
                         <FormMessage />
                         <FormDescription>
-                          Select the cameras to enable notifications for.
+                          {translate('settings.notifications.form.cameras.description')}
                         </FormDescription>
                       </FormItem>
                     )}
@@ -409,26 +418,24 @@ export default function NotificationView({
                   <div className="flex w-full flex-row items-center gap-2 pt-2 md:w-[50%]">
                     <Button
                       className="flex flex-1"
-                      aria-label="Cancel"
                       onClick={onCancel}
                       type="button"
                     >
-                      Cancel
+                      {translate('settings.notifications.actions.cancel')}
                     </Button>
                     <Button
                       variant="select"
                       disabled={isLoading}
                       className="flex flex-1"
-                      aria-label="Save"
                       type="submit"
                     >
                       {isLoading ? (
                         <div className="flex flex-row items-center gap-2">
                           <ActivityIndicator />
-                          <span>Saving...</span>
+                          <span>{translate('settings.notifications.actions.saving')}</span>
                         </div>
                       ) : (
-                        "Save"
+                        translate('settings.notifications.actions.save')
                       )}
                     </Button>
                   </div>
@@ -441,10 +448,9 @@ export default function NotificationView({
                 <div className="flex flex-col gap-2 md:max-w-[50%]">
                   <Separator className="my-2 flex bg-secondary md:hidden" />
                   <Heading as="h4" className="my-2">
-                    Device-Specific Settings
+                    {translate('settings.notifications.device.title')}
                   </Heading>
                   <Button
-                    aria-label="Register or unregister notifications for this device"
                     disabled={
                       !config?.notifications.enabled || publicKey == undefined
                     }
@@ -484,14 +490,15 @@ export default function NotificationView({
                       }
                     }}
                   >
-                    {`${registration != null ? "Unregister" : "Register"} for notifications on this device`}
+                    {registration != null 
+                      ? translate('settings.notifications.device.unregister')
+                      : translate('settings.notifications.device.register')}
                   </Button>
                   {registration != null && registration.active && (
                     <Button
-                      aria-label="Send a test notification"
                       onClick={() => sendTestNotification("notification_test")}
                     >
-                      Send a test notification
+                      {translate('settings.notifications.device.test')}
                     </Button>
                   )}
                 </div>
@@ -501,13 +508,12 @@ export default function NotificationView({
                   <div className="space-y-3">
                     <Separator className="my-2 flex bg-secondary" />
                     <Heading as="h4" className="my-2">
-                      Global Settings
+                      {translate('settings.notifications.global.title')}
                     </Heading>
                     <div className="max-w-xl">
                       <div className="mb-5 mt-2 flex flex-col gap-2 text-sm text-primary-variant">
                         <p>
-                          Temporarily suspend notifications for specific cameras
-                          on all registered devices.
+                          {translate('settings.notifications.global.description')}
                         </p>
                       </div>
                     </div>
@@ -517,6 +523,7 @@ export default function NotificationView({
                         <div className="grid gap-6">
                           {notificationCameras.map((item) => (
                             <CameraNotificationSwitch
+                              key={item.name}
                               config={config}
                               camera={item.name}
                             />
@@ -544,6 +551,7 @@ export function CameraNotificationSwitch({
   config,
   camera,
 }: CameraNotificationSwitchProps) {
+  const { t: translate } = useTranslation(['views']);
   const { payload: notificationState, send: sendNotification } =
     useNotifications(camera);
   const { payload: notificationSuspendUntil, send: sendNotificationSuspend } =
@@ -573,7 +581,7 @@ export function CameraNotificationSwitch({
   };
 
   const formatSuspendedUntil = (timestamp: string) => {
-    if (timestamp === "0") return "Frigate restarts.";
+    if (timestamp === "0") return translate('settings.notifications.global.camera.suspended_restart');
 
     return formatUnixTimestampToDateTime(parseInt(timestamp), {
       time_style: "medium",
@@ -602,12 +610,13 @@ export function CameraNotificationSwitch({
 
             {!isSuspended ? (
               <div className="flex flex-row items-center gap-2 text-sm text-success">
-                Notifications Active
+                {translate('settings.notifications.global.camera.active')}
               </div>
             ) : (
               <div className="flex flex-row items-center gap-2 text-sm text-danger">
-                Notifications suspended until{" "}
-                {formatSuspendedUntil(notificationSuspendUntil)}
+                {translate('settings.notifications.global.camera.suspended', {
+                  time: formatSuspendedUntil(notificationSuspendUntil)
+                })}
               </div>
             )}
           </div>
@@ -617,16 +626,16 @@ export function CameraNotificationSwitch({
       {!isSuspended ? (
         <Select onValueChange={handleSuspend}>
           <SelectTrigger className="w-auto">
-            <SelectValue placeholder="Suspend" />
+            <SelectValue placeholder={translate('settings.notifications.global.camera.suspend.title')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="5">Suspend for 5 minutes</SelectItem>
-            <SelectItem value="10">Suspend for 10 minutes</SelectItem>
-            <SelectItem value="30">Suspend for 30 minutes</SelectItem>
-            <SelectItem value="60">Suspend for 1 hour</SelectItem>
-            <SelectItem value="840">Suspend for 12 hours</SelectItem>
-            <SelectItem value="1440">Suspend for 24 hours</SelectItem>
-            <SelectItem value="off">Suspend until restart</SelectItem>
+            <SelectItem value="5">{translate('settings.notifications.global.camera.suspend.5min')}</SelectItem>
+            <SelectItem value="10">{translate('settings.notifications.global.camera.suspend.10min')}</SelectItem>
+            <SelectItem value="30">{translate('settings.notifications.global.camera.suspend.30min')}</SelectItem>
+            <SelectItem value="60">{translate('settings.notifications.global.camera.suspend.1hour')}</SelectItem>
+            <SelectItem value="840">{translate('settings.notifications.global.camera.suspend.12hours')}</SelectItem>
+            <SelectItem value="1440">{translate('settings.notifications.global.camera.suspend.24hours')}</SelectItem>
+            <SelectItem value="off">{translate('settings.notifications.global.camera.suspend.restart')}</SelectItem>
           </SelectContent>
         </Select>
       ) : (
@@ -635,7 +644,7 @@ export function CameraNotificationSwitch({
           size="sm"
           onClick={handleCancelSuspension}
         >
-          Cancel Suspension
+          {translate('settings.notifications.global.camera.cancel')}
         </Button>
       )}
     </div>

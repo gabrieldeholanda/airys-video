@@ -1,0 +1,9 @@
+{
+  "button": {
+    "select": "Select timeline or events list"
+  },
+  "options": {
+    "timeline": "Timeline",
+    "events": "Events"
+  }
+} 

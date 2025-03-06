@@ -24,6 +24,7 @@ import PlatformAwareDialog from "../overlay/dialog/PlatformAwareDialog";
 import SearchFilterDialog from "../overlay/dialog/SearchFilterDialog";
 import { CalendarRangeFilterButton } from "./CalendarFilterButton";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useTranslation } from "react-i18next";
 
 type SearchFilterGroupProps = {
   className: string;
@@ -195,7 +196,6 @@ export default function SearchFilterGroup({
                   to: new Date(filter.before * 1000),
                 }
           }
-          defaultText={isMobile ? "Dates" : "All Dates"}
           updateSelectedRange={onUpdateSelectedRange}
         />
       )}
@@ -229,6 +229,7 @@ function GeneralFilterButton({
   selectedLabels,
   updateLabelFilter,
 }: GeneralFilterButtonProps) {
+  const { t: translate } = useTranslation(['ui']);
   const [open, setOpen] = useState(false);
   const [currentLabels, setCurrentLabels] = useState<string[] | undefined>(
     selectedLabels,
@@ -236,19 +237,19 @@ function GeneralFilterButton({
 
   const buttonText = useMemo(() => {
     if (isMobile) {
-      return "Labels";
+      return translate('filter.search.general.labels.title');
     }
 
     if (!selectedLabels || selectedLabels.length == 0) {
-      return "All Labels";
+      return translate('filter.search.general.labels.all');
     }
 
     if (selectedLabels.length == 1) {
       return selectedLabels[0];
     }
 
-    return `${selectedLabels.length} Labels`;
-  }, [selectedLabels]);
+    return translate('filter.search.general.labels.multiple', { count: selectedLabels.length });
+  }, [selectedLabels, translate]);
 
   // ui
 
@@ -323,6 +324,7 @@ export function GeneralFilterContent({
   setCurrentLabels,
   onClose,
 }: GeneralFilterContentProps) {
+  const { t: translate } = useTranslation(['ui']);
   return (
     <>
       <div className="overflow-x-hidden">
@@ -331,7 +333,7 @@ export function GeneralFilterContent({
             className="mx-2 cursor-pointer text-primary"
             htmlFor="allLabels"
           >
-            All Labels
+            {translate('filter.search.general.labels.all')}
           </Label>
           <Switch
             className="ml-1"
@@ -373,26 +375,25 @@ export function GeneralFilterContent({
       <DropdownMenuSeparator />
       <div className="flex items-center justify-evenly p-2">
         <Button
-          aria-label="Apply"
+          aria-label={translate('filter.search.actions.apply')}
           variant="select"
           onClick={() => {
             if (selectedLabels != currentLabels) {
               updateLabelFilter(currentLabels);
             }
-
             onClose();
           }}
         >
-          Apply
+          {translate('filter.search.actions.apply')}
         </Button>
         <Button
-          aria-label="Reset"
+          aria-label={translate('filter.search.actions.reset')}
           onClick={() => {
             setCurrentLabels(undefined);
             updateLabelFilter(undefined);
           }}
         >
-          Reset
+          {translate('filter.search.actions.reset')}
         </Button>
       </div>
     </>
@@ -411,6 +412,7 @@ function SortTypeButton({
   selectedSortType,
   updateSortType,
 }: SortTypeButtonProps) {
+  const { t: translate } = useTranslation(['ui']);
   const [open, setOpen] = useState(false);
   const [currentSortType, setCurrentSortType] = useState<
     SearchSortType | undefined
@@ -433,7 +435,7 @@ function SortTypeButton({
           : "default"
       }
       className="flex items-center gap-2 capitalize"
-      aria-label="Labels"
+      aria-label={translate('filter.search.sort.title')}
     >
       <MdSort
         className={`${selectedSortType != defaultSortType && selectedSortType != undefined ? "text-selected-foreground" : "text-secondary-foreground"}`}
@@ -441,7 +443,7 @@ function SortTypeButton({
       <div
         className={`${selectedSortType != defaultSortType && selectedSortType != undefined ? "text-selected-foreground" : "text-primary"}`}
       >
-        Sort
+        {translate('filter.search.sort.title')}
       </div>
     </Button>
   );
@@ -496,14 +498,16 @@ export function SortTypeContent({
   setCurrentSortType,
   onClose,
 }: SortTypeContentProps) {
+  const { t: translate } = useTranslation(['ui']);
+  
   const sortLabels = {
-    date_asc: "Date (Ascending)",
-    date_desc: "Date (Descending)",
-    score_asc: "Object Score (Ascending)",
-    score_desc: "Object Score (Descending)",
-    speed_asc: "Estimated Speed (Ascending)",
-    speed_desc: "Estimated Speed (Descending)",
-    relevance: "Relevance",
+    date_asc: translate('filter.search.sort.types.date_asc'),
+    date_desc: translate('filter.search.sort.types.date_desc'),
+    score_asc: translate('filter.search.sort.types.score_asc'),
+    score_desc: translate('filter.search.sort.types.score_desc'),
+    speed_asc: translate('filter.search.sort.types.speed_asc'),
+    speed_desc: translate('filter.search.sort.types.speed_desc'),
+    relevance: translate('filter.search.sort.types.relevance')
   };
 
   return (
@@ -523,9 +527,8 @@ export function SortTypeContent({
             className="w-full space-y-1"
           >
             {availableSortTypes.map((value) => (
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2" key={value}>
                 <RadioGroupItem
-                  key={value}
                   value={value}
                   id={`sort-${value}`}
                   className={
@@ -548,7 +551,7 @@ export function SortTypeContent({
       <DropdownMenuSeparator />
       <div className="flex items-center justify-evenly p-2">
         <Button
-          aria-label="Apply"
+          aria-label={translate('filter.search.actions.apply')}
           variant="select"
           onClick={() => {
             if (selectedSortType != currentSortType) {
@@ -558,16 +561,16 @@ export function SortTypeContent({
             onClose();
           }}
         >
-          Apply
+          {translate('filter.search.actions.apply')}
         </Button>
         <Button
-          aria-label="Reset"
+          aria-label={translate('filter.search.actions.reset')}
           onClick={() => {
             setCurrentSortType(undefined);
             updateSortType(undefined);
           }}
         >
-          Reset
+          {translate('filter.search.actions.reset')}
         </Button>
       </div>
     </>

@@ -1,0 +1,76 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: airys-video-test
+  labels:
+    cloud.googleapis.com/location: us-central1
+    environment: test
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "2"
+        autoscaling.knative.dev/minScale: "1"
+        run.googleapis.com/startup-cpu-boost: "true"
+        run.googleapis.com/cpu-throttling: "false"
+        run.googleapis.com/execution-environment: "gen2"
+        run.googleapis.com/vpc-access-connector: "airys-vpc-connector"
+        run.googleapis.com/startup-probe-period: "15"
+        run.googleapis.com/startup-probe-timeout: "5"
+    spec:
+      containerConcurrency: "40"
+      timeoutSeconds: "3600"
+      serviceAccountName: airys-cloud-run@airys-production.iam.gserviceaccount.com
+      containers:
+        - image: gcr.io/airys-production/airys-video:test
+          ports:
+            - name: http1
+              containerPort: "8080"
+          startupProbe:
+            httpGet:
+              path: /health
+              port: "8080"
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: "4"
+              memory: "16Gi"
+          env:
+            - name: ENVIRONMENT
+              value: "test"
+            - name: GOOGLE_CLOUD_PROJECT
+              value: "airys-production"
+            - name: GOOGLE_CLOUD_STORAGE_BUCKET
+              value: "airys-video-storage-test"
+            - name: FRIGATE_RTSP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: frigate-rtsp-password-test
+                  key: latest
+            - name: YOLO_MODELS
+              value: "yolov4-tiny-416"
+            - name: DEBUG
+              value: "true"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: storage
+              mountPath: /media/frigate
+            - name: videos
+              mountPath: /videos
+            - name: cache
+              mountPath: /tmp/cache
+      volumes:
+        - name: config
+          secret:
+            secretName: frigate-config-test
+        - name: storage
+          emptyDir: {}
+        - name: videos
+          emptyDir: {}
+        - name: cache
+          emptyDir:
+            sizeLimit: "2Gi" 

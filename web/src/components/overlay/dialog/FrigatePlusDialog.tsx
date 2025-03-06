@@ -9,6 +9,7 @@ import { Event } from "@/types/event";
 import { isDesktop, isMobile } from "react-device-detect";
 import { ObjectSnapshotTab } from "../detail/SearchDetailDialog";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 type FrigatePlusDialogProps = {
   upload?: Event;
@@ -22,6 +23,8 @@ export function FrigatePlusDialog({
   onClose,
   onEventUploaded,
 }: FrigatePlusDialogProps) {
+  const { t } = useTranslation("components/overlay/frigate_plus");
+
   if (!upload) {
     return;
   }
@@ -40,9 +43,9 @@ export function FrigatePlusDialog({
           )}
         >
           <DialogHeader>
-            <DialogTitle className="sr-only">Submit to Frigate+</DialogTitle>
+            <DialogTitle className="sr-only">{t("dialog.title")}</DialogTitle>
             <DialogDescription className="sr-only">
-              Submit this snapshot to Frigate+
+              {t("dialog.description")}
             </DialogDescription>
           </DialogHeader>
           <ObjectSnapshotTab

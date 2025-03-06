@@ -1,0 +1,10 @@
+{
+  "button": {
+    "label": "Selecione uma data para filtrar",
+    "default": "Últimas 24 Horas",
+    "range": {
+      "default": "Últimas 24 Horas",
+      "selected": "{{date}}"
+    }
+  }
+} 

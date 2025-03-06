@@ -23,6 +23,7 @@ import { FilterList, GeneralFilter } from "@/types/filter";
 import CalendarFilterButton from "./CalendarFilterButton";
 import { CamerasFilterButton } from "./CamerasFilterButton";
 import PlatformAwareDialog from "../overlay/dialog/PlatformAwareDialog";
+import { useTranslation } from "react-i18next";
 
 const REVIEW_FILTERS = [
   "cameras",
@@ -260,6 +261,7 @@ function ShowReviewFilter({
   showReviewed,
   setShowReviewed,
 }: ShowReviewedFilterProps) {
+  const { t: translate } = useTranslation(['ui']);
   const [showReviewedSwitch, setShowReviewedSwitch] = useOptimisticState(
     showReviewed,
     setShowReviewed,
@@ -275,13 +277,13 @@ function ShowReviewFilter({
           }
         />
         <Label className="ml-2 cursor-pointer text-primary" htmlFor="reviewed">
-          Show Reviewed
+          {translate('filter.review.reviewed.label')}
         </Label>
       </div>
 
       <Button
         className="block duration-0 md:hidden"
-        aria-label="Show reviewed"
+        aria-label={translate('filter.review.reviewed.aria')}
         variant={showReviewedSwitch ? "select" : "default"}
         size="sm"
         onClick={() =>
@@ -317,6 +319,7 @@ function GeneralFilterButton({
   selectedZones,
   onUpdateFilter,
 }: GeneralFilterButtonProps) {
+  const { t: translate } = useTranslation(['ui']);
   const [open, setOpen] = useState(false);
   const [currentFilter, setCurrentFilter] = useState<GeneralFilter>({
     labels: selectedLabels,
@@ -345,7 +348,7 @@ function GeneralFilterButton({
         selectedLabels?.length || selectedZones?.length ? "select" : "default"
       }
       className="flex items-center gap-2 capitalize"
-      aria-label="Filter"
+      aria-label={translate('filter.review.general.button.aria')}
     >
       <FaFilter
         className={`${
@@ -361,7 +364,7 @@ function GeneralFilterButton({
             : "text-primary"
         }`}
       >
-        Filter
+        {translate('filter.review.general.button.label')}
       </div>
     </Button>
   );
@@ -436,13 +439,14 @@ export function GeneralFilterContent({
   onReset,
   onClose,
 }: GeneralFilterContentProps) {
+  const { t: translate } = useTranslation(['ui']);
   return (
     <>
       <div className="scrollbar-container h-auto max-h-[80dvh] overflow-y-auto overflow-x-hidden">
         {currentSeverity && (
           <div className="my-2.5 flex flex-col gap-2.5">
             <FilterSwitch
-              label="Alerts"
+              label={translate('filter.review.general.severity.alerts')}
               disabled={currentSeverity == "alert"}
               isChecked={
                 currentSeverity == "alert" ? true : filter.showAll === true
@@ -452,7 +456,7 @@ export function GeneralFilterContent({
               }
             />
             <FilterSwitch
-              label="Detections"
+              label={translate('filter.review.general.severity.detections')}
               disabled={currentSeverity == "detection"}
               isChecked={
                 currentSeverity == "detection" ? true : filter.showAll === true
@@ -469,7 +473,7 @@ export function GeneralFilterContent({
             className="mx-2 cursor-pointer text-primary"
             htmlFor="allLabels"
           >
-            All Labels
+            {translate('filter.review.general.labels.title')}
           </Label>
           <Switch
             className="ml-1"
@@ -516,7 +520,7 @@ export function GeneralFilterContent({
                 className="mx-2 cursor-pointer text-primary"
                 htmlFor="allZones"
               >
-                All Zones
+                {translate('filter.review.general.zones.title')}
               </Label>
               <Switch
                 className="ml-1"
@@ -565,17 +569,20 @@ export function GeneralFilterContent({
       <DropdownMenuSeparator />
       <div className="flex items-center justify-evenly p-2">
         <Button
-          aria-label="Apply"
+          aria-label={translate('filter.review.actions.apply')}
           variant="select"
           onClick={() => {
             onApply();
             onClose();
           }}
         >
-          Apply
+          {translate('filter.review.actions.apply')}
         </Button>
-        <Button aria-label="Reset" onClick={onReset}>
-          Reset
+        <Button 
+          aria-label={translate('filter.review.actions.reset')} 
+          onClick={onReset}
+        >
+          {translate('filter.review.actions.reset')}
         </Button>
       </div>
     </>
@@ -590,6 +597,7 @@ function ShowMotionOnlyButton({
   motionOnly,
   setMotionOnly,
 }: ShowMotionOnlyButtonProps) {
+  const { t: translate } = useTranslation(['ui']);
   const [motionOnlyButton, setMotionOnlyButton] = useOptimisticState(
     motionOnly,
     setMotionOnly,
@@ -608,7 +616,7 @@ function ShowMotionOnlyButton({
           className="mx-2 cursor-pointer text-primary"
           htmlFor="collapse-motion"
         >
-          Motion only
+          {translate('filter.review.motion.label')}
         </Label>
       </div>
 
@@ -616,7 +624,7 @@ function ShowMotionOnlyButton({
         <Button
           size="sm"
           className="duration-0"
-          aria-label="Show Motion Only"
+          aria-label={translate('filter.review.motion.aria')}
           variant={motionOnlyButton ? "select" : "default"}
           onClick={() => setMotionOnlyButton(!motionOnlyButton)}
         >

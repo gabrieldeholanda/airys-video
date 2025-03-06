@@ -1,0 +1,47 @@
+{
+  "title": "System Logs",
+  "noLogs": "No logs found",
+  "settings": {
+    "title": "Log Settings",
+    "filter": {
+      "title": "Filter",
+      "description": "Filter logs by severity."
+    },
+    "loading": {
+      "title": "Loading",
+      "description": "When the log pane is scrolled to the bottom, new logs automatically stream as they are added.",
+      "disableStreaming": "Disable log streaming"
+    }
+  },
+  "severity": {
+    "debug": "Debug",
+    "info": "Info",
+    "warning": "Warning",
+    "error": "Error",
+    "critical": "Critical"
+  },
+  "filters": {
+    "search": "Search logs...",
+    "severity": "Severity",
+    "component": "Component",
+    "timeRange": "Time Range",
+    "apply": "Apply Filters",
+    "reset": "Reset Filters"
+  },
+  "components": {
+    "system": "System",
+    "camera": "Camera",
+    "detector": "Detector",
+    "recorder": "Recorder",
+    "storage": "Storage",
+    "network": "Network",
+    "api": "API"
+  },
+  "actions": {
+    "copy": "Copy Log",
+    "download": "Download Logs",
+    "clear": "Clear Logs",
+    "pause": "Pause Streaming",
+    "resume": "Resume Streaming"
+  }
+} 

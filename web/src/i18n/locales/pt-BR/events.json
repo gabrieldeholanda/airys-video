@@ -1,0 +1,82 @@
+{
+  "review": {
+    "title": "Revisão de Eventos",
+    "noEvents": "Nenhum evento encontrado",
+    "filters": {
+      "title": "Filtros",
+      "camera": "Câmera",
+      "allCameras": "Todas as Câmeras",
+      "dateRange": "Período",
+      "startDate": "Data Inicial",
+      "endDate": "Data Final",
+      "objects": "Objetos",
+      "zones": "Zonas",
+      "apply": "Aplicar Filtros",
+      "reset": "Redefinir Filtros"
+    },
+    "list": {
+      "time": "Horário",
+      "camera": "Câmera",
+      "objects": "Objetos",
+      "zones": "Zonas",
+      "score": "Pontuação",
+      "actions": "Ações"
+    },
+    "details": {
+      "title": "Detalhes do Evento",
+      "time": "Horário",
+      "camera": "Câmera",
+      "objects": "Objetos Detectados",
+      "zones": "Zonas Acionadas",
+      "score": "Pontuação de Confiança",
+      "snapshot": "Captura do Evento",
+      "recording": "Gravação do Evento",
+      "noRecording": "Nenhuma gravação disponível"
+    }
+  },
+  "objects": {
+    "person": "Pessoa",
+    "vehicle": "Veículo",
+    "animal": "Animal",
+    "insect": "Inseto",
+    "other": "Outro Objeto",
+    "count": {
+      "single": "{{count}} objeto",
+      "multiple": "{{count}} objetos"
+    }
+  },
+  "zones": {
+    "entry": "Zona de Entrada",
+    "motion": "Zona de Movimento",
+    "count": {
+      "single": "{{count}} zona",
+      "multiple": "{{count}} zonas"
+    }
+  },
+  "noEvents": "Nenhum evento encontrado",
+  "timeRange": "Intervalo de Tempo",
+  "filtered": "Eventos Filtrados",
+  "detected": "Objetos Detectados",
+  "filters": {
+    "title": "Filtros de Eventos",
+    "camera": "Câmera",
+    "object": "Tipo de Objeto",
+    "zone": "Zona",
+    "date": "Intervalo de Data",
+    "apply": "Aplicar Filtros",
+    "clear": "Limpar Filtros"
+  },
+  "details": {
+    "title": "Detalhes do Evento",
+    "time": "Hora do Evento",
+    "duration": "Duração",
+    "objects": "Objetos Detectados",
+    "zones": "Zonas Acionadas",
+    "score": "Pontuação da Detecção",
+    "actions": {
+      "download": "Baixar Clipe",
+      "share": "Compartilhar Evento",
+      "delete": "Excluir Evento"
+    }
+  }
+} 

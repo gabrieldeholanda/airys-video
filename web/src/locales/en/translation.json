@@ -1,0 +1,53 @@
+{
+  "logs": {
+    "type": "Type",
+    "timestamp": "Timestamp",
+    "tag": "Tag",
+    "message": "Message",
+    "helpfulLinks": "Helpful Links",
+    "settings": {
+      "title": "Log Settings",
+      "filter": {
+        "title": "Filter",
+        "description": "Filter logs by severity."
+      },
+      "loading": {
+        "title": "Loading",
+        "description": "When the log pane is scrolled to the bottom, new logs automatically stream as they are added.",
+        "disableStreaming": "Disable log streaming"
+      }
+    }
+  },
+  "search": {
+    "filters": {
+      "labels": {
+        "title": "Labels",
+        "all": "All Labels",
+        "multiple": "{{count}} Labels"
+      },
+      "apply": "Apply",
+      "reset": "Reset"
+    }
+  },
+  "streaming": {
+    "continuous": {
+      "description": "Camera image will always be a live stream when visible on the dashboard, even if no activity is being detected.",
+      "warning": "Continuous streaming may cause high bandwidth usage and performance issues. Use with caution."
+    },
+    "compatibility": {
+      "title": "Compatibility mode",
+      "description": "Enable this option only if your camera's live stream is displaying color artifacts and has a diagonal line on the right side of the image."
+    }
+  },
+  "status": {
+    "healthy": "System is healthy",
+    "cpu": "CPU {{percent}}%",
+    "gpu": {
+      "amd-vaapi": "AMD GPU",
+      "intel-vaapi": "Intel GPU",
+      "intel-qsv": "Intel GPU",
+      "usage": "{{name}} {{percent}}%"
+    },
+    "reindexing": "Reindexing embeddings ({{percent}}% complete)"
+  }
+} 

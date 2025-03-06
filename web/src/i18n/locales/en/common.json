@@ -1,0 +1,54 @@
+{
+  "actions": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "apply": "Apply",
+    "reset": "Reset",
+    "confirm": "Confirm",
+    "close": "Close"
+  },
+  "status": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "healthy": "System is healthy",
+    "cpu": "CPU {{percent}}%",
+    "gpu": {
+      "amd-vaapi": "AMD GPU",
+      "intel-vaapi": "Intel GPU",
+      "intel-qsv": "Intel GPU",
+      "usage": "{{name}} {{percent}}%"
+    },
+    "reindexing": "Reindexing embeddings ({{percent}}% complete)"
+  },
+  "time": {
+    "seconds": "seconds",
+    "minutes": "minutes",
+    "hours": "hours",
+    "days": "days",
+    "weeks": "weeks",
+    "months": "months",
+    "years": "years",
+    "ago": "{{time}} ago",
+    "in": "in {{time}}"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidFormat": "Invalid format",
+    "networkError": "Network error",
+    "unknownError": "An unknown error occurred"
+  },
+  "confirmation": {
+    "title": "Are you sure?",
+    "message": "This action cannot be undone.",
+    "yes": "Yes",
+    "no": "No"
+  }
+} 

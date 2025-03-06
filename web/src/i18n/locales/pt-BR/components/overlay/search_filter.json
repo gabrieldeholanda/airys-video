@@ -1,0 +1,40 @@
+{
+  "button": {
+    "moreFilters": "Mais Filtros",
+    "apply": "Aplicar",
+    "reset": "Redefinir",
+    "resetAriaLabel": "Redefinir filtros para valores padrão"
+  },
+  "timeRange": {
+    "title": "Intervalo de Tempo",
+    "startTimeAriaLabel": "Selecionar Hora Inicial",
+    "endTimeAriaLabel": "Selecionar Hora Final"
+  },
+  "zones": {
+    "title": "Zonas",
+    "allZones": "Todas as Zonas"
+  },
+  "subLabels": {
+    "title": "Sub Etiquetas",
+    "allSubLabels": "Todas as Sub Etiquetas"
+  },
+  "score": {
+    "title": "Pontuação"
+  },
+  "speed": {
+    "title": "Velocidade Estimada",
+    "metric": "km/h",
+    "imperial": "mph"
+  },
+  "features": {
+    "title": "Recursos",
+    "hasSnapshot": "Tem uma captura",
+    "hasClip": "Tem um vídeo clip",
+    "submittedToFrigatePlus": "Enviado para Frigate+",
+    "yes": "Sim",
+    "no": "Não",
+    "tooltip": {
+      "frigatePlusDisabled": "Você deve primeiro filtrar por objetos rastreados que tenham uma captura.\n\nObjetos rastreados sem uma captura não podem ser enviados para o Frigate+."
+    }
+  }
+} 

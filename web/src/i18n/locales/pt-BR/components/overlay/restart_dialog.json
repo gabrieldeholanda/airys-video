@@ -1,0 +1,12 @@
+{
+  "dialog": {
+    "title": "Tem certeza que deseja reiniciar o Frigate?",
+    "cancel": "Cancelar",
+    "restart": "Reiniciar"
+  },
+  "sheet": {
+    "title": "Frigate está Reiniciando",
+    "description": "Esta página será recarregada em {seconds} segundos.",
+    "forceReload": "Forçar Recarga Agora"
+  }
+} 

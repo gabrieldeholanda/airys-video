@@ -1,0 +1,90 @@
+{
+  "filters": {
+    "title": "Filtros",
+    "cameras": {
+      "label": "Câmeras",
+      "all": "Todas as Câmeras",
+      "none": "Nenhuma Câmera"
+    },
+    "reviewed": {
+      "label": "Mostrar Revisados",
+      "description": "Incluir eventos revisados"
+    },
+    "motion_only": {
+      "label": "Apenas Movimento",
+      "description": "Mostrar apenas eventos de movimento"
+    },
+    "general": {
+      "title": "Filtros Gerais",
+      "labels": {
+        "title": "Rótulos",
+        "all": "Todos os Rótulos",
+        "none": "Nenhum Rótulo"
+      },
+      "zones": {
+        "title": "Zonas",
+        "all": "Todas as Zonas",
+        "none": "Nenhuma Zona"
+      },
+      "show_all": "Mostrar Todos os Eventos",
+      "apply": "Aplicar Filtros",
+      "reset": "Redefinir Filtros"
+    },
+    "date": {
+      "title": "Data",
+      "today": "Hoje",
+      "yesterday": "Ontem",
+      "custom": "Data Personalizada"
+    }
+  },
+  "review": {
+    "counts": {
+      "alert": "Eventos de Alerta",
+      "detection": "Eventos de Detecção",
+      "significant_motion": "Eventos de Movimento"
+    },
+    "actions": {
+      "mark_reviewed": "Marcar como Revisado",
+      "mark_all_reviewed": "Marcar Todos como Revisados",
+      "export": "Exportar Evento",
+      "select_all": "Selecionar Todos",
+      "deselect_all": "Desmarcar Todos"
+    },
+    "status": {
+      "loading": "Carregando eventos...",
+      "no_events": "Nenhum evento encontrado",
+      "export_success": "Exportação iniciada com sucesso. Visualize o arquivo na pasta /exports.",
+      "export_error": "Falha ao iniciar a exportação: {{error}}"
+    }
+  },
+  "timeline": {
+    "zoom": {
+      "in": "Aumentar Zoom",
+      "out": "Diminuir Zoom",
+      "reset": "Redefinir Zoom"
+    },
+    "navigation": {
+      "previous": "Evento Anterior",
+      "next": "Próximo Evento",
+      "latest": "Últimos Eventos"
+    }
+  },
+  "severity": {
+    "alert": "Alertas",
+    "detection": "Detecções",
+    "motion": "Movimento"
+  },
+  "empty": {
+    "alert": "Não há alertas para revisar",
+    "detection": "Não há detecções para revisar",
+    "motion": "Nenhum dado de movimento encontrado"
+  },
+  "actions": {
+    "mark_reviewed": "Marcar estes itens como revisados",
+    "select_camera": "Selecionar uma câmera"
+  },
+  "counts": {
+    "alerts": "Alertas ∙ {{count}}",
+    "detections": "Detecções ∙ {{count}}"
+  }
+} 

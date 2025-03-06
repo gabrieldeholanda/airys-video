@@ -1,0 +1,26 @@
+{
+  "close": "Fechar diálogo",
+  "confirm": {
+    "title": "Confirmar Ação",
+    "message": "Tem certeza que deseja realizar esta ação?",
+    "yes": "Sim, prosseguir",
+    "no": "Não, cancelar"
+  },
+  "delete": {
+    "title": "Confirmar Exclusão",
+    "message": "Tem certeza que deseja excluir este item? Esta ação não pode ser desfeita.",
+    "yes": "Sim, excluir",
+    "no": "Não, manter"
+  },
+  "error": {
+    "title": "Erro",
+    "message": "Ocorreu um erro ao processar sua solicitação.",
+    "retry": "Tentar novamente",
+    "close": "Fechar"
+  },
+  "success": {
+    "title": "Sucesso",
+    "message": "Operação concluída com sucesso.",
+    "close": "Fechar"
+  }
+} 

@@ -1,0 +1,56 @@
+{
+  "title": "Search Settings",
+  "settings": {
+    "button": "Explore Settings",
+    "title": "Settings",
+    "defaultView": {
+      "title": "Default View",
+      "description": "When no filters are selected, display a summary of the most recent tracked objects per label, or display an unfiltered grid.",
+      "summary": "Summary",
+      "grid": "Unfiltered Grid"
+    },
+    "columns": {
+      "title": "Grid Columns",
+      "description": "Select the number of columns in the grid view."
+    },
+    "source": {
+      "title": "Search Source",
+      "description": "Choose whether to search the thumbnails or descriptions of your tracked objects.",
+      "thumbnail": "Thumbnail Image",
+      "description": "Description"
+    }
+  },
+  "semantic": {
+    "title": "Semantic Search",
+    "description": "Frigate can use machine learning to search for objects based on their visual appearance or description.",
+    "readDocs": "Read the Documentation",
+    "enabled": {
+      "title": "Enable Semantic Search"
+    },
+    "reindex": {
+      "title": "Reindex on Startup",
+      "description": "When enabled, Frigate will reindex all objects on startup. This is useful if you have made changes to your object labels or want to ensure all objects are indexed."
+    },
+    "model": {
+      "title": "Model Size",
+      "description": "Choose the model size that best fits your needs. Larger models are more accurate but use more resources.",
+      "small": {
+        "title": "Small",
+        "description": "Faster, but less accurate. Good for basic searches."
+      },
+      "large": {
+        "title": "Large",
+        "description": "More accurate, but uses more resources. Best for detailed searches."
+      }
+    }
+  },
+  "messages": {
+    "saved": "Search settings have been saved.",
+    "saveError": "Failed to save config changes: {{error}}"
+  },
+  "actions": {
+    "reset": "Reset",
+    "save": "Save",
+    "saving": "Saving..."
+  }
+} 

@@ -1,0 +1,22 @@
+{
+  "title": "Configurações de Anotação",
+  "zones": {
+    "title": "Mostrar Todas as Zonas",
+    "description": "Sempre mostrar zonas em quadros onde objetos entraram em uma zona."
+  },
+  "offset": {
+    "title": "Deslocamento de Anotação",
+    "description": "Milissegundos para deslocar as anotações de detecção.",
+    "default": "Padrão: 0",
+    "tip": "DICA: Imagine que há um clipe de evento com uma pessoa andando da esquerda para a direita. Se a caixa delimitadora da linha do tempo do evento estiver consistentemente à esquerda da pessoa, o valor deve ser diminuído. Da mesma forma, se uma pessoa estiver andando da esquerda para a direita e a caixa delimitadora estiver consistentemente à frente da pessoa, o valor deve ser aumentado.",
+    "warning": {
+      "title": "Estes dados vêm do feed de detecção da sua câmera, mas são sobrepostos em imagens do feed de gravação. É improvável que os dois fluxos estejam perfeitamente sincronizados. Como resultado, a caixa delimitadora e a filmagem não se alinharão perfeitamente. No entanto, o campo annotation_offset pode ser usado para ajustar isso.",
+      "documentation": "Ler a documentação"
+    }
+  },
+  "button": {
+    "apply": "Aplicar",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  }
+} 

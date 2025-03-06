@@ -1,0 +1,37 @@
+{
+  "button": {
+    "export": "Exportar",
+    "cancel": "Cancelar",
+    "select": "Selecionar"
+  },
+  "title": "Exportar",
+  "time_options": {
+    "last_hour": "Última Hora",
+    "last_hours": "Últimas {{hours}} Horas",
+    "timeline": "Selecionar da Linha do Tempo",
+    "custom": "Personalizado"
+  },
+  "input": {
+    "name": "Nome da Exportação"
+  },
+  "preview": {
+    "title": "Prévia da Exportação",
+    "description": "Prévia da Exportação"
+  },
+  "errors": {
+    "no_range": "Nenhum intervalo de tempo válido selecionado",
+    "invalid_range": "O horário final deve ser posterior ao inicial",
+    "start_failed": "Falha ao iniciar exportação: {{message}}"
+  },
+  "success": {
+    "export_started": "Exportação iniciada com sucesso. Visualize o arquivo na pasta /exports."
+  },
+  "time_selector": {
+    "start": {
+      "label": "Horário inicial"
+    },
+    "end": {
+      "label": "Horário final"
+    }
+  }
+} 

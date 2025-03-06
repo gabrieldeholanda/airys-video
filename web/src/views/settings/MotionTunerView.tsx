@@ -21,6 +21,7 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { LuExternalLink } from "react-icons/lu";
 import { StatusBarMessagesContext } from "@/context/statusbar-provider";
+import { useTranslation } from "react-i18next";
 
 type MotionTunerViewProps = {
   selectedCamera: string;
@@ -37,6 +38,7 @@ export default function MotionTunerView({
   selectedCamera,
   setUnsavedChanges,
 }: MotionTunerViewProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config, mutate: updateConfig } =
     useSWR<FrigateConfig>("config");
   const [changedValue, setChangedValue] = useState(false);
@@ -167,8 +169,8 @@ export default function MotionTunerView({
   }, [changedValue, selectedCamera]);
 
   useEffect(() => {
-    document.title = "Motion Tuner - Frigate";
-  }, []);
+    document.title = translate('settings.motion_tuner.title', 'Motion Detection Tuner - Airys');
+  }, [translate]);
 
   if (!cameraConfig && !selectedCamera) {
     return <ActivityIndicator />;
@@ -179,23 +181,21 @@ export default function MotionTunerView({
       <Toaster position="top-center" closeButton={true} />
       <div className="scrollbar-container order-last mb-10 mt-2 flex h-full w-full flex-col overflow-y-auto rounded-lg border-[1px] border-secondary-foreground bg-background_alt p-2 md:order-none md:mb-0 md:mr-2 md:mt-0 md:w-3/12">
         <Heading as="h3" className="my-2">
-          Motion Detection Tuner
+          {translate('settings.motion_tuner.title')}
         </Heading>
         <div className="my-3 space-y-3 text-sm text-muted-foreground">
           <p>
-            Frigate uses motion detection as a first line check to see if there
-            is anything happening in the frame worth checking with object
-            detection.
+            {translate('settings.motion_tuner.description')}
           </p>
 
           <div className="flex items-center text-primary">
             <Link
-              to="https://docs.frigate.video/configuration/motion_detection"
+              to="https://chat.airys.com.br/hc/help/pt_BR/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline"
             >
-              Read the Motion Tuning Guide{" "}
+              {translate('settings.motion_tuner.documentation')}{" "}
               <LuExternalLink className="ml-2 inline-flex size-3" />
             </Link>
           </div>
@@ -205,13 +205,12 @@ export default function MotionTunerView({
           <div className="mt-2 space-y-6">
             <div className="space-y-0.5">
               <Label htmlFor="motion-threshold" className="text-md">
-                Threshold
+                {translate('settings.motion_tuner.threshold.label')}
               </Label>
               <div className="my-2 text-sm text-muted-foreground">
                 <p>
-                  The threshold value dictates how much of a change in a pixel's
-                  luminance is required to be considered motion.{" "}
-                  <em>Default: 30</em>
+                  {translate('settings.motion_tuner.threshold.description')}{" "}
+                  <em>{translate('settings.motion_tuner.threshold.default', { value: 30 })}</em>
                 </p>
               </div>
             </div>
@@ -236,12 +235,12 @@ export default function MotionTunerView({
           <div className="mt-2 space-y-6">
             <div className="space-y-0.5">
               <Label htmlFor="motion-threshold" className="text-md">
-                Contour Area
+                {translate('settings.motion_tuner.contour_area.label')}
               </Label>
               <div className="my-2 text-sm text-muted-foreground">
                 <p>
-                  The contour area value is used to decide which groups of
-                  changed pixels qualify as motion. <em>Default: 10</em>
+                  {translate('settings.motion_tuner.contour_area.description')}{" "}
+                  <em>{translate('settings.motion_tuner.contour_area.default', { value: 10 })}</em>
                 </p>
               </div>
             </div>
@@ -266,9 +265,12 @@ export default function MotionTunerView({
           <Separator className="my-2 flex bg-secondary" />
           <div className="flex flex-row items-center justify-between">
             <div className="space-y-0.5">
-              <Label htmlFor="improve-contrast">Improve Contrast</Label>
+              <Label htmlFor="improve-contrast">
+                {translate('settings.motion_tuner.improve_contrast.label')}
+              </Label>
               <div className="text-sm text-muted-foreground">
-                Improve contrast for darker scenes. <em>Default: ON</em>
+                {translate('settings.motion_tuner.improve_contrast.description')}{" "}
+                <em>{translate('settings.motion_tuner.improve_contrast.default', { value: 'ON' })}</em>
               </div>
             </div>
             <Switch
@@ -286,25 +288,25 @@ export default function MotionTunerView({
           <div className="flex flex-row gap-2 pt-5">
             <Button
               className="flex flex-1"
-              aria-label="Reset"
+              aria-label={translate('settings.motion_tuner.actions.reset')}
               onClick={onCancel}
             >
-              Reset
+              {translate('settings.motion_tuner.actions.reset')}
             </Button>
             <Button
               variant="select"
               disabled={!changedValue || isLoading}
               className="flex flex-1"
-              aria-label="Save"
+              aria-label={translate('settings.motion_tuner.actions.save')}
               onClick={saveToConfig}
             >
               {isLoading ? (
                 <div className="flex flex-row items-center gap-2">
                   <ActivityIndicator />
-                  <span>Saving...</span>
+                  <span>{translate('settings.motion_tuner.actions.saving')}</span>
                 </div>
               ) : (
-                "Save"
+                translate('settings.motion_tuner.actions.save')
               )}
             </Button>
           </div>

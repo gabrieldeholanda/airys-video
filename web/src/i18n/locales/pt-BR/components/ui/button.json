@@ -1,0 +1,28 @@
+{
+  "aria": {
+    "loading": "Carregando, por favor aguarde",
+    "disabled": "Este botão está desativado",
+    "toggle": "Alternar {{name}}"
+  },
+  "states": {
+    "loading": "Carregando...",
+    "processing": "Processando...",
+    "saving": "Salvando...",
+    "deleting": "Excluindo...",
+    "uploading": "Enviando..."
+  },
+  "actions": {
+    "refresh": "Atualizar",
+    "upload": "Enviar",
+    "download": "Baixar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpar",
+    "more": "Mostrar mais",
+    "less": "Mostrar menos",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "first": "Primeiro",
+    "last": "Último"
+  }
+} 

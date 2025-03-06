@@ -1,0 +1,91 @@
+{
+  "common": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "navigation": {
+    "live": "Live View",
+    "events": "Events",
+    "explore": "Explore",
+    "exports": "Exports",
+    "system": "System",
+    "settings": "Settings",
+    "config": "Configuration",
+    "logs": "Logs",
+    "faces": "Face Library"
+  },
+  "settings": {
+    "general": {
+      "title": "General Settings",
+      "language": {
+        "title": "Language",
+        "interface": "Interface Language",
+        "description": "Select the language for the user interface."
+      },
+      "liveDashboard": {
+        "title": "Live Dashboard",
+        "autoLive": "Automatic Live View",
+        "autoLiveDescription": "Automatically switch to a camera's live view when activity is detected. Disabling this option causes static camera images on your dashboards to only update once per minute.",
+        "autoLiveNote": "This is a global setting but can be overridden on each camera in camera groups only.",
+        "alertVideos": "Play Alert Videos",
+        "alertVideosDescription": "By default, recent alerts on the Live dashboard play as small looping videos. Disable this option to only show a static image of recent alerts on this device/browser."
+      },
+      "layouts": {
+        "title": "Stored Layouts",
+        "description": "The layout of cameras in a camera group can be dragged/resized. The positions are stored in your browser's local storage.",
+        "clearButton": "Clear All Layouts",
+        "cleared": "Cleared stored layout for {{group}}",
+        "clearError": "Failed to clear stored layout: {{error}}"
+      },
+      "streaming": {
+        "title": "Camera Group Streaming Settings",
+        "description": "Streaming settings for each camera group are stored in your browser's local storage.",
+        "clearButton": "Clear All Streaming Settings",
+        "cleared": "Cleared streaming settings for all camera groups.",
+        "clearError": "Failed to clear camera groups streaming settings: {{error}}"
+      },
+      "recordings": {
+        "title": "Recordings Viewer",
+        "playbackRate": "Default Playback Rate",
+        "playbackRateDescription": "Default playback rate for recordings playback."
+      },
+      "calendar": {
+        "title": "Calendar",
+        "firstWeekday": "First Weekday",
+        "firstWeekdayDescription": "The day that the weeks of the review calendar begin on."
+      }
+    },
+    "cameras": {
+      "title": "Camera Settings",
+      "addCamera": "Add Camera",
+      "editCamera": "Edit Camera",
+      "deleteCamera": "Delete Camera"
+    }
+  },
+  "cameras": {
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "disabled": "Disabled"
+    },
+    "actions": {
+      "snapshot": "Take Snapshot",
+      "record": "Record",
+      "restart": "Restart Camera"
+    }
+  },
+  "events": {
+    "noEvents": "No events found",
+    "timeRange": "Time Range",
+    "filtered": "Filtered",
+    "detected": "Detected"
+  }
+} 

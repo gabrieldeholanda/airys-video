@@ -1,0 +1,36 @@
+{
+  "title": "Biblioteca de Rostos",
+  "buttons": {
+    "addFace": "Adicionar Rosto",
+    "uploadImage": "Enviar Imagem"
+  },
+  "upload": {
+    "title": "Enviar Imagem de Rosto",
+    "description": "Envie uma imagem para escanear rostos e incluir para {{name}}",
+    "success": "Imagem enviada com sucesso.",
+    "error": "Falha ao enviar imagem: {{message}}"
+  },
+  "create": {
+    "title": "Criar Biblioteca de Rostos",
+    "description": "Criar uma nova biblioteca de rostos",
+    "success": "Biblioteca de rostos adicionada com sucesso.",
+    "error": "Falha ao definir nome do rosto: {{message}}"
+  },
+  "train": {
+    "title": "Treinar",
+    "tooltip": "Treinar Rosto como Pessoa",
+    "label": "Treinar Rosto como:",
+    "success": "Rosto treinado com sucesso.",
+    "error": "Falha ao treinar: {{message}}"
+  },
+  "reprocess": {
+    "tooltip": "Reprocessar Rosto",
+    "success": "Rosto reprocessado com sucesso.",
+    "error": "Falha ao reprocessar: {{message}}"
+  },
+  "delete": {
+    "tooltip": "Excluir Rosto",
+    "success": "Rosto excluído com sucesso.",
+    "error": "Falha ao excluir: {{message}}"
+  }
+} 

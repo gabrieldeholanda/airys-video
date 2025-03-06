@@ -1,0 +1,77 @@
+{
+  "title": "Configurações de Objetos",
+  "description": {
+    "detectors": "O Frigate usa seus detectores ({{detectors}}) para detectar objetos no fluxo de vídeo da sua câmera.",
+    "debug": "A visualização de depuração mostra uma visão em tempo real dos objetos rastreados e suas estatísticas. A lista de objetos mostra um resumo com atraso dos objetos detectados."
+  },
+  "webui": {
+    "open": "Abrir Interface Web de {{camera}}"
+  },
+  "tabs": {
+    "debug": "Depuração",
+    "object_list": "Lista de Objetos"
+  },
+  "debug_options": {
+    "bbox": {
+      "title": "Caixas delimitadoras",
+      "description": "Mostrar caixas delimitadoras ao redor dos objetos rastreados",
+      "info": {
+        "title": "Cores das Caixas Delimitadoras de Objetos",
+        "items": {
+          "startup": "Na inicialização, cores diferentes serão atribuídas a cada rótulo de objeto",
+          "not_detected": "Uma linha fina azul escura indica que o objeto não está sendo detectado neste momento",
+          "stationary": "Uma linha fina cinza indica que o objeto está sendo detectado como estacionário",
+          "autotracking": "Uma linha grossa indica que o objeto é o alvo do rastreamento automático (quando ativado)"
+        }
+      }
+    },
+    "timestamp": {
+      "title": "Marca temporal",
+      "description": "Sobrepor uma marca temporal na imagem"
+    },
+    "zones": {
+      "title": "Zonas",
+      "description": "Mostrar um contorno das zonas definidas"
+    },
+    "mask": {
+      "title": "Máscaras de movimento",
+      "description": "Mostrar polígonos de máscara de movimento"
+    },
+    "motion": {
+      "title": "Caixas de movimento",
+      "description": "Mostrar caixas ao redor das áreas onde o movimento é detectado",
+      "info": {
+        "title": "Caixas de Movimento",
+        "description": "Caixas vermelhas serão sobrepostas nas áreas do quadro onde o movimento está sendo detectado atualmente"
+      }
+    },
+    "regions": {
+      "title": "Regiões",
+      "description": "Mostrar uma caixa da região de interesse enviada ao detector de objetos",
+      "info": {
+        "title": "Caixas de Região",
+        "description": "Caixas verde brilhante serão sobrepostas nas áreas de interesse no quadro que estão sendo enviadas ao detector de objetos."
+      }
+    }
+  },
+  "shape_filter": {
+    "title": "Desenho do Filtro de Forma de Objeto",
+    "description": "Desenhar um retângulo na imagem para ver detalhes de área e proporção",
+    "info": {
+      "description": "Ative esta opção para desenhar um retângulo na imagem da câmera para mostrar sua área e proporção. Esses valores podem então ser usados para definir parâmetros do filtro de forma de objeto em sua configuração.",
+      "documentation": "Ler a documentação"
+    }
+  },
+  "object_list": {
+    "empty": "Sem objetos",
+    "stats": {
+      "score": "Pontuação",
+      "ratio": "Proporção",
+      "area": {
+        "title": "Área",
+        "px": "px: {{value}}",
+        "percent": "%: {{value}}"
+      }
+    }
+  }
+} 

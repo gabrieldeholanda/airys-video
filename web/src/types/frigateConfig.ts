@@ -1,4 +1,5 @@
 import { IconName } from "@/components/icons/IconPicker";
+import { Language } from "@/i18n/types";
 
 export interface UiConfig {
   timezone?: string;
@@ -9,6 +10,8 @@ export interface UiConfig {
   dashboard: boolean;
   order: number;
   unit_system?: "metric" | "imperial";
+  language?: Language;
+  fallback_language?: Language;
 }
 
 export interface BirdseyeConfig {

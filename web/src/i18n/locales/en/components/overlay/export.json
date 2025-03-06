@@ -1,0 +1,37 @@
+{
+  "button": {
+    "export": "Export",
+    "cancel": "Cancel",
+    "select": "Select"
+  },
+  "title": "Export",
+  "time_options": {
+    "last_hour": "Last Hour",
+    "last_hours": "Last {{hours}} Hours",
+    "timeline": "Select from Timeline",
+    "custom": "Custom"
+  },
+  "input": {
+    "name": "Name the Export"
+  },
+  "preview": {
+    "title": "Preview Export",
+    "description": "Preview Export"
+  },
+  "errors": {
+    "no_range": "No valid time range selected",
+    "invalid_range": "End time must be after start time",
+    "start_failed": "Failed to start export: {{message}}"
+  },
+  "success": {
+    "export_started": "Successfully started export. View the file in the /exports folder."
+  },
+  "time_selector": {
+    "start": {
+      "label": "Start time"
+    },
+    "end": {
+      "label": "End time"
+    }
+  }
+} 

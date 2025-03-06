@@ -1,0 +1,17 @@
+{
+  "edit_mode": {
+    "title": "Edit Mode",
+    "description": "Drag and drop cameras to rearrange them"
+  },
+  "actions": {
+    "edit": "Edit Layout",
+    "save": "Save Layout",
+    "reset": "Reset Layout"
+  },
+  "messages": {
+    "save": {
+      "success": "Layout saved successfully.",
+      "error": "Failed to save layout: {{error}}"
+    }
+  }
+} 

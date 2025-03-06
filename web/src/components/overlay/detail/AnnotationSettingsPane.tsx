@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import ActivityIndicator from "@/components/indicators/activity-indicator";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { useTranslation } from "react-i18next";
 
 type AnnotationSettingsPaneProps = {
   event: Event;
@@ -41,6 +42,7 @@ export function AnnotationSettingsPane({
   annotationOffset,
   setAnnotationOffset,
 }: AnnotationSettingsPaneProps) {
+  const { t } = useTranslation("components/overlay/annotation_settings");
   const { data: config, mutate: updateConfig } =
     useSWR<FrigateConfig>("config");
 
@@ -123,7 +125,7 @@ export function AnnotationSettingsPane({
   return (
     <div className="mb-3 space-y-3 rounded-lg border border-secondary-foreground bg-background_alt p-2">
       <Heading as="h4" className="my-2">
-        Annotation Settings
+        {t("title")}
       </Heading>
       <div className="flex flex-col">
         <div className="flex flex-row items-center justify-start gap-2 p-3">
@@ -133,11 +135,11 @@ export function AnnotationSettingsPane({
             onCheckedChange={setShowZones}
           />
           <Label className="cursor-pointer" htmlFor="show-zones">
-            Show All Zones
+            {t("zones.title")}
           </Label>
         </div>
         <div className="text-sm text-muted-foreground">
-          Always show zones on frames where objects have entered a zone.
+          {t("zones.description")}
         </div>
       </div>
       <Separator className="my-2 flex bg-secondary" />
@@ -151,25 +153,20 @@ export function AnnotationSettingsPane({
             name="annotationOffset"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Annotation Offset</FormLabel>
+                <FormLabel>{t("offset.title")}</FormLabel>
                 <div className="flex flex-col gap-3 md:flex-row-reverse md:gap-8">
                   <div className="flex flex-row items-center gap-3 rounded-lg bg-destructive/50 p-3 text-sm text-primary-variant md:my-0 md:my-5">
                     <PiWarningCircle className="size-24" />
                     <div>
-                      This data comes from your camera's detect feed but is
-                      overlayed on images from the the record feed. It is
-                      unlikely that the two streams are perfectly in sync. As a
-                      result, the bounding box and the footage will not line up
-                      perfectly. However, the <code>annotation_offset</code>{" "}
-                      field can be used to adjust this.
+                      {t("offset.warning.title")}
                       <div className="mt-2 flex items-center text-primary">
                         <Link
-                          to="https://docs.frigate.video/configuration/reference"
+                          to="https://chat.airys.com.br/hc/help/pt_BR/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline"
                         >
-                          Read the documentation{" "}
+                          {t("offset.warning.documentation")}{" "}
                           <LuExternalLink className="ml-2 inline-flex size-3" />
                         </Link>
                       </div>
@@ -184,17 +181,9 @@ export function AnnotationSettingsPane({
                       />
                     </FormControl>
                     <FormDescription>
-                      Milliseconds to offset detect annotations by.{" "}
-                      <em>Default: 0</em>
-                      <div className="mt-2">
-                        TIP: Imagine there is an event clip with a person
-                        walking from left to right. If the event timeline
-                        bounding box is consistently to the left of the person
-                        then the value should be decreased. Similarly, if a
-                        person is walking from left to right and the bounding
-                        box is consistently ahead of the person then the value
-                        should be increased.
-                      </div>
+                      {t("offset.description")}{" "}
+                      <em>{t("offset.default")}</em>
+                      <div className="mt-2">{t("offset.tip")}</div>
                     </FormDescription>
                   </div>
                 </div>
@@ -207,14 +196,14 @@ export function AnnotationSettingsPane({
             <div className="flex flex-row gap-2 pt-5">
               <Button
                 className="flex flex-1"
-                aria-label="Apply"
+                aria-label={t("button.apply")}
                 onClick={form.handleSubmit(onApply)}
               >
-                Apply
+                {t("button.apply")}
               </Button>
               <Button
                 variant="select"
-                aria-label="Save"
+                aria-label={t("button.save")}
                 disabled={isLoading}
                 className="flex flex-1"
                 type="submit"
@@ -222,10 +211,10 @@ export function AnnotationSettingsPane({
                 {isLoading ? (
                   <div className="flex flex-row items-center gap-2">
                     <ActivityIndicator />
-                    <span>Saving...</span>
+                    <span>{t("button.saving")}</span>
                   </div>
                 ) : (
-                  "Save"
+                  t("button.save")
                 )}
               </Button>
             </div>

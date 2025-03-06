@@ -1,0 +1,65 @@
+{
+  "title": "Notification Settings",
+  "description": {
+    "intro": "Frigate can natively send push notifications to your device when it is running in the browser or installed as a PWA.",
+    "documentation": "Read the Documentation"
+  },
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "example@email.com",
+      "description": "Entering a valid email is required, as this is used by the push server in case problems occur."
+    },
+    "cameras": {
+      "title": "Cameras",
+      "all_cameras": "All Cameras",
+      "no_cameras": "No cameras available.",
+      "description": "Select the cameras to enable notifications for."
+    }
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "messages": {
+    "success": "Notification settings have been saved.",
+    "error": {
+      "save": "Failed to save config changes: {{error}}"
+    },
+    "unsaved": {
+      "settings": "Unsaved notification settings",
+      "registrations": "Unsaved Notification Registrations"
+    }
+  },
+  "device": {
+    "title": "Device-Specific Settings",
+    "register": "Register this device",
+    "unregister": "Unregister this device",
+    "test": "Send a test notification",
+    "registration": {
+      "success": "Successfully registered for notifications. Restarting Frigate is required before any notifications (including a test notification) can be sent.",
+      "error": "Failed to save notification registration."
+    }
+  },
+  "global": {
+    "title": "Global Settings",
+    "description": "Temporarily suspend notifications for specific cameras on all registered devices.",
+    "camera": {
+      "active": "Notifications Active",
+      "suspended": "Notifications suspended until {{time}}",
+      "suspended_restart": "Frigate restarts.",
+      "suspend": {
+        "title": "Suspend",
+        "5min": "Suspend for 5 minutes",
+        "10min": "Suspend for 10 minutes",
+        "30min": "Suspend for 30 minutes",
+        "1hour": "Suspend for 1 hour",
+        "12hours": "Suspend for 12 hours",
+        "24hours": "Suspend for 24 hours",
+        "restart": "Suspend until restart"
+      },
+      "cancel": "Cancel Suspension"
+    }
+  }
+} 

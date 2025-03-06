@@ -38,6 +38,7 @@ import { toast } from "sonner";
 import { Toaster } from "../ui/sonner";
 import ActivityIndicator from "../indicators/activity-indicator";
 import { getAttributeLabels } from "@/utils/iconUtil";
+import { useTranslation } from "react-i18next";
 
 type ObjectMaskEditPaneProps = {
   polygons?: Polygon[];
@@ -66,6 +67,7 @@ export default function ObjectMaskEditPane({
   snapPoints,
   setSnapPoints,
 }: ObjectMaskEditPaneProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config, mutate: updateConfig } =
     useSWR<FrigateConfig>("config");
 
@@ -240,8 +242,8 @@ export default function ObjectMaskEditPane({
   }
 
   useEffect(() => {
-    document.title = "Edit Object Mask - Frigate";
-  }, []);
+    document.title = translate('settings.object_mask.title.edit', 'Edit Object Mask - Airys');
+  }, [translate]);
 
   if (!polygon) {
     return;
@@ -251,23 +253,18 @@ export default function ObjectMaskEditPane({
     <>
       <Toaster position="top-center" closeButton={true} />
       <Heading as="h3" className="my-2">
-        {polygon.name.length ? "Edit" : "New"} Object Mask
+        {polygon.name.length ? translate('settings.object_mask.title.edit') : translate('settings.object_mask.title.new')}
       </Heading>
       <div className="my-2 text-sm text-muted-foreground">
         <p>
-          Object filter masks are used to filter out false positives for a given
-          object type based on location.
+          {translate('settings.object_mask.description')}
         </p>
       </div>
       <Separator className="my-3 bg-secondary" />
       {polygons && activePolygonIndex !== undefined && (
         <div className="my-2 flex w-full flex-row justify-between text-sm">
           <div className="my-1 inline-flex">
-            {polygons[activePolygonIndex].points.length}{" "}
-            {polygons[activePolygonIndex].points.length > 1 ||
-            polygons[activePolygonIndex].points.length == 0
-              ? "points"
-              : "point"}
+            {translate('settings.object_mask.points.count', { count: polygons[activePolygonIndex].points.length })}
             {polygons[activePolygonIndex].isFinished && (
               <FaCheckCircle className="ml-2 size-5" />
             )}
@@ -282,7 +279,7 @@ export default function ObjectMaskEditPane({
         </div>
       )}
       <div className="mb-3 text-sm text-muted-foreground">
-        Click to draw a polygon on the image.
+        {translate('settings.object_mask.draw_instructions')}
       </div>
 
       <Separator className="my-3 bg-secondary" />
@@ -307,7 +304,7 @@ export default function ObjectMaskEditPane({
               name="objects"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Objects</FormLabel>
+                  <FormLabel>{translate('settings.object_mask.form.objects.label')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
@@ -315,7 +312,7 @@ export default function ObjectMaskEditPane({
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select an object type" />
+                        <SelectValue placeholder={translate('settings.object_mask.form.objects.placeholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -323,7 +320,7 @@ export default function ObjectMaskEditPane({
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    The object type that that applies to this object mask.
+                    {translate('settings.object_mask.form.objects.description')}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -343,25 +340,25 @@ export default function ObjectMaskEditPane({
             <div className="flex flex-row gap-2 pt-5">
               <Button
                 className="flex flex-1"
-                aria-label="Cancel"
+                aria-label={translate('settings.object_mask.actions.cancel')}
                 onClick={onCancel}
               >
-                Cancel
+                {translate('settings.object_mask.actions.cancel')}
               </Button>
               <Button
                 variant="select"
                 disabled={isLoading}
                 className="flex flex-1"
-                aria-label="Save"
+                aria-label={translate('settings.object_mask.actions.save')}
                 type="submit"
               >
                 {isLoading ? (
                   <div className="flex flex-row items-center gap-2">
                     <ActivityIndicator />
-                    <span>Saving...</span>
+                    <span>{translate('settings.object_mask.actions.saving')}</span>
                   </div>
                 ) : (
-                  "Save"
+                  translate('settings.object_mask.actions.save')
                 )}
               </Button>
             </div>
@@ -377,6 +374,7 @@ type ZoneObjectSelectorProps = {
 };
 
 export function ZoneObjectSelector({ camera }: ZoneObjectSelectorProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config } = useSWR<FrigateConfig>("config");
 
   const attributeLabels = useMemo(() => {
@@ -420,7 +418,7 @@ export function ZoneObjectSelector({ camera }: ZoneObjectSelectorProps) {
   return (
     <>
       <SelectGroup>
-        <SelectItem value="all_labels">All object types</SelectItem>
+        <SelectItem value="all_labels">{translate('settings.object_mask.form.objects.all')}</SelectItem>
         <SelectSeparator className="bg-secondary" />
         {allLabels.map((item) => (
           <SelectItem key={item} value={item}>

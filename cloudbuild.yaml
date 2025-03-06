@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/airys-video:latest', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/airys-video:latest']
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'airys-video', '--image', 'gcr.io/$PROJECT_ID/airys-video:latest', '--region', 'us-central1', '--platform', 'managed', '--memory', '16Gi', '--cpu', '8', '--timeout', '3600', '--service-account', 'airys-cloud-run@$PROJECT_ID.iam.gserviceaccount.com', '--set-env-vars', 'GOOGLE_CLOUD_PROJECT=$PROJECT_ID', '--set-env-vars', 'GOOGLE_CLOUD_STORAGE_BUCKET=airys-video-storage', '--set-env-vars', 'NVIDIA_VISIBLE_DEVICES=all', '--set-env-vars', 'NVIDIA_DRIVER_CAPABILITIES=compute,video,utility', '--set-env-vars', 'CUDA_VISIBLE_DEVICES=0', '--update-secrets', 'FRIGATE_RTSP_PASSWORD=frigate-rtsp-password:1', '--annotation', 'run.googleapis.com/launch-stage=BETA', '--annotation', 'run.googleapis.com/accelerator=L4'] 

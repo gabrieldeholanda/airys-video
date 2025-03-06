@@ -50,6 +50,7 @@ import { Toaster } from "@/components/ui/sonner";
 import useCameraLiveMode from "@/hooks/use-camera-live-mode";
 import LiveContextMenu from "@/components/menu/LiveContextMenu";
 import { useStreamingSettings } from "@/context/streaming-settings-provider";
+import { useTranslation } from "react-i18next";
 
 type DraggableGridLayoutProps = {
   cameras: CameraConfig[];
@@ -79,6 +80,7 @@ export default function DraggableGridLayout({
   fullscreen,
   toggleFullscreen,
 }: DraggableGridLayoutProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config } = useSWR<FrigateConfig>("config");
   const birdseyeConfig = useMemo(() => config?.birdseye, [config]);
 
@@ -655,7 +657,7 @@ export default function DraggableGridLayout({
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  {isEditMode ? "Exit Editing" : "Edit Layout"}
+                  {isEditMode ? translate('live.grid.edit_mode.title') : translate('live.grid.actions.edit')}
                 </TooltipContent>
               </Tooltip>
               {!isEditMode && (
@@ -673,7 +675,7 @@ export default function DraggableGridLayout({
                         </div>
                       </TooltipTrigger>
                       <TooltipContent>
-                        {isEditMode ? "Exit Editing" : "Edit Camera Group"}
+                        {isEditMode ? translate('live.grid.edit_mode.title') : translate('live.grid.actions.edit')}
                       </TooltipContent>
                     </Tooltip>
                   )}
@@ -691,7 +693,7 @@ export default function DraggableGridLayout({
                       </div>
                     </TooltipTrigger>
                     <TooltipContent>
-                      {fullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                      {fullscreen ? translate('live.camera.actions.fullscreen.exit') : translate('live.camera.actions.fullscreen.enter')}
                     </TooltipContent>
                   </Tooltip>
                 </>

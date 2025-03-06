@@ -11,6 +11,7 @@ import { GpuInfo, Nvinfo, Vainfo } from "@/types/stats";
 import { Button } from "../ui/button";
 import copy from "copy-to-clipboard";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 type GPUInfoDialogProps = {
   showGpuInfo: boolean;
@@ -22,6 +23,7 @@ export default function GPUInfoDialog({
   gpuType,
   setShowGpuInfo,
 }: GPUInfoDialogProps) {
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.gpu_info" });
   const { data: vainfo } = useSWR<Vainfo>(
     showGpuInfo && gpuType == "vainfo" ? "vainfo" : null,
   );
@@ -35,7 +37,7 @@ export default function GPUInfoDialog({
         .replace(/\\t/g, "\t")
         .replace(/\\n/g, "\n"),
     );
-    toast.success("Copied GPU info to clipboard.");
+    toast.success(t("success.copy"));
   };
 
   if (gpuType == "vainfo") {
@@ -43,13 +45,13 @@ export default function GPUInfoDialog({
       <Dialog open={showGpuInfo} onOpenChange={setShowGpuInfo}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Vainfo Output</DialogTitle>
+            <DialogTitle>{t("title.vainfo")}</DialogTitle>
           </DialogHeader>
           {vainfo ? (
             <div className="scrollbar-container mb-2 max-h-96 overflow-y-scroll whitespace-pre-line">
-              <div>Return Code: {vainfo.return_code}</div>
+              <div>{t("return_code")} {vainfo.return_code}</div>
               <br />
-              <div>Process {vainfo.return_code == 0 ? "Output" : "Error"}:</div>
+              <div>{t(vainfo.return_code == 0 ? "process.output" : "process.error")}:</div>
               <br />
               <div>
                 {vainfo.return_code == 0 ? vainfo.stdout : vainfo.stderr}
@@ -60,17 +62,17 @@ export default function GPUInfoDialog({
           )}
           <DialogFooter>
             <Button
-              aria-label="Close GPU info"
+              aria-label={t("button.close")}
               onClick={() => setShowGpuInfo(false)}
             >
-              Close
+              {t("button.close")}
             </Button>
             <Button
-              aria-label="Copy GPU info"
+              aria-label={t("button.copy")}
               variant="select"
               onClick={() => onCopyInfo()}
             >
-              Copy
+              {t("button.copy")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -81,34 +83,34 @@ export default function GPUInfoDialog({
       <Dialog open={showGpuInfo} onOpenChange={setShowGpuInfo}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Nvidia SMI Output</DialogTitle>
+            <DialogTitle>{t("title.nvidia")}</DialogTitle>
           </DialogHeader>
           {nvinfo ? (
             <div className="scrollbar-container mb-2 max-h-96 overflow-y-scroll whitespace-pre-line">
-              <div>Name: {nvinfo["0"].name}</div>
+              <div>{t("nvidia.name")} {nvinfo["0"].name}</div>
               <br />
-              <div>Driver: {nvinfo["0"].driver}</div>
+              <div>{t("nvidia.driver")} {nvinfo["0"].driver}</div>
               <br />
-              <div>Cuda Compute Capability: {nvinfo["0"].cuda_compute}</div>
+              <div>{t("nvidia.cuda")} {nvinfo["0"].cuda_compute}</div>
               <br />
-              <div>VBios Info: {nvinfo["0"].vbios}</div>
+              <div>{t("nvidia.vbios")} {nvinfo["0"].vbios}</div>
             </div>
           ) : (
             <ActivityIndicator />
           )}
           <DialogFooter>
             <Button
-              aria-label="Close GPU info"
+              aria-label={t("button.close")}
               onClick={() => setShowGpuInfo(false)}
             >
-              Close
+              {t("button.close")}
             </Button>
             <Button
-              aria-label="Copy GPU info"
+              aria-label={t("button.copy")}
               variant="select"
               onClick={() => onCopyInfo()}
             >
-              Copy
+              {t("button.copy")}
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import SaveExportOverlay from "./SaveExportOverlay";
 import { isIOS, isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 
 type DrawerMode = "none" | "select" | "export" | "calendar" | "filter";
 
@@ -69,6 +70,7 @@ export default function MobileReviewSettingsDrawer({
   setShowExportPreview,
 }: MobileReviewSettingsDrawerProps) {
   const [drawerMode, setDrawerMode] = useState<DrawerMode>("none");
+  const { t } = useTranslation("ui", { keyPrefix: "overlay.mobile_review_settings" });
 
   // exports
 
@@ -139,40 +141,40 @@ export default function MobileReviewSettingsDrawer({
         {features.includes("export") && (
           <Button
             className="flex w-full items-center justify-center gap-2"
-            aria-label="Export"
+            aria-label={t("button.export")}
             onClick={() => {
               setDrawerMode("export");
               setMode("select");
             }}
           >
             <FaArrowDown className="rounded-md bg-secondary-foreground fill-secondary p-1" />
-            Export
+            {t("button.export")}
           </Button>
         )}
         {features.includes("calendar") && (
           <Button
             className="flex w-full items-center justify-center gap-2"
-            aria-label="Calendar"
+            aria-label={t("button.calendar")}
             variant={filter?.after ? "select" : "default"}
             onClick={() => setDrawerMode("calendar")}
           >
             <FaCalendarAlt
               className={`${filter?.after ? "text-selected-foreground" : "text-secondary-foreground"}`}
             />
-            Calendar
+            {t("button.calendar")}
           </Button>
         )}
         {features.includes("filter") && (
           <Button
             className="flex w-full items-center justify-center gap-2"
-            aria-label="Filter"
+            aria-label={t("button.filter")}
             variant={filter?.labels || filter?.zones ? "select" : "default"}
             onClick={() => setDrawerMode("filter")}
           >
             <FaFilter
               className={`${filter?.labels || filter?.zones ? "text-selected-foreground" : "text-secondary-foreground"}`}
             />
-            Filter
+            {t("button.filter")}
           </Button>
         )}
       </div>
@@ -209,10 +211,10 @@ export default function MobileReviewSettingsDrawer({
             className="absolute left-0 text-selected"
             onClick={() => setDrawerMode("select")}
           >
-            Back
+            {t("action.back")}
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 text-muted-foreground">
-            Calendar
+            {t("title.calendar")}
           </div>
         </div>
         <div className="flex w-full flex-row justify-center">
@@ -237,7 +239,7 @@ export default function MobileReviewSettingsDrawer({
         <SelectSeparator />
         <div className="flex items-center justify-center p-2">
           <Button
-            aria-label="Reset"
+            aria-label={t("button.reset")}
             onClick={() => {
               onUpdateFilter({
                 ...filter,
@@ -246,7 +248,7 @@ export default function MobileReviewSettingsDrawer({
               });
             }}
           >
-            Reset
+            {t("button.reset")}
           </Button>
         </div>
       </div>
@@ -259,10 +261,10 @@ export default function MobileReviewSettingsDrawer({
             className="absolute left-0 text-selected"
             onClick={() => setDrawerMode("select")}
           >
-            Back
+            {t("action.back")}
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 text-muted-foreground">
-            Filter
+            {t("title.filter")}
           </div>
         </div>
         <GeneralFilterContent
@@ -316,7 +318,7 @@ export default function MobileReviewSettingsDrawer({
         <DrawerTrigger asChild>
           <Button
             className="rounded-lg capitalize"
-            aria-label="Filters"
+            aria-label={t("button.filters")}
             variant={
               filter?.labels || filter?.after || filter?.zones
                 ? "select"

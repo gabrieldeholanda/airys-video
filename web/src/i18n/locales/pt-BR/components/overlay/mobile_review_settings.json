@@ -1,0 +1,16 @@
+{
+  "button": {
+    "export": "Exportar",
+    "calendar": "Calendário",
+    "filter": "Filtrar",
+    "filters": "Filtros",
+    "reset": "Redefinir"
+  },
+  "title": {
+    "calendar": "Calendário",
+    "filter": "Filtro"
+  },
+  "action": {
+    "back": "Voltar"
+  }
+} 

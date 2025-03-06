@@ -77,9 +77,9 @@ export default function Events() {
 
   useEffect(() => {
     if (recording) {
-      document.title = "Recordings - Frigate";
+      document.title = "Recordings - Airys";
     } else {
-      document.title = `Review - Frigate`;
+      document.title = `Review - Airys`;
     }
   }, [recording, severity]);
 

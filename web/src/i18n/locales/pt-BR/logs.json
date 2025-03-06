@@ -1,0 +1,47 @@
+{
+  "title": "Logs do Sistema",
+  "noLogs": "Nenhum log encontrado",
+  "settings": {
+    "title": "Configurações de Log",
+    "filter": {
+      "title": "Filtro",
+      "description": "Filtrar logs por severidade."
+    },
+    "loading": {
+      "title": "Carregamento",
+      "description": "Quando o painel de logs é rolado até o final, novos logs são transmitidos automaticamente conforme são adicionados.",
+      "disableStreaming": "Desativar transmissão de logs"
+    }
+  },
+  "severity": {
+    "debug": "Debug",
+    "info": "Info",
+    "warning": "Aviso",
+    "error": "Erro",
+    "critical": "Crítico"
+  },
+  "filters": {
+    "search": "Pesquisar logs...",
+    "severity": "Severidade",
+    "component": "Componente",
+    "timeRange": "Período",
+    "apply": "Aplicar Filtros",
+    "reset": "Redefinir Filtros"
+  },
+  "components": {
+    "system": "Sistema",
+    "camera": "Câmera",
+    "detector": "Detector",
+    "recorder": "Gravador",
+    "storage": "Armazenamento",
+    "network": "Rede",
+    "api": "API"
+  },
+  "actions": {
+    "copy": "Copiar Log",
+    "download": "Baixar Logs",
+    "clear": "Limpar Logs",
+    "pause": "Pausar Transmissão",
+    "resume": "Retomar Transmissão"
+  }
+} 

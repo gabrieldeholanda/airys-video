@@ -55,11 +55,13 @@ import { TooltipPortal } from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 import useSWR from "swr";
 import RestartDialog from "../overlay/dialog/RestartDialog";
+import { useTranslation } from "react-i18next";
 
 type GeneralSettingsProps = {
   className?: string;
 };
 export default function GeneralSettings({ className }: GeneralSettingsProps) {
+  const { t: translate } = useTranslation(['ui']);
   const { data: profile } = useSWR("profile");
   const { data: config } = useSWR("config");
   const logoutUrl = config?.proxy?.logout_url || "/api/logout";
@@ -99,7 +101,7 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent side="right">
-                <p>Settings</p>
+                <p>{translate('menu.general.tooltip')}</p>
               </TooltipContent>
             </TooltipPortal>
           </Tooltip>
@@ -123,7 +125,7 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
             {isMobile && (
               <>
                 <DropdownMenuLabel>
-                  Current User: {profile?.username || "anonymous"}
+                  {translate('menu.general.current_user', { username: profile?.username || "anonymous" })}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator
                   className={isDesktop ? "mt-3" : "mt-1"}
@@ -134,16 +136,16 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                       ? "cursor-pointer"
                       : "flex items-center p-2 text-sm"
                   }
-                  aria-label="Log out"
+                  aria-label={translate('menu.general.logout')}
                 >
                   <a className="flex" href={logoutUrl}>
                     <LuLogOut className="mr-2 size-4" />
-                    <span>Logout</span>
+                    <span>{translate('menu.general.logout')}</span>
                   </a>
                 </MenuItem>
               </>
             )}
-            <DropdownMenuLabel>System</DropdownMenuLabel>
+            <DropdownMenuLabel>{translate('menu.general.sections.system.title')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup className={isDesktop ? "" : "flex flex-col"}>
               <Link to="/system#general">
@@ -153,10 +155,10 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                       ? "cursor-pointer"
                       : "flex w-full items-center p-2 text-sm"
                   }
-                  aria-label="System metrics"
+                  aria-label={translate('menu.general.sections.system.metrics')}
                 >
                   <LuActivity className="mr-2 size-4" />
-                  <span>System metrics</span>
+                  <span>{translate('menu.general.sections.system.metrics')}</span>
                 </MenuItem>
               </Link>
               <Link to="/logs">
@@ -166,15 +168,15 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                       ? "cursor-pointer"
                       : "flex w-full items-center p-2 text-sm"
                   }
-                  aria-label="System logs"
+                  aria-label={translate('menu.general.sections.system.logs')}
                 >
                   <LuList className="mr-2 size-4" />
-                  <span>System logs</span>
+                  <span>{translate('menu.general.sections.system.logs')}</span>
                 </MenuItem>
               </Link>
             </DropdownMenuGroup>
             <DropdownMenuLabel className={isDesktop ? "mt-3" : "mt-1"}>
-              Configuration
+              {translate('menu.general.sections.configuration.title')}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
@@ -185,10 +187,10 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                       ? "cursor-pointer"
                       : "flex w-full items-center p-2 text-sm"
                   }
-                  aria-label="Settings"
+                  aria-label={translate('menu.general.sections.configuration.settings')}
                 >
                   <LuSettings className="mr-2 size-4" />
-                  <span>Settings</span>
+                  <span>{translate('menu.general.sections.configuration.settings')}</span>
                 </MenuItem>
               </Link>
               <Link to="/config">
@@ -198,14 +200,14 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                       ? "cursor-pointer"
                       : "flex w-full items-center p-2 text-sm"
                   }
-                  aria-label="Configuration editor"
+                  aria-label={translate('menu.general.sections.configuration.editor')}
                 >
                   <LuPenSquare className="mr-2 size-4" />
-                  <span>Configuration editor</span>
+                  <span>{translate('menu.general.sections.configuration.editor')}</span>
                 </MenuItem>
               </Link>
               <DropdownMenuLabel className={isDesktop ? "mt-3" : "mt-1"}>
-                Appearance
+                {translate('menu.general.sections.appearance.title')}
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <SubItem>
@@ -217,7 +219,7 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                   }
                 >
                   <LuSunMoon className="mr-2 size-4" />
-                  <span>Dark Mode</span>
+                  <span>{translate('menu.general.sections.appearance.dark_mode.title')}</span>
                 </SubItemTrigger>
                 <Portal>
                   <SubItemContent
@@ -232,16 +234,16 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                           ? "cursor-pointer"
                           : "flex items-center p-2 text-sm"
                       }
-                      aria-label="Light mode"
+                      aria-label={translate('menu.general.sections.appearance.dark_mode.light')}
                       onClick={() => setTheme("light")}
                     >
                       {theme === "light" ? (
                         <>
                           <LuSun className="mr-2 size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                          Light
+                          {translate('menu.general.sections.appearance.dark_mode.light')}
                         </>
                       ) : (
-                        <span className="ml-6 mr-2">Light</span>
+                        <span className="ml-6 mr-2">{translate('menu.general.sections.appearance.dark_mode.light')}</span>
                       )}
                     </MenuItem>
                     <MenuItem
@@ -250,16 +252,16 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                           ? "cursor-pointer"
                           : "flex items-center p-2 text-sm"
                       }
-                      aria-label="Dark mode"
+                      aria-label={translate('menu.general.sections.appearance.dark_mode.dark')}
                       onClick={() => setTheme("dark")}
                     >
                       {theme === "dark" ? (
                         <>
                           <LuMoon className="mr-2 size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                          Dark
+                          {translate('menu.general.sections.appearance.dark_mode.dark')}
                         </>
                       ) : (
-                        <span className="ml-6 mr-2">Dark</span>
+                        <span className="ml-6 mr-2">{translate('menu.general.sections.appearance.dark_mode.dark')}</span>
                       )}
                     </MenuItem>
                     <MenuItem
@@ -268,16 +270,16 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                           ? "cursor-pointer"
                           : "flex items-center p-2 text-sm"
                       }
-                      aria-label="Use the system settings for light or dark mode"
+                      aria-label={translate('menu.general.sections.appearance.dark_mode.system')}
                       onClick={() => setTheme("system")}
                     >
                       {theme === "system" ? (
                         <>
                           <CgDarkMode className="mr-2 size-4 scale-100 transition-all" />
-                          System
+                          {translate('menu.general.sections.appearance.dark_mode.system')}
                         </>
                       ) : (
-                        <span className="ml-6 mr-2">System</span>
+                        <span className="ml-6 mr-2">{translate('menu.general.sections.appearance.dark_mode.system')}</span>
                       )}
                     </MenuItem>
                   </SubItemContent>
@@ -292,7 +294,7 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
                   }
                 >
                   <LuSunMoon className="mr-2 size-4" />
-                  <span>Theme</span>
+                  <span>{translate('menu.general.sections.appearance.theme.title')}</span>
                 </SubItemTrigger>
                 <Portal>
                   <SubItemContent
@@ -329,32 +331,32 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
               </SubItem>
             </DropdownMenuGroup>
             <DropdownMenuLabel className={isDesktop ? "mt-3" : "mt-1"}>
-              Help
+              {translate('menu.general.sections.help.title')}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <a href="https://docs.frigate.video" target="_blank">
+            <a href="https://chat.airys.com.br/hc/help/pt_BR/" target="_blank">
               <MenuItem
                 className={
                   isDesktop ? "cursor-pointer" : "flex items-center p-2 text-sm"
                 }
-                aria-label="Frigate documentation"
+                aria-label={translate('menu.general.sections.help.documentation')}
               >
                 <LuLifeBuoy className="mr-2 size-4" />
-                <span>Documentation</span>
+                <span>{translate('menu.general.sections.help.documentation')}</span>
               </MenuItem>
             </a>
             <a
-              href="https://github.com/blakeblackshear/frigate"
+              href="https://github.com/gabrieldeholanda/airys-video"
               target="_blank"
             >
               <MenuItem
                 className={
                   isDesktop ? "cursor-pointer" : "flex items-center p-2 text-sm"
                 }
-                aria-label="Frigate Github"
+                aria-label={translate('menu.general.sections.help.github')}
               >
                 <LuGithub className="mr-2 size-4" />
-                <span>GitHub</span>
+                <span>{translate('menu.general.sections.help.github')}</span>
               </MenuItem>
             </a>
             <DropdownMenuSeparator className={isDesktop ? "mt-3" : "mt-1"} />
@@ -362,11 +364,11 @@ export default function GeneralSettings({ className }: GeneralSettingsProps) {
               className={
                 isDesktop ? "cursor-pointer" : "flex items-center p-2 text-sm"
               }
-              aria-label="Restart Frigate"
+              aria-label={translate('menu.general.actions.restart')}
               onClick={() => setRestartDialogOpen(true)}
             >
               <LuRotateCw className="mr-2 size-4" />
-              <span>Restart Frigate</span>
+              <span>{translate('menu.general.actions.restart')}</span>
             </MenuItem>
           </div>
         </Content>

@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "back": {
+      "label": "Go Back",
+      "text": "Back"
+    },
+    "fullscreen": {
+      "enter": "Fullscreen",
+      "exit": "Close"
+    },
+    "pip": {
+      "enter": "Picture in Picture",
+      "exit": "Close"
+    }
+  }
+} 

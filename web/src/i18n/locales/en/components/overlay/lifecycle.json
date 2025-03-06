@@ -1,0 +1,16 @@
+{
+  "status": {
+    "visible": "{{label}} detected",
+    "entered_zone": "{{label}} entered {{zones}}",
+    "active": "{{label}} became active",
+    "stationary": "{{label}} became stationary",
+    "attribute": {
+      "face": "face detected for {{label}}",
+      "license_plate": "license plate detected for {{label}}",
+      "other": "{{label}} recognized as {{attribute}}"
+    },
+    "gone": "{{label}} left",
+    "heard": "{{label}} heard",
+    "external": "{{label}} detected"
+  }
+} 

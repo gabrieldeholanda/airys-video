@@ -1,0 +1,155 @@
+{
+  "timestamp": "2025-02-25T21:01:39.566157+00:00",
+  "service_url": "https://airys-video-qoiqfemsva-uc.a.run.app",
+  "tests": {
+    "version_latency": {
+      "min": 159.08360481262207,
+      "max": 3397.892713546753,
+      "avg": 333.24084758758545,
+      "median": 250.91373920440674,
+      "p95": 913.0849361419678,
+      "p99": 4389.548587799072,
+      "error_rate": 0.0
+    },
+    "inference_latency": {
+      "min": 162.79983520507812,
+      "max": 773.404598236084,
+      "avg": 251.27235412597656,
+      "median": 209.85400676727295,
+      "p95": 590.866208076477,
+      "p99": 856.9685435295105,
+      "error_rate": 0.0
+    },
+    "storage_latency": {
+      "min": 155.99560737609863,
+      "max": 513.9338970184326,
+      "avg": 265.414834022522,
+      "median": 255.03253936767578,
+      "p95": 454.34677600860596,
+      "p99": 528.6802625656128,
+      "error_rate": 0.0
+    },
+    "gpu_info_latency": {
+      "min": 156.0232639312744,
+      "max": 585.2787494659424,
+      "avg": 275.6113386154175,
+      "median": 263.5796070098877,
+      "p95": 443.548059463501,
+      "p99": 635.7377314567566,
+      "error_rate": 0.0
+    },
+    "gpu_inference_latency": {
+      "min": 180.33194541931152,
+      "max": 872.678279876709,
+      "avg": 288.9496946334839,
+      "median": 259.48798656463623,
+      "p95": 518.9213037490845,
+      "p99": 1024.0170240402222,
+      "error_rate": 0.0
+    },
+    "gpu_video_processing_latency": {
+      "min": 269.4277763366699,
+      "max": 887.8483772277832,
+      "avg": 397.0823335647583,
+      "median": 360.6196641921997,
+      "p95": 742.4482822418213,
+      "p99": 914.6806502342224,
+      "error_rate": 0.0
+    },
+    "version_load": {
+      "duration": 30,
+      "concurrent_users": 5,
+      "total_requests": 485,
+      "requests_per_second": 16.166666666666668,
+      "error_rate": 0.0,
+      "latency_stats": {
+        "min": 151.3993740081787,
+        "max": 467.41318702697754,
+        "avg": 210.4671709316293,
+        "median": 173.7816333770752,
+        "p95": 309.2289686203003,
+        "p99": 342.82639026641846
+      }
+    },
+    "inference_load": {
+      "duration": 30,
+      "concurrent_users": 5,
+      "total_requests": 555,
+      "requests_per_second": 18.5,
+      "error_rate": 0.0,
+      "latency_stats": {
+        "min": 160.0334644317627,
+        "max": 394.3972587585449,
+        "avg": 170.2112438442471,
+        "median": 166.00322723388672,
+        "p95": 187.2117519378662,
+        "p99": 257.68571853637695
+      }
+    },
+    "storage_load": {
+      "duration": 30,
+      "concurrent_users": 5,
+      "total_requests": 494,
+      "requests_per_second": 16.466666666666665,
+      "error_rate": 0.0,
+      "latency_stats": {
+        "min": 151.7007350921631,
+        "max": 394.0165042877197,
+        "avg": 205.06420840135954,
+        "median": 167.7020788192749,
+        "p95": 308.4351420402527,
+        "p99": 340.6830310821533
+      }
+    },
+    "gpu_info_load": {
+      "duration": 30,
+      "concurrent_users": 5,
+      "total_requests": 530,
+      "requests_per_second": 17.666666666666668,
+      "error_rate": 0.0,
+      "latency_stats": {
+        "min": 152.6930332183838,
+        "max": 400.27451515197754,
+        "avg": 183.0558713876976,
+        "median": 163.08140754699707,
+        "p95": 300.3223180770874,
+        "p99": 322.76607275009155
+      }
+    },
+    "gpu_inference_load": {
+      "duration": 30,
+      "concurrent_users": 5,
+      "total_requests": 515,
+      "requests_per_second": 17.166666666666668,
+      "error_rate": 0.0,
+      "latency_stats": {
+        "min": 172.81746864318848,
+        "max": 1170.781135559082,
+        "avg": 192.5614167185663,
+        "median": 178.54619026184082,
+        "p95": 207.77063369750977,
+        "p99": 668.1811237335205
+      }
+    },
+    "gpu_video_processing_load": {
+      "duration": 30,
+      "concurrent_users": 5,
+      "total_requests": 228,
+      "requests_per_second": 7.6,
+      "error_rate": 0.0,
+      "latency_stats": {
+        "min": 348.47545623779297,
+        "max": 860.7861995697021,
+        "avg": 563.6907355827198,
+        "median": 561.974048614502,
+        "p95": 585.4354619979858,
+        "p99": 714.904248714447
+      }
+    }
+  },
+  "resource_metrics": {},
+  "gpu_metrics": {},
+  "hardware_info": {
+    "error": "Expecting value: line 2 column 1 (char 1)"
+  }
+}

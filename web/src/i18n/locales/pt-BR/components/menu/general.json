@@ -1,0 +1,41 @@
+{
+  "tooltip": "Configurações",
+  "current_user": "Usuário Atual: {{username}}",
+  "logout": "Sair",
+  "account": {
+    "tooltip": "Conta",
+    "title": "Conta"
+  },
+  "sections": {
+    "system": {
+      "title": "Sistema",
+      "metrics": "Métricas do sistema",
+      "logs": "Registros do sistema"
+    },
+    "configuration": {
+      "title": "Configuração",
+      "settings": "Configurações",
+      "editor": "Editor de configuração"
+    },
+    "appearance": {
+      "title": "Aparência",
+      "dark_mode": {
+        "title": "Modo Escuro",
+        "light": "Claro",
+        "dark": "Escuro",
+        "system": "Sistema"
+      },
+      "theme": {
+        "title": "Tema"
+      }
+    },
+    "help": {
+      "title": "Ajuda",
+      "documentation": "Documentação",
+      "github": "GitHub"
+    }
+  },
+  "actions": {
+    "restart": "Reiniciar Frigate"
+  }
+} 

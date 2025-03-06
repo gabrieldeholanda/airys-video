@@ -1,0 +1,31 @@
+{
+  "title": "Camera Probe Info",
+  "description": "Stream data is obtained with ffprobe.",
+  "stream": "Stream {{number}}",
+  "video": {
+    "title": "Video:",
+    "codec": "Codec:",
+    "resolution": {
+      "label": "Resolution:",
+      "unknown": "Unknown",
+      "format": "{{width}}x{{height}} ({{aspectWidth}}/{{aspectHeight}} aspect ratio)"
+    },
+    "fps": {
+      "label": "FPS:",
+      "unknown": "Unknown"
+    }
+  },
+  "audio": {
+    "title": "Audio:",
+    "codec": "Codec:"
+  },
+  "error": {
+    "label": "Error:",
+    "probe": "Unable to probe camera: {{message}}",
+    "copy": "Copied probe data to clipboard."
+  },
+  "loading": "Fetching Camera Data",
+  "button": {
+    "copy": "Copy"
+  }
+} 

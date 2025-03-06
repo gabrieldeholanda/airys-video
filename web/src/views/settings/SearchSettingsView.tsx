@@ -20,20 +20,18 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
-type SearchSettingsViewProps = {
-  setUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
-};
+type SearchSettingsViewProps = {};
 
 type SearchSettings = {
-  enabled?: boolean;
-  reindex?: boolean;
+  enabled: boolean;
+  reindex: boolean;
   model_size?: SearchModelSize;
 };
 
-export default function SearchSettingsView({
-  setUnsavedChanges,
-}: SearchSettingsViewProps) {
+export default function SearchSettingsView({}: SearchSettingsViewProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config, mutate: updateConfig } =
     useSWR<FrigateConfig>("config");
   const [changedValue, setChangedValue] = useState(false);
@@ -42,14 +40,14 @@ export default function SearchSettingsView({
   const { addMessage, removeMessage } = useContext(StatusBarMessagesContext)!;
 
   const [searchSettings, setSearchSettings] = useState<SearchSettings>({
-    enabled: undefined,
-    reindex: undefined,
+    enabled: false,
+    reindex: false,
     model_size: undefined,
   });
 
   const [origSearchSettings, setOrigSearchSettings] = useState<SearchSettings>({
-    enabled: undefined,
-    reindex: undefined,
+    enabled: false,
+    reindex: false,
     model_size: undefined,
   });
 
@@ -75,7 +73,6 @@ export default function SearchSettingsView({
 
   const handleSearchConfigChange = (newConfig: Partial<SearchSettings>) => {
     setSearchSettings((prevConfig) => ({ ...prevConfig, ...newConfig }));
-    setUnsavedChanges(true);
     setChangedValue(true);
   };
 
@@ -91,20 +88,23 @@ export default function SearchSettingsView({
       )
       .then((res) => {
         if (res.status === 200) {
-          toast.success("Explore settings have been saved.", {
+          toast.success(translate('settings.search.messages.saved'), {
             position: "top-center",
           });
           setChangedValue(false);
           updateConfig();
         } else {
-          toast.error(`Failed to save config changes: ${res.statusText}`, {
-            position: "top-center",
-          });
+          toast.error(
+            translate('settings.search.messages.saveError', { error: res.statusText }),
+            { position: "top-center" },
+          );
         }
       })
       .catch((error) => {
         toast.error(
-          `Failed to save config changes: ${error.response.data.message}`,
+          translate('settings.search.messages.saveError', {
+            error: error.response.data.message,
+          }),
           { position: "top-center" },
         );
       })
@@ -116,6 +116,7 @@ export default function SearchSettingsView({
     searchSettings.enabled,
     searchSettings.reindex,
     searchSettings.model_size,
+    translate,
   ]);
 
   const onCancel = useCallback(() => {
@@ -140,8 +141,8 @@ export default function SearchSettingsView({
   }, [changedValue]);
 
   useEffect(() => {
-    document.title = "Explore Settings - Frigate";
-  }, []);
+    document.title = translate('settings.search.title') + " - Airys";
+  }, [translate]);
 
   if (!config) {
     return <ActivityIndicator />;
@@ -152,28 +153,25 @@ export default function SearchSettingsView({
       <Toaster position="top-center" closeButton={true} />
       <div className="scrollbar-container order-last mb-10 mt-2 flex h-full w-full flex-col overflow-y-auto rounded-lg border-[1px] border-secondary-foreground bg-background_alt p-2 md:order-none md:mb-0 md:mr-2 md:mt-0">
         <Heading as="h3" className="my-2">
-          Explore Settings
+          {translate('settings.search.title')}
         </Heading>
         <Separator className="my-2 flex bg-secondary" />
         <Heading as="h4" className="my-2">
-          Semantic Search
+          {translate('settings.search.semantic.title')}
         </Heading>
         <div className="max-w-6xl">
           <div className="mb-5 mt-2 flex max-w-5xl flex-col gap-2 text-sm text-primary-variant">
             <p>
-              Semantic Search in Frigate allows you to find tracked objects
-              within your review items using either the image itself, a
-              user-defined text description, or an automatically generated one.
+              {translate('settings.search.semantic.description')}
             </p>
-
             <div className="flex items-center text-primary">
               <Link
-                to="https://docs.frigate.video/configuration/semantic_search"
+                to="https://chat.airys.com.br/hc/help/pt_BR/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline"
               >
-                Read the Documentation
+                {translate('settings.search.semantic.readDocs')}{" "}
                 <LuExternalLink className="ml-2 inline-flex size-3" />
               </Link>
             </div>
@@ -185,14 +183,13 @@ export default function SearchSettingsView({
             <Switch
               id="enabled"
               className="mr-3"
-              disabled={searchSettings.enabled === undefined}
-              checked={searchSettings.enabled === true}
-              onCheckedChange={(isChecked) => {
-                handleSearchConfigChange({ enabled: isChecked });
+              checked={searchSettings.enabled}
+              onCheckedChange={(checked) => {
+                handleSearchConfigChange({ enabled: checked });
               }}
             />
             <div className="space-y-0.5">
-              <Label htmlFor="enabled">Enabled</Label>
+              <Label htmlFor="enabled">{translate('settings.search.semantic.enabled.title')}</Label>
             </div>
           </div>
           <div className="flex flex-col">
@@ -200,38 +197,32 @@ export default function SearchSettingsView({
               <Switch
                 id="reindex"
                 className="mr-3"
-                disabled={searchSettings.reindex === undefined}
-                checked={searchSettings.reindex === true}
-                onCheckedChange={(isChecked) => {
-                  handleSearchConfigChange({ reindex: isChecked });
+                checked={searchSettings.reindex}
+                onCheckedChange={(checked) => {
+                  handleSearchConfigChange({ reindex: checked });
                 }}
               />
               <div className="space-y-0.5">
-                <Label htmlFor="reindex">Re-Index On Startup</Label>
+                <Label htmlFor="reindex">{translate('settings.search.semantic.reindex.title')}</Label>
               </div>
             </div>
             <div className="mt-3 text-sm text-muted-foreground">
-              Re-indexing will reprocess all thumbnails and descriptions (if
-              enabled) and apply the embeddings on each startup.{" "}
-              <em>Don't forget to disable the option after restarting!</em>
+              {translate('settings.search.semantic.reindex.description')}
             </div>
           </div>
           <div className="mt-2 flex flex-col space-y-6">
             <div className="space-y-0.5">
-              <div className="text-md">Model Size</div>
+              <div className="text-md">{translate('settings.search.semantic.model.title')}</div>
               <div className="space-y-1 text-sm text-muted-foreground">
                 <p>
-                  The size of the model used for Semantic Search embeddings.
+                  {translate('settings.search.semantic.model.description')}
                 </p>
                 <ul className="list-disc pl-5 text-sm">
                   <li>
-                    Using <em>small</em> employs a quantized version of the
-                    model that uses less RAM and runs faster on CPU with a very
-                    negligible difference in embedding quality.
+                    {translate('settings.search.semantic.model.small.description')}
                   </li>
                   <li>
-                    Using <em>large</em> employs the full Jina model and will
-                    automatically run on the GPU if applicable.
+                    {translate('settings.search.semantic.model.large.description')}
                   </li>
                 </ul>
               </div>
@@ -255,7 +246,7 @@ export default function SearchSettingsView({
                       className="cursor-pointer"
                       value={size}
                     >
-                      {size}
+                      {translate(`settings.search.semantic.model.${size}.title`)}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -267,7 +258,7 @@ export default function SearchSettingsView({
 
         <div className="flex w-full flex-row items-center gap-2 pt-2 md:w-[25%]">
           <Button className="flex flex-1" aria-label="Reset" onClick={onCancel}>
-            Reset
+            {translate('settings.search.actions.reset')}
           </Button>
           <Button
             variant="select"
@@ -279,10 +270,10 @@ export default function SearchSettingsView({
             {isLoading ? (
               <div className="flex flex-row items-center gap-2">
                 <ActivityIndicator />
-                <span>Saving...</span>
+                <span>{translate('settings.search.actions.saving')}</span>
               </div>
             ) : (
-              "Save"
+              translate('settings.search.actions.save')
             )}
           </Button>
         </div>

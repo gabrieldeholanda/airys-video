@@ -1,0 +1,26 @@
+{
+  "title": {
+    "new": "Nova Máscara de Objeto",
+    "edit": "Editar Máscara de Objeto"
+  },
+  "description": "Máscaras de filtro de objeto são usadas para filtrar falsos positivos para um determinado tipo de objeto com base na localização.",
+  "points": {
+    "count_zero": "0 pontos",
+    "count_one": "1 ponto",
+    "count_other": "{{count}} pontos"
+  },
+  "draw_instructions": "Clique para desenhar um polígono na imagem.",
+  "form": {
+    "objects": {
+      "label": "Objetos",
+      "placeholder": "Selecione um tipo de objeto",
+      "all": "Todos os tipos de objetos",
+      "description": "O tipo de objeto que se aplica a esta máscara de objeto."
+    }
+  },
+  "actions": {
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  }
+} 

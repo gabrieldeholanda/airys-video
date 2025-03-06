@@ -1,0 +1,32 @@
+{
+  "reviewed": {
+    "label": "Show Reviewed",
+    "aria": "Show reviewed"
+  },
+  "motion": {
+    "label": "Motion only",
+    "aria": "Show Motion Only"
+  },
+  "general": {
+    "button": {
+      "label": "Filter",
+      "aria": "Filter"
+    },
+    "labels": {
+      "title": "All Labels",
+      "all": "All Labels"
+    },
+    "zones": {
+      "title": "All Zones",
+      "all": "All Zones"
+    },
+    "severity": {
+      "alerts": "Alerts",
+      "detections": "Detections"
+    }
+  },
+  "actions": {
+    "apply": "Apply",
+    "reset": "Reset"
+  }
+} 

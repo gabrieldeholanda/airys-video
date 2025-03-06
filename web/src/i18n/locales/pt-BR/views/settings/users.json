@@ -1,0 +1,73 @@
+{
+  "title": "Gerenciamento de Usuários",
+  "description": "Gerenciar contas e permissões de usuários",
+  "users": {
+    "list": {
+      "title": "Usuários",
+      "empty": "Nenhum usuário encontrado",
+      "headers": {
+        "username": "Nome de Usuário",
+        "role": "Função",
+        "lastLogin": "Último Acesso",
+        "status": "Status",
+        "actions": "Ações"
+      }
+    },
+    "roles": {
+      "admin": "Administrador",
+      "user": "Usuário",
+      "viewer": "Visualizador"
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "locked": "Bloqueado"
+    }
+  },
+  "actions": {
+    "add": {
+      "title": "Adicionar Usuário",
+      "button": "Adicionar Novo Usuário"
+    },
+    "edit": {
+      "title": "Editar Usuário",
+      "button": "Salvar Alterações"
+    },
+    "delete": {
+      "title": "Excluir Usuário",
+      "button": "Excluir Usuário",
+      "confirm": "Tem certeza que deseja excluir este usuário?"
+    }
+  },
+  "form": {
+    "username": {
+      "label": "Nome de Usuário",
+      "placeholder": "Digite o nome de usuário"
+    },
+    "password": {
+      "label": "Senha",
+      "placeholder": "Digite a senha",
+      "confirm": "Confirme a senha"
+    },
+    "role": {
+      "label": "Função",
+      "placeholder": "Selecione a função"
+    },
+    "status": {
+      "label": "Status",
+      "placeholder": "Selecione o status"
+    }
+  },
+  "messages": {
+    "success": {
+      "add": "Usuário adicionado com sucesso",
+      "edit": "Usuário atualizado com sucesso",
+      "delete": "Usuário excluído com sucesso"
+    },
+    "error": {
+      "add": "Erro ao adicionar usuário: {{error}}",
+      "edit": "Erro ao atualizar usuário: {{error}}",
+      "delete": "Erro ao excluir usuário: {{error}}"
+    }
+  }
+} 

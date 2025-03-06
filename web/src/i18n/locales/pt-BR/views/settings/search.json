@@ -1,0 +1,56 @@
+{
+  "title": "Configurações de Busca",
+  "settings": {
+    "button": "Configurações de Exploração",
+    "title": "Configurações",
+    "defaultView": {
+      "title": "Visualização Padrão",
+      "description": "Quando nenhum filtro estiver selecionado, exibir um resumo dos objetos rastreados mais recentes por rótulo, ou exibir uma grade sem filtros.",
+      "summary": "Resumo",
+      "grid": "Grade sem Filtros"
+    },
+    "columns": {
+      "title": "Colunas da Grade",
+      "description": "Selecione o número de colunas na visualização em grade."
+    },
+    "source": {
+      "title": "Fonte de Busca",
+      "description": "Escolha se deseja pesquisar nas miniaturas ou descrições dos seus objetos rastreados.",
+      "thumbnail": "Imagem em Miniatura",
+      "description": "Descrição"
+    }
+  },
+  "semantic": {
+    "title": "Busca Semântica",
+    "description": "O Frigate pode usar aprendizado de máquina para buscar objetos com base em sua aparência visual ou descrição.",
+    "readDocs": "Ler a Documentação",
+    "enabled": {
+      "title": "Ativar Busca Semântica"
+    },
+    "reindex": {
+      "title": "Reindexar na Inicialização",
+      "description": "Quando ativado, o Frigate reindexará todos os objetos na inicialização. Isso é útil se você fez alterações em seus rótulos de objetos ou deseja garantir que todos os objetos estejam indexados."
+    },
+    "model": {
+      "title": "Tamanho do Modelo",
+      "description": "Escolha o tamanho do modelo que melhor atende às suas necessidades. Modelos maiores são mais precisos, mas usam mais recursos.",
+      "small": {
+        "title": "Pequeno",
+        "description": "Mais rápido, mas menos preciso. Bom para buscas básicas."
+      },
+      "large": {
+        "title": "Grande",
+        "description": "Mais preciso, mas usa mais recursos. Melhor para buscas detalhadas."
+      }
+    }
+  },
+  "messages": {
+    "saved": "Configurações de busca foram salvas.",
+    "saveError": "Falha ao salvar alterações de configuração: {{error}}"
+  },
+  "actions": {
+    "reset": "Redefinir",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  }
+} 

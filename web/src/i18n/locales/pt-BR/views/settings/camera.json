@@ -1,0 +1,83 @@
+{
+  "title": "Configurações da Câmera",
+  "add": {
+    "title": "Adicionar Câmera",
+    "description": "Adicionar uma nova câmera para monitorar",
+    "button": "Adicionar Câmera"
+  },
+  "edit": {
+    "title": "Editar Câmera",
+    "description": "Modificar configurações da câmera",
+    "button": "Salvar Alterações"
+  },
+  "delete": {
+    "title": "Excluir Câmera",
+    "description": "Remover esta câmera",
+    "confirm": "Tem certeza que deseja excluir esta câmera?",
+    "button": "Excluir Câmera"
+  },
+  "settings": {
+    "general": {
+      "title": "Configurações Gerais",
+      "name": "Nome da Câmera",
+      "enabled": "Câmera Ativada",
+      "url": "URL da Câmera",
+      "urlDescription": "URL RTSP, HTTP ou dispositivo local"
+    },
+    "video": {
+      "title": "Configurações de Vídeo",
+      "width": "Largura",
+      "height": "Altura",
+      "fps": "FPS",
+      "quality": "Qualidade",
+      "codec": "Codec",
+      "hwaccel": "Aceleração de Hardware"
+    },
+    "audio": {
+      "title": "Configurações de Áudio",
+      "enabled": "Áudio Ativado",
+      "input": "Entrada de Áudio",
+      "output": "Saída de Áudio"
+    },
+    "onvif": {
+      "title": "Configurações ONVIF",
+      "enabled": "ONVIF Ativado",
+      "host": "Host",
+      "port": "Porta",
+      "username": "Usuário",
+      "password": "Senha"
+    },
+    "review": {
+      "title": "Revisão",
+      "alerts": {
+        "title": "Alertas",
+        "description": "Ativar/desativar alertas e detecções para esta câmera. Quando desativado, nenhum novo item de revisão será gerado."
+      },
+      "detections": {
+        "title": "Detecções",
+        "limitZones": "Limitar detecções a zonas específicas"
+      },
+      "classification": {
+        "title": "Classificação de Revisão",
+        "description": "O Frigate categoriza itens de revisão como Alertas e Detecções. Por padrão, todos os objetos de pessoa e carro são considerados Alertas. Você pode refinar a categorização de seus itens de revisão configurando zonas necessárias para eles.",
+        "readDocs": "Ler a Documentação",
+        "noZones": "Nenhuma zona está definida para esta câmera.",
+        "selectZones": "Selecionar zonas",
+        "alertsInfo": "Todos os objetos de pessoa e carro em {{camera}} serão mostrados como Alertas.",
+        "detectionsInfo": "Todos os objetos {{objects}} não classificados como Alertas {{zones.length ? 'que são detectados em ' + zones : ''}} em {{camera}} serão mostrados como Detecções{{zoneInfo}}",
+        "regardlessZone": ", independentemente da zona"
+      },
+      "actions": {
+        "save": "Salvar",
+        "cancel": "Cancelar"
+      }
+    }
+  },
+  "status": {
+    "online": "Câmera Online",
+    "offline": "Câmera Offline",
+    "disabled": "Câmera Desativada",
+    "error": "Erro na Câmera",
+    "reconnecting": "Reconectando..."
+  }
+} 

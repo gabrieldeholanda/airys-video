@@ -1,0 +1,19 @@
+{
+  "button": {
+    "label": "Cameras Filter",
+    "text": {
+      "default": "Cameras",
+      "all": "All Cameras",
+      "selected": "{{count}} Camera",
+      "selected_plural": "{{count}} Cameras"
+    }
+  },
+  "filter": {
+    "title": "Cameras",
+    "all_cameras": "All Cameras"
+  },
+  "actions": {
+    "apply": "Apply",
+    "reset": "Reset"
+  }
+} 

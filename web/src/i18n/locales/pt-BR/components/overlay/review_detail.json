@@ -1,0 +1,26 @@
+{
+  "title": "Detalhes do Item de Revisão",
+  "description": "Detalhes do item de revisão",
+  "actions": {
+    "share": "Compartilhar este item de revisão",
+    "download": "Baixar",
+    "explore": "Ver no Explorar",
+    "lifecycle": "Ver Ciclo de Vida do Objeto",
+    "similar": "Encontrar Similares",
+    "plus": "Enviar para Frigate+"
+  },
+  "fields": {
+    "camera": "Câmera",
+    "timestamp": "Data e Hora",
+    "objects": "Objetos",
+    "zones": "Zonas"
+  },
+  "unavailable": {
+    "message": {
+      "single": "1 objeto estava",
+      "multiple": "{{count}} objetos estavam",
+      "description": "{{objects}} indisponível(is) detectado(s) e incluído(s) neste item de revisão. Esses objetos não se qualificaram como alerta ou detecção ou já foram limpos/excluídos.",
+      "config": "Ajuste sua configuração se você quiser que o Frigate salve objetos rastreados para os seguintes rótulos: {{labels}}"
+    }
+  }
+} 

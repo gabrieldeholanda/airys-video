@@ -1,0 +1,90 @@
+{
+  "filters": {
+    "title": "Filters",
+    "cameras": {
+      "label": "Cameras",
+      "all": "All Cameras",
+      "none": "No Cameras"
+    },
+    "reviewed": {
+      "label": "Show Reviewed",
+      "description": "Include reviewed events"
+    },
+    "motion_only": {
+      "label": "Motion Only",
+      "description": "Show only motion events"
+    },
+    "general": {
+      "title": "General Filters",
+      "labels": {
+        "title": "Labels",
+        "all": "All Labels",
+        "none": "No Labels"
+      },
+      "zones": {
+        "title": "Zones",
+        "all": "All Zones",
+        "none": "No Zones"
+      },
+      "show_all": "Show All Events",
+      "apply": "Apply Filters",
+      "reset": "Reset Filters"
+    },
+    "date": {
+      "title": "Date",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "custom": "Custom Date"
+    }
+  },
+  "review": {
+    "counts": {
+      "alert": "Alert Events",
+      "detection": "Detection Events",
+      "significant_motion": "Motion Events"
+    },
+    "actions": {
+      "mark_reviewed": "Mark as Reviewed",
+      "mark_all_reviewed": "Mark All as Reviewed",
+      "export": "Export Event",
+      "select_all": "Select All",
+      "deselect_all": "Deselect All"
+    },
+    "status": {
+      "loading": "Loading events...",
+      "no_events": "No events found",
+      "export_success": "Successfully started export. View the file in the /exports folder.",
+      "export_error": "Failed to start export: {{error}}"
+    }
+  },
+  "timeline": {
+    "zoom": {
+      "in": "Zoom In",
+      "out": "Zoom Out",
+      "reset": "Reset Zoom"
+    },
+    "navigation": {
+      "previous": "Previous Event",
+      "next": "Next Event",
+      "latest": "Latest Events"
+    }
+  },
+  "severity": {
+    "alert": "Alerts",
+    "detection": "Detections",
+    "motion": "Motion"
+  },
+  "empty": {
+    "alert": "There are no alerts to review",
+    "detection": "There are no detections to review",
+    "motion": "No motion data found"
+  },
+  "actions": {
+    "mark_reviewed": "Mark these items as reviewed",
+    "select_camera": "Select a camera"
+  },
+  "counts": {
+    "alerts": "Alerts ∙ {{count}}",
+    "detections": "Detections ∙ {{count}}"
+  }
+} 

@@ -1,0 +1,17 @@
+{
+  "edit_mode": {
+    "title": "Modo de Edição",
+    "description": "Arraste e solte as câmeras para reorganizá-las"
+  },
+  "actions": {
+    "edit": "Editar Layout",
+    "save": "Salvar Layout",
+    "reset": "Redefinir Layout"
+  },
+  "messages": {
+    "save": {
+      "success": "Layout salvo com sucesso.",
+      "error": "Falha ao salvar layout: {{error}}"
+    }
+  }
+} 

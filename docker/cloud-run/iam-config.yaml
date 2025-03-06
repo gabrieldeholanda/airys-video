@@ -1,0 +1,71 @@
+resources:
+  # Cloud Run Service Account
+  - type: iam.v1.serviceAccount
+    name: airys-cloud-run
+    properties:
+      accountId: airys-cloud-run
+      displayName: "Airys Video Cloud Run Service Account"
+      description: "Service account for Airys Video Cloud Run service"
+
+  # Storage Service Account
+  - type: iam.v1.serviceAccount
+    name: airys-storage
+    properties:
+      accountId: airys-storage
+      displayName: "Airys Video Storage Service Account"
+      description: "Service account for Airys Video storage operations"
+
+  # IAM Bindings for Cloud Run Service Account
+  - type: iam.v1.serviceAccountIamBinding
+    name: airys-cloud-run-binding
+    properties:
+      serviceAccount: projects/airys-production/serviceAccounts/airys-cloud-run@airys-production.iam.gserviceaccount.com
+      role: roles/run.invoker
+      members:
+        - serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com
+
+  # IAM Bindings for Storage Service Account
+  - type: iam.v1.serviceAccountIamBinding
+    name: airys-storage-binding
+    properties:
+      serviceAccount: projects/airys-production/serviceAccounts/airys-storage@airys-production.iam.gserviceaccount.com
+      role: roles/storage.admin
+      members:
+        - serviceAccount:airys-storage@airys-production.iam.gserviceaccount.com
+
+  # Bucket IAM Bindings
+  - type: storage.v1.bucketIamMember
+    name: airys-video-storage-access
+    properties:
+      bucket: airys-video-storage
+      role: roles/storage.objectViewer
+      member: serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com
+
+  - type: storage.v1.bucketIamMember
+    name: airys-video-models-access
+    properties:
+      bucket: airys-video-models
+      role: roles/storage.objectViewer
+      member: serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com
+
+  - type: storage.v1.bucketIamMember
+    name: airys-video-temp-access
+    properties:
+      bucket: airys-video-temp
+      role: roles/storage.objectAdmin
+      member: serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com
+
+  # Additional Required Roles
+  - type: projects.iam.v1.policy
+    name: project-policy
+    properties:
+      bindings:
+        - role: roles/monitoring.metricWriter
+          members:
+            - serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com
+        - role: roles/logging.logWriter
+          members:
+            - serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com
+        - role: roles/secretmanager.secretAccessor
+          members:
+            - serviceAccount:airys-cloud-run@airys-production.iam.gserviceaccount.com 

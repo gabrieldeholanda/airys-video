@@ -1,0 +1,21 @@
+{
+  "sidebar": {
+    "toggle": "Toggle sidebar",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar"
+  },
+  "header": {
+    "menu": "Menu",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "main": {
+    "skip_to_content": "Skip to main content",
+    "loading": "Loading content..."
+  },
+  "footer": {
+    "version": "Version {{version}}",
+    "copyright": "© {{year}} All rights reserved"
+  }
+} 

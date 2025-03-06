@@ -1,0 +1,49 @@
+{
+  "all_cameras": "All Cameras",
+  "add": {
+    "button": "Add camera group",
+    "title": "Add Camera Group",
+    "description": "Edit camera groups"
+  },
+  "edit": {
+    "button": "Edit camera group",
+    "title": "Edit Camera Group",
+    "description": "Edit camera group"
+  },
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Enter a name...",
+      "validation": {
+        "min_length": "Camera group name must be at least 2 characters.",
+        "exists": "Camera group name already exists.",
+        "invalid_chars": "Camera group name must not contain a period.",
+        "reserved": "Invalid camera group name."
+      }
+    },
+    "cameras": {
+      "label": "Cameras",
+      "description": "Select cameras for this group.",
+      "settings": "Camera streaming settings"
+    },
+    "icon": {
+      "label": "Icon"
+    }
+  },
+  "delete": {
+    "title": "Confirm Delete",
+    "description": "Are you sure you want to delete the camera group <em>{{name}}</em>?",
+    "button": "Delete"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "messages": {
+    "save_success": "Camera group ({{name}}) has been saved.",
+    "save_error": "Failed to save config changes: {{error}}"
+  }
+} 

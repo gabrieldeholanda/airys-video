@@ -1,0 +1,19 @@
+{
+  "title": {
+    "new": "New Motion Mask",
+    "edit": "Edit Motion Mask"
+  },
+  "description": "Motion masks are used to prevent unwanted types of motion from triggering detection (example: tree branches, camera timestamps). Motion masks should be used very sparingly, over-masking will make it more difficult for objects to be tracked.",
+  "points": {
+    "count_zero": "0 points",
+    "count_one": "1 point",
+    "count_other": "{{count}} points"
+  },
+  "draw_instructions": "Click to draw a polygon on the image.",
+  "documentation": "Read the documentation",
+  "actions": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  }
+} 

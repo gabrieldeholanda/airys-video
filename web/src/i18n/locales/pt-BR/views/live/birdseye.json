@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "back": {
+      "label": "Voltar",
+      "text": "Voltar"
+    },
+    "fullscreen": {
+      "enter": "Tela Cheia",
+      "exit": "Fechar"
+    },
+    "pip": {
+      "enter": "Picture in Picture",
+      "exit": "Fechar"
+    }
+  }
+} 

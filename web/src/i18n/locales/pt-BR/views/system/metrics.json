@@ -1,0 +1,86 @@
+{
+  "detectors": {
+    "title": "Detectores",
+    "inference": {
+      "title": "Velocidade de Inferência do Detector"
+    },
+    "temperature": {
+      "title": "Temperatura do Detector"
+    },
+    "cpu": {
+      "title": "Uso de CPU do Detector"
+    },
+    "memory": {
+      "title": "Uso de Memória do Detector"
+    }
+  },
+  "gpus": {
+    "title": "GPUs",
+    "hardware_info": "Informações de Hardware",
+    "usage": {
+      "title": "Uso da GPU"
+    },
+    "memory": {
+      "title": "Memória da GPU"
+    },
+    "encoder": {
+      "title": "Codificador da GPU"
+    },
+    "decoder": {
+      "title": "Decodificador da GPU"
+    }
+  },
+  "processes": {
+    "title": "Outros Processos",
+    "cpu": {
+      "title": "Uso de CPU do Processo"
+    },
+    "memory": {
+      "title": "Uso de Memória do Processo"
+    }
+  },
+  "storage": {
+    "overview": {
+      "title": "Visão Geral",
+      "recordings": {
+        "title": "Gravações",
+        "info": "Este valor representa o armazenamento total usado pelas gravações no banco de dados do Frigate. O Frigate não rastreia o uso de armazenamento para todos os arquivos em seu disco.",
+        "earliest": "Gravação mais antiga disponível:"
+      },
+      "cache": {
+        "title": "/tmp/cache"
+      },
+      "shm": {
+        "title": "/dev/shm"
+      }
+    },
+    "camera": {
+      "title": "Armazenamento das Câmeras"
+    }
+  },
+  "cameras": {
+    "overview": {
+      "title": "Visão Geral",
+      "frames": {
+        "title": "Quadros / Detecções"
+      }
+    },
+    "details": {
+      "cpu": {
+        "title": "CPU"
+      },
+      "frames": {
+        "title": "Quadros / Detecções"
+      },
+      "probe": {
+        "button": "Informações de Sonda da Câmera"
+      }
+    }
+  },
+  "features": {
+    "title": "Recursos",
+    "inference": {
+      "title": "Tempo de Inferência"
+    }
+  }
+} 

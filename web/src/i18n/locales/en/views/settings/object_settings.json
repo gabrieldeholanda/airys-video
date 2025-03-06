@@ -1,0 +1,77 @@
+{
+  "title": "Object Settings",
+  "description": {
+    "detectors": "Frigate uses your detectors ({{detectors}}) to detect objects in your camera's video stream.",
+    "debug": "Debugging view shows a real-time view of tracked objects and their statistics. The object list shows a time-delayed summary of detected objects."
+  },
+  "webui": {
+    "open": "Open {{camera}}'s Web UI"
+  },
+  "tabs": {
+    "debug": "Debugging",
+    "object_list": "Object List"
+  },
+  "debug_options": {
+    "bbox": {
+      "title": "Bounding boxes",
+      "description": "Show bounding boxes around tracked objects",
+      "info": {
+        "title": "Object Bounding Box Colors",
+        "items": {
+          "startup": "At startup, different colors will be assigned to each object label",
+          "not_detected": "A dark blue thin line indicates that object is not detected at this current point in time",
+          "stationary": "A gray thin line indicates that object is detected as being stationary",
+          "autotracking": "A thick line indicates that object is the subject of autotracking (when enabled)"
+        }
+      }
+    },
+    "timestamp": {
+      "title": "Timestamp",
+      "description": "Overlay a timestamp on the image"
+    },
+    "zones": {
+      "title": "Zones",
+      "description": "Show an outline of any defined zones"
+    },
+    "mask": {
+      "title": "Motion masks",
+      "description": "Show motion mask polygons"
+    },
+    "motion": {
+      "title": "Motion boxes",
+      "description": "Show boxes around areas where motion is detected",
+      "info": {
+        "title": "Motion Boxes",
+        "description": "Red boxes will be overlaid on areas of the frame where motion is currently being detected"
+      }
+    },
+    "regions": {
+      "title": "Regions",
+      "description": "Show a box of the region of interest sent to the object detector",
+      "info": {
+        "title": "Region Boxes",
+        "description": "Bright green boxes will be overlaid on areas of interest in the frame that are being sent to the object detector."
+      }
+    }
+  },
+  "shape_filter": {
+    "title": "Object Shape Filter Drawing",
+    "description": "Draw a rectangle on the image to view area and ratio details",
+    "info": {
+      "description": "Enable this option to draw a rectangle on the camera image to show its area and ratio. These values can then be used to set object shape filter parameters in your config.",
+      "documentation": "Read the documentation"
+    }
+  },
+  "object_list": {
+    "empty": "No objects",
+    "stats": {
+      "score": "Score",
+      "ratio": "Ratio",
+      "area": {
+        "title": "Area",
+        "px": "px: {{value}}",
+        "percent": "%: {{value}}"
+      }
+    }
+  }
+} 

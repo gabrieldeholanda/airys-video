@@ -1,0 +1,12 @@
+{
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "disabled": "Disabled"
+  },
+  "actions": {
+    "snapshot": "Take Snapshot",
+    "record": "Record",
+    "restart": "Restart Camera"
+  }
+} 

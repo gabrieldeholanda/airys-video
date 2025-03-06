@@ -7,6 +7,8 @@ import AccountSettings from "../menu/AccountSettings";
 import useNavigation from "@/hooks/use-navigation";
 import { baseUrl } from "@/api/baseUrl";
 import { useMemo } from "react";
+import { useAuth } from '../../context/AuthContext';
+import { UserCircle, CreditCard } from 'lucide-react';
 
 function Sidebar() {
   const basePath = useMemo(() => new URL(baseUrl).pathname, []);
@@ -15,6 +17,7 @@ function Sidebar() {
   const isBasePathMatch = useMatch(basePath);
 
   const navbarLinks = useNavigation();
+  const { user } = useAuth();
 
   return (
     <aside className="scrollbar-container scrollbar-hidden absolute inset-y-0 left-0 z-10 flex w-[52px] flex-col justify-between overflow-y-auto border-r border-secondary-highlight bg-background_alt py-4">
@@ -38,6 +41,22 @@ function Sidebar() {
             </div>
           );
         })}
+        <div className="flex flex-col items-center gap-2">
+          <Link
+            to="/account"
+            className="group relative rounded-lg p-2 hover:bg-accent"
+            title="Account Dashboard"
+          >
+            <CreditCard className="h-5 w-5" />
+          </Link>
+          <Link
+            to="/account/profile"
+            className="group relative rounded-lg p-2 hover:bg-accent"
+            title="Profile"
+          >
+            <UserCircle className="h-5 w-5" />
+          </Link>
+        </div>
       </div>
       <div className="mb-8 flex flex-col items-center gap-4">
         <GeneralSettings />

@@ -1,0 +1,42 @@
+{
+  "title": "Motion Tuner",
+  "description": "Adjust motion detection settings for optimal performance",
+  "settings": {
+    "threshold": {
+      "title": "Motion Threshold",
+      "description": "Minimum pixel difference to trigger motion detection",
+      "low": "Low (More Sensitive)",
+      "medium": "Medium",
+      "high": "High (Less Sensitive)"
+    },
+    "contours": {
+      "title": "Contour Settings",
+      "minArea": "Minimum Area",
+      "maxArea": "Maximum Area",
+      "threshold": "Contour Threshold"
+    },
+    "frames": {
+      "title": "Frame Settings",
+      "frameSkip": "Frame Skip",
+      "fps": "Target FPS",
+      "improve": "Improve Detection"
+    }
+  },
+  "preview": {
+    "title": "Motion Preview",
+    "original": "Original",
+    "detection": "Detection",
+    "mask": "Mask",
+    "refresh": "Refresh Preview"
+  },
+  "actions": {
+    "apply": "Apply Settings",
+    "reset": "Reset to Default",
+    "save": "Save Changes"
+  },
+  "status": {
+    "applying": "Applying settings...",
+    "success": "Settings applied successfully",
+    "error": "Error applying settings: {{error}}"
+  }
+} 

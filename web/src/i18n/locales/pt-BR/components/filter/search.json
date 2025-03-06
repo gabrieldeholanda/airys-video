@@ -1,0 +1,35 @@
+{
+  "general": {
+    "title": "Geral",
+    "description": "Filtrar por câmera, rótulo, zona e mais",
+    "labels": {
+      "title": "Rótulos",
+      "all": "Todos os Rótulos",
+      "none": "Nenhum rótulo disponível"
+    },
+    "cameras": {
+      "title": "Câmeras",
+      "all": "Todas as Câmeras",
+      "none": "Nenhuma câmera disponível"
+    },
+    "zones": {
+      "title": "Zonas",
+      "all": "Todas as Zonas",
+      "none": "Nenhuma zona disponível"
+    }
+  },
+  "sort": {
+    "title": "Ordenar",
+    "description": "Ordenar resultados por data ou pontuação",
+    "types": {
+      "date_desc": "Data (Mais recente)",
+      "date_asc": "Data (Mais antiga)",
+      "score_desc": "Pontuação (Maior)",
+      "score_asc": "Pontuação (Menor)"
+    }
+  },
+  "actions": {
+    "apply": "Aplicar",
+    "reset": "Redefinir"
+  }
+} 

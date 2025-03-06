@@ -1,0 +1,61 @@
+{
+  "title": "Configurações de Autenticação",
+  "users": {
+    "title": "Usuários",
+    "actions": {
+      "add": "Adicionar Usuário",
+      "add_aria": "Adicionar um novo usuário",
+      "update_password": "Atualizar Senha",
+      "update_password_aria": "Atualizar a senha do usuário",
+      "delete": "Excluir",
+      "delete_aria": "Excluir o usuário"
+    }
+  },
+  "errors": {
+    "set_password": "Erro ao definir senha",
+    "create_user": "Erro ao criar usuário. Verifique os logs do servidor.",
+    "delete_user": "Erro ao excluir usuário. Verifique os logs do servidor."
+  },
+  "dialogs": {
+    "create_user": {
+      "title": "Criar Usuário",
+      "description": "Criar uma nova conta de usuário",
+      "form": {
+        "username": {
+          "label": "Usuário",
+          "placeholder": "Digite o nome de usuário"
+        },
+        "password": {
+          "label": "Senha",
+          "placeholder": "Digite a senha"
+        }
+      },
+      "actions": {
+        "cancel": "Cancelar",
+        "create": "Criar"
+      }
+    },
+    "update_password": {
+      "title": "Atualizar Senha",
+      "description": "Atualizar senha do usuário",
+      "form": {
+        "password": {
+          "label": "Nova Senha",
+          "placeholder": "Digite a nova senha"
+        }
+      },
+      "actions": {
+        "cancel": "Cancelar",
+        "update": "Atualizar"
+      }
+    },
+    "delete_user": {
+      "title": "Excluir Usuário",
+      "description": "Tem certeza que deseja excluir este usuário?",
+      "actions": {
+        "cancel": "Cancelar",
+        "confirm": "Excluir"
+      }
+    }
+  }
+} 

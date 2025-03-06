@@ -1,0 +1,68 @@
+{
+  "title": "Configurações de Depuração",
+  "description": "Configurações avançadas para solução de problemas e depuração",
+  "settings": {
+    "logging": {
+      "title": "Registro",
+      "level": {
+        "title": "Nível de Registro",
+        "debug": "Depuração",
+        "info": "Informação",
+        "warning": "Aviso",
+        "error": "Erro"
+      },
+      "retention": {
+        "title": "Retenção de Registros",
+        "description": "Número de dias para manter os registros",
+        "days": "{{count}} dias"
+      }
+    },
+    "performance": {
+      "title": "Monitoramento de Desempenho",
+      "enabled": "Ativar Monitoramento de Desempenho",
+      "metrics": {
+        "title": "Métricas",
+        "cpu": "Uso de CPU",
+        "memory": "Uso de Memória",
+        "gpu": "Uso de GPU",
+        "disk": "Uso de Disco"
+      }
+    },
+    "diagnostics": {
+      "title": "Diagnósticos",
+      "system": {
+        "title": "Informações do Sistema",
+        "os": "Sistema Operacional",
+        "python": "Versão do Python",
+        "ffmpeg": "Versão do FFmpeg"
+      },
+      "network": {
+        "title": "Rede",
+        "test": "Testar Conexão",
+        "status": "Status da Conexão"
+      }
+    }
+  },
+  "actions": {
+    "download": {
+      "title": "Baixar Registros",
+      "all": "Baixar Todos os Registros",
+      "filtered": "Baixar Registros Filtrados"
+    },
+    "test": {
+      "title": "Executar Testes",
+      "start": "Iniciar Teste",
+      "stop": "Parar Teste"
+    },
+    "clear": {
+      "title": "Limpar Dados",
+      "logs": "Limpar Registros",
+      "cache": "Limpar Cache"
+    }
+  },
+  "status": {
+    "testing": "Executando testes...",
+    "success": "Testes concluídos com sucesso",
+    "error": "Erro durante os testes: {{error}}"
+  }
+} 

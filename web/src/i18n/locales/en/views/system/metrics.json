@@ -1,0 +1,86 @@
+{
+  "detectors": {
+    "title": "Detectors",
+    "inference": {
+      "title": "Detector Inference Speed"
+    },
+    "temperature": {
+      "title": "Detector Temperature"
+    },
+    "cpu": {
+      "title": "Detector CPU Usage"
+    },
+    "memory": {
+      "title": "Detector Memory Usage"
+    }
+  },
+  "gpus": {
+    "title": "GPUs",
+    "hardware_info": "Hardware Info",
+    "usage": {
+      "title": "GPU Usage"
+    },
+    "memory": {
+      "title": "GPU Memory"
+    },
+    "encoder": {
+      "title": "GPU Encoder"
+    },
+    "decoder": {
+      "title": "GPU Decoder"
+    }
+  },
+  "processes": {
+    "title": "Other Processes",
+    "cpu": {
+      "title": "Process CPU Usage"
+    },
+    "memory": {
+      "title": "Process Memory Usage"
+    }
+  },
+  "storage": {
+    "overview": {
+      "title": "Overview",
+      "recordings": {
+        "title": "Recordings",
+        "info": "This value represents the total storage used by the recordings in Frigate's database. Frigate does not track storage usage for all files on your disk.",
+        "earliest": "Earliest recording available:"
+      },
+      "cache": {
+        "title": "/tmp/cache"
+      },
+      "shm": {
+        "title": "/dev/shm"
+      }
+    },
+    "camera": {
+      "title": "Camera Storage"
+    }
+  },
+  "cameras": {
+    "overview": {
+      "title": "Overview",
+      "frames": {
+        "title": "Frames / Detections"
+      }
+    },
+    "details": {
+      "cpu": {
+        "title": "CPU"
+      },
+      "frames": {
+        "title": "Frames / Detections"
+      },
+      "probe": {
+        "button": "Camera Probe Info"
+      }
+    }
+  },
+  "features": {
+    "title": "Features",
+    "inference": {
+      "title": "Inference Time"
+    }
+  }
+} 

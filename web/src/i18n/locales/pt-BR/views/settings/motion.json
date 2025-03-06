@@ -1,0 +1,42 @@
+{
+  "title": "Ajuste de Movimento",
+  "description": "Ajustar configurações de detecção de movimento para desempenho ideal",
+  "settings": {
+    "threshold": {
+      "title": "Limiar de Movimento",
+      "description": "Diferença mínima de pixels para acionar a detecção de movimento",
+      "low": "Baixo (Mais Sensível)",
+      "medium": "Médio",
+      "high": "Alto (Menos Sensível)"
+    },
+    "contours": {
+      "title": "Configurações de Contorno",
+      "minArea": "Área Mínima",
+      "maxArea": "Área Máxima",
+      "threshold": "Limiar de Contorno"
+    },
+    "frames": {
+      "title": "Configurações de Quadros",
+      "frameSkip": "Pular Quadros",
+      "fps": "FPS Alvo",
+      "improve": "Melhorar Detecção"
+    }
+  },
+  "preview": {
+    "title": "Prévia de Movimento",
+    "original": "Original",
+    "detection": "Detecção",
+    "mask": "Máscara",
+    "refresh": "Atualizar Prévia"
+  },
+  "actions": {
+    "apply": "Aplicar Configurações",
+    "reset": "Restaurar Padrão",
+    "save": "Salvar Alterações"
+  },
+  "status": {
+    "applying": "Aplicando configurações...",
+    "success": "Configurações aplicadas com sucesso",
+    "error": "Erro ao aplicar configurações: {{error}}"
+  }
+} 

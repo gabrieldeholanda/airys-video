@@ -16,21 +16,25 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
+import { useTranslation } from "react-i18next";
 
 type CreateUserOverlayProps = {
   show: boolean;
   onCreate: (user: string, password: string) => void;
   onCancel: () => void;
 };
+
 export default function CreateUserDialog({
   show,
   onCreate,
   onCancel,
 }: CreateUserOverlayProps) {
+  const { t: translate } = useTranslation(['views']);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const formSchema = z.object({
@@ -63,7 +67,10 @@ export default function CreateUserDialog({
     <Dialog open={show} onOpenChange={onCancel}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create User</DialogTitle>
+          <DialogTitle>{translate('settings.authentication.dialogs.create_user.title')}</DialogTitle>
+          <DialogDescription>
+            {translate('settings.authentication.dialogs.create_user.description')}
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -71,10 +78,11 @@ export default function CreateUserDialog({
               name="user"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>User</FormLabel>
+                  <FormLabel>{translate('settings.authentication.dialogs.create_user.form.username.label')}</FormLabel>
                   <FormControl>
                     <Input
                       className="text-md w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark]"
+                      placeholder={translate('settings.authentication.dialogs.create_user.form.username.placeholder')}
                       {...field}
                     />
                   </FormControl>
@@ -86,11 +94,12 @@ export default function CreateUserDialog({
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{translate('settings.authentication.dialogs.create_user.form.password.label')}</FormLabel>
                   <FormControl>
                     <Input
                       className="text-md w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark]"
                       type="password"
+                      placeholder={translate('settings.authentication.dialogs.create_user.form.password.placeholder')}
                       {...field}
                     />
                   </FormControl>
@@ -99,12 +108,18 @@ export default function CreateUserDialog({
             />
             <DialogFooter className="mt-4">
               <Button
+                type="button"
+                variant="secondary"
+                onClick={onCancel}
+              >
+                {translate('settings.authentication.dialogs.create_user.actions.cancel')}
+              </Button>
+              <Button
                 variant="select"
-                aria-label="Create user"
                 disabled={isLoading}
               >
                 {isLoading && <ActivityIndicator className="mr-2 h-4 w-4" />}
-                Create User
+                {translate('settings.authentication.dialogs.create_user.actions.create')}
               </Button>
             </DialogFooter>
           </form>

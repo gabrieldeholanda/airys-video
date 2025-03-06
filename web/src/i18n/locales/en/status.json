@@ -1,0 +1,48 @@
+{
+  "title": "System Status",
+  "healthy": "System is healthy",
+  "cpu": "CPU {{percent}}%",
+  "gpu": {
+    "amd-vaapi": "AMD GPU",
+    "intel-vaapi": "Intel GPU",
+    "intel-qsv": "Intel GPU",
+    "usage": "{{name}} {{percent}}%"
+  },
+  "reindexing": "Reindexing embeddings ({{percent}}% complete)",
+  "memory": {
+    "title": "Memory",
+    "used": "Used",
+    "free": "Free",
+    "total": "Total",
+    "usage": "{{used}} / {{total}} ({{percent}}%)"
+  },
+  "storage": {
+    "title": "Storage",
+    "used": "Used",
+    "free": "Free",
+    "total": "Total",
+    "usage": "{{used}} / {{total}} ({{percent}}%)"
+  },
+  "network": {
+    "title": "Network",
+    "up": "Upload",
+    "down": "Download",
+    "usage": "{{speed}} {{unit}}/s"
+  },
+  "cameras": {
+    "title": "Cameras",
+    "online": "Online",
+    "offline": "Offline",
+    "recording": "Recording",
+    "status": "{{online}} online, {{offline}} offline"
+  },
+  "problems": {
+    "title": "Problems",
+    "noProblems": "No problems detected",
+    "storage": "Low storage space",
+    "memory": "High memory usage",
+    "cpu": "High CPU usage",
+    "network": "Network connectivity issues",
+    "camera": "Camera connectivity issues"
+  }
+} 

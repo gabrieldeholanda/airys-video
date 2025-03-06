@@ -1,0 +1,52 @@
+{
+  "objects": {
+    "person": "pessoa",
+    "car": "carro",
+    "cat": "gato",
+    "dog": "cachorro",
+    "bird": "pássaro",
+    "bear": "urso",
+    "bicycle": "bicicleta",
+    "boat": "barco",
+    "bus": "ônibus",
+    "vehicle": "veículo",
+    "deer": "cervo",
+    "animal": "animal",
+    "bark": "latido",
+    "fox": "raposa",
+    "goat": "cabra",
+    "horse": "cavalo",
+    "motorcycle": "motocicleta",
+    "mouse": "rato",
+    "package": "pacote",
+    "rabbit": "coelho",
+    "raccoon": "guaxinim",
+    "robot_lawnmower": "cortador de grama robô",
+    "sports_ball": "bola esportiva",
+    "squirrel": "esquilo",
+    "umbrella": "guarda-chuva",
+    "waste_bin": "lixeira"
+  },
+  "audio": {
+    "crying": "choro",
+    "laughter": "riso",
+    "scream": "grito",
+    "speech": "fala",
+    "yell": "grito",
+    "fire_alarm": "alarme de incêndio"
+  },
+  "sub_labels": {
+    "amazon": "Amazon",
+    "an_post": "An Post",
+    "dpd": "DPD",
+    "gls": "GLS",
+    "nzpost": "NZ Post",
+    "postnl": "PostNL",
+    "postnord": "PostNord",
+    "purolator": "Purolator",
+    "dhl": "DHL",
+    "fedex": "FedEx",
+    "ups": "UPS",
+    "usps": "USPS"
+  }
+} 

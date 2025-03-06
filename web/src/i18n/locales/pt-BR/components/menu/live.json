@@ -1,0 +1,17 @@
+{
+  "camera_name": {
+    "low_bandwidth": "Modo de baixa largura de banda"
+  },
+  "audio": {
+    "title": "Áudio"
+  },
+  "actions": {
+    "mute_all": "Silenciar Todas as Câmeras",
+    "unmute_all": "Ativar Som de Todas as Câmeras",
+    "show_stats": "Mostrar Estatísticas do Stream",
+    "hide_stats": "Ocultar Estatísticas do Stream",
+    "debug_view": "Visualização de Depuração",
+    "streaming_settings": "Configurações de Streaming",
+    "reset": "Redefinir"
+  }
+} 

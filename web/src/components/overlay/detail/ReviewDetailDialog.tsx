@@ -41,6 +41,7 @@ import { useOverlayState } from "@/hooks/use-overlay-state";
 import { DownloadVideoButton } from "@/components/button/DownloadVideoButton";
 import { TooltipPortal } from "@radix-ui/react-tooltip";
 import { LuSearch } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
 type ReviewDetailDialogProps = {
   review?: ReviewSegment;
@@ -50,6 +51,7 @@ export default function ReviewDetailDialog({
   review,
   setReview,
 }: ReviewDetailDialogProps) {
+  const { t: translate } = useTranslation(['ui']);
   const { data: config } = useSWR<FrigateConfig>("config", {
     revalidateOnFocus: false,
   });
@@ -168,8 +170,8 @@ export default function ReviewDetailDialog({
           <span tabIndex={0} className="sr-only" />
           {pane == "overview" && (
             <Header className="justify-center">
-              <Title>Review Item Details</Title>
-              <Description className="sr-only">Review item details</Description>
+              <Title>{translate('overlay.review_detail.title')}</Title>
+              <Description className="sr-only">{translate('overlay.review_detail.description')}</Description>
               <div
                 className={cn(
                   "absolute flex gap-2 lg:flex-col",
@@ -180,7 +182,7 @@ export default function ReviewDetailDialog({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      aria-label="Share this review item"
+                      aria-label={translate('overlay.review_detail.actions.share')}
                       size="sm"
                       onClick={() =>
                         shareOrCopy(`${baseUrl}review?id=${review.id}`)
@@ -190,7 +192,7 @@ export default function ReviewDetailDialog({
                     </Button>
                   </TooltipTrigger>
                   <TooltipPortal>
-                    <TooltipContent>Share this review item</TooltipContent>
+                    <TooltipContent>{translate('overlay.review_detail.actions.share')}</TooltipContent>
                   </TooltipPortal>
                 </Tooltip>
                 <Tooltip>
@@ -202,7 +204,7 @@ export default function ReviewDetailDialog({
                     />
                   </TooltipTrigger>
                   <TooltipPortal>
-                    <TooltipContent>Download</TooltipContent>
+                    <TooltipContent>{translate('overlay.review_detail.actions.download')}</TooltipContent>
                   </TooltipPortal>
                 </Tooltip>
               </div>
@@ -213,19 +215,19 @@ export default function ReviewDetailDialog({
               <div className="flex w-full flex-row">
                 <div className="flex w-full flex-col gap-3">
                   <div className="flex flex-col gap-1.5">
-                    <div className="text-sm text-primary/40">Camera</div>
+                    <div className="text-sm text-primary/40">{translate('overlay.review_detail.fields.camera')}</div>
                     <div className="text-sm capitalize">
                       {review.camera.replaceAll("_", " ")}
                     </div>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <div className="text-sm text-primary/40">Timestamp</div>
+                    <div className="text-sm text-primary/40">{translate('overlay.review_detail.fields.timestamp')}</div>
                     <div className="text-sm">{formattedDate}</div>
                   </div>
                 </div>
                 <div className="flex w-full flex-col items-center gap-2">
                   <div className="flex w-full flex-col gap-1.5 lg:pr-8">
-                    <div className="text-sm text-primary/40">Objects</div>
+                    <div className="text-sm text-primary/40">{translate('overlay.review_detail.fields.objects')}</div>
                     <div className="scrollbar-container flex max-h-32 flex-col items-start gap-2 overflow-y-auto text-sm capitalize">
                       {events?.map((event) => {
                         return (
@@ -251,7 +253,7 @@ export default function ReviewDetailDialog({
                                 </div>
                               </TooltipTrigger>
                               <TooltipPortal>
-                                <TooltipContent>View in Explore</TooltipContent>
+                                <TooltipContent>{translate('overlay.review_detail.actions.explore')}</TooltipContent>
                               </TooltipPortal>
                             </Tooltip>
                           </div>
@@ -261,7 +263,7 @@ export default function ReviewDetailDialog({
                   </div>
                   {review.data.zones.length > 0 && (
                     <div className="scrollbar-container flex max-h-32 w-full flex-col gap-1.5">
-                      <div className="text-sm text-primary/40">Zones</div>
+                      <div className="text-sm text-primary/40">{translate('overlay.review_detail.fields.zones')}</div>
                       <div className="flex flex-col items-start gap-2 text-sm capitalize">
                         {review.data.zones.map((zone) => {
                           return (
@@ -285,18 +287,22 @@ export default function ReviewDetailDialog({
                       (events?.length ?? 0) -
                         (review?.data.detections.length ?? 0),
                     );
-                    const objectLabel =
-                      detectedCount === 1 ? "object was" : "objects were";
+                    const objectLabel = translate(
+                      detectedCount === 1 
+                        ? 'overlay.review_detail.unavailable.message.single'
+                        : 'overlay.review_detail.unavailable.message.multiple',
+                      { count: detectedCount }
+                    );
 
-                    return `${detectedCount} unavailable ${objectLabel} detected and included in this review item.`;
-                  })()}{" "}
-                  Those objects either did not qualify as an alert or detection
-                  or have already been cleaned up/deleted.
+                    return translate('overlay.review_detail.unavailable.message.description', {
+                      objects: objectLabel
+                    });
+                  })()}
                   {missingObjects.length > 0 && (
                     <div className="mt-2">
-                      Adjust your configuration if you want Frigate to save
-                      tracked objects for the following labels:{" "}
-                      {missingObjects.join(", ")}
+                      {translate('overlay.review_detail.unavailable.message.config', {
+                        labels: missingObjects.join(", ")
+                      })}
                     </div>
                   )}
                 </div>
@@ -339,6 +345,7 @@ function EventItem({
   setSelectedEvent,
   setUpload,
 }: EventItemProps) {
+  const { t: translate } = useTranslation(['ui']);
   const { data: config } = useSWR<FrigateConfig>("config", {
     revalidateOnFocus: false,
   });
@@ -408,7 +415,7 @@ function EventItem({
                     </Chip>
                   </a>
                 </TooltipTrigger>
-                <TooltipContent>Download</TooltipContent>
+                <TooltipContent>{translate('overlay.review_detail.actions.download')}</TooltipContent>
               </Tooltip>
 
               {event.has_snapshot &&
@@ -426,7 +433,7 @@ function EventItem({
                         <FrigatePlusIcon className="size-4 text-white" />
                       </Chip>
                     </TooltipTrigger>
-                    <TooltipContent>Submit to Frigate+</TooltipContent>
+                    <TooltipContent>{translate('overlay.review_detail.actions.plus')}</TooltipContent>
                   </Tooltip>
                 )}
 
@@ -443,7 +450,7 @@ function EventItem({
                       <FaArrowsRotate className="size-4 text-white" />
                     </Chip>
                   </TooltipTrigger>
-                  <TooltipContent>View Object Lifecycle</TooltipContent>
+                  <TooltipContent>{translate('overlay.review_detail.actions.lifecycle')}</TooltipContent>
                 </Tooltip>
               )}
 
@@ -461,7 +468,7 @@ function EventItem({
                       <FaImages className="size-4 text-white" />
                     </Chip>
                   </TooltipTrigger>
-                  <TooltipContent>Find Similar</TooltipContent>
+                  <TooltipContent>{translate('overlay.review_detail.actions.similar')}</TooltipContent>
                 </Tooltip>
               )}
             </div>

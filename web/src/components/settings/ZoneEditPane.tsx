@@ -29,6 +29,7 @@ import { toast } from "sonner";
 import { flattenPoints, interpolatePoints } from "@/utils/canvasUtil";
 import ActivityIndicator from "../indicators/activity-indicator";
 import { getAttributeLabels } from "@/utils/iconUtil";
+import { useTranslation } from "react-i18next";
 
 type ZoneEditPaneProps = {
   polygons?: Polygon[];
@@ -59,6 +60,7 @@ export default function ZoneEditPane({
   snapPoints,
   setSnapPoints,
 }: ZoneEditPaneProps) {
+  const { t: translate } = useTranslation(['views']);
   const { data: config, mutate: updateConfig } =
     useSWR<FrigateConfig>("config");
 
@@ -451,8 +453,8 @@ export default function ZoneEditPane({
   }
 
   useEffect(() => {
-    document.title = "Edit Zone - Frigate";
-  }, []);
+    document.title = translate('settings.zone_edit.title.edit', 'Edit Zone - Airys');
+  }, [translate]);
 
   if (!polygon) {
     return;
@@ -462,23 +464,16 @@ export default function ZoneEditPane({
     <>
       <Toaster position="top-center" closeButton={true} />
       <Heading as="h3" className="my-2">
-        {polygon.name.length ? "Edit" : "New"} Zone
+        {polygon.name.length ? translate('settings.zone_edit.title.edit') : translate('settings.zone_edit.title.new')}
       </Heading>
       <div className="my-2 text-sm text-muted-foreground">
-        <p>
-          Zones allow you to define a specific area of the frame so you can
-          determine whether or not an object is within a particular area.
-        </p>
+        <p>{translate('settings.zone_edit.description')}</p>
       </div>
       <Separator className="my-3 bg-secondary" />
       {polygons && activePolygonIndex !== undefined && (
         <div className="my-2 flex w-full flex-row justify-between text-sm">
           <div className="my-1 inline-flex">
-            {polygons[activePolygonIndex].points.length}{" "}
-            {polygons[activePolygonIndex].points.length > 1 ||
-            polygons[activePolygonIndex].points.length == 0
-              ? "points"
-              : "point"}
+            {translate('settings.zone_edit.points.count', { count: polygons[activePolygonIndex].points.length })}
             {polygons[activePolygonIndex].isFinished && (
               <FaCheckCircle className="ml-2 size-5" />
             )}
@@ -493,7 +488,7 @@ export default function ZoneEditPane({
         </div>
       )}
       <div className="mb-3 text-sm text-muted-foreground">
-        Click to draw a polygon on the image.
+        {translate('settings.zone_edit.draw_instructions')}
       </div>
 
       <Separator className="my-3 bg-secondary" />
@@ -505,17 +500,16 @@ export default function ZoneEditPane({
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{translate('settings.zone_edit.form.name.label')}</FormLabel>
                 <FormControl>
                   <Input
                     className="text-md w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark]"
-                    placeholder="Enter a name..."
+                    placeholder={translate('settings.zone_edit.form.name.placeholder')}
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  Name must be at least 2 characters and must not be the name of
-                  a camera or another zone.
+                  {translate('settings.zone_edit.form.name.description')}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -527,17 +521,16 @@ export default function ZoneEditPane({
             name="inertia"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Inertia</FormLabel>
+                <FormLabel>{translate('settings.zone_edit.form.inertia.label')}</FormLabel>
                 <FormControl>
                   <Input
                     className="text-md w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark]"
-                    placeholder="3"
+                    placeholder={translate('settings.zone_edit.form.inertia.placeholder')}
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  Specifies how many frames that an object must be in a zone
-                  before they are considered in the zone. <em>Default: 3</em>
+                  {translate('settings.zone_edit.form.inertia.description')}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -549,17 +542,16 @@ export default function ZoneEditPane({
             name="loitering_time"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Loitering Time</FormLabel>
+                <FormLabel>{translate('settings.zone_edit.form.loitering_time.label')}</FormLabel>
                 <FormControl>
                   <Input
                     className="text-md w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark]"
-                    placeholder="0"
+                    placeholder={translate('settings.zone_edit.form.loitering_time.placeholder')}
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  Sets a minimum amount of time in seconds that the object must
-                  be in the zone for it to activate. <em>Default: 0</em>
+                  {translate('settings.zone_edit.form.loitering_time.description')}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -567,9 +559,9 @@ export default function ZoneEditPane({
           />
           <Separator className="my-2 flex bg-secondary" />
           <FormItem>
-            <FormLabel>Objects</FormLabel>
+            <FormLabel>{translate('settings.zone_edit.form.objects.label')}</FormLabel>
             <FormDescription>
-              List of objects that apply to this zone.
+              {translate('settings.zone_edit.form.objects.description')}
             </FormDescription>
             <ZoneObjectSelector
               camera={polygon.camera}
@@ -603,7 +595,7 @@ export default function ZoneEditPane({
                         className="cursor-pointer text-primary"
                         htmlFor="allLabels"
                       >
-                        Speed Estimation
+                        {translate('settings.zone_edit.form.speed_estimation.label')}
                       </FormLabel>
                       <Switch
                         checked={field.value}
@@ -614,18 +606,13 @@ export default function ZoneEditPane({
                             activePolygonIndex &&
                             polygons[activePolygonIndex].points.length !== 4
                           ) {
-                            toast.error(
-                              "Zones with speed estimation must have exactly 4 points.",
-                            );
+                            toast.error(translate('settings.zone_edit.form.speed_estimation.error.points'));
                             return;
                           }
-                          const loiteringTime =
-                            form.getValues("loitering_time");
+                          const loiteringTime = form.getValues("loitering_time");
 
                           if (checked && loiteringTime && loiteringTime > 0) {
-                            toast.error(
-                              "Zones with loitering times greater than 0 should not be used with speed estimation.",
-                            );
+                            toast.error(translate('settings.zone_edit.form.speed_estimation.error.loitering'));
                           }
                           field.onChange(checked);
                         }}
@@ -634,8 +621,7 @@ export default function ZoneEditPane({
                   </FormControl>
                 </div>
                 <FormDescription>
-                  Enable speed estimation for objects in this zone. The zone
-                  must have exactly 4 points.
+                  {translate('settings.zone_edit.form.speed_estimation.description')}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -653,11 +639,9 @@ export default function ZoneEditPane({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Line A distance (
-                        {config?.ui.unit_system == "imperial"
-                          ? "feet"
-                          : "meters"}
-                        )
+                        {translate('settings.zone_edit.form.speed_estimation.lines.a', {
+                          unit: config?.ui.unit_system == "imperial" ? "feet" : "meters"
+                        })}
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -676,11 +660,9 @@ export default function ZoneEditPane({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Line B distance (
-                        {config?.ui.unit_system == "imperial"
-                          ? "feet"
-                          : "meters"}
-                        )
+                        {translate('settings.zone_edit.form.speed_estimation.lines.b', {
+                          unit: config?.ui.unit_system == "imperial" ? "feet" : "meters"
+                        })}
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -699,11 +681,9 @@ export default function ZoneEditPane({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Line C distance (
-                        {config?.ui.unit_system == "imperial"
-                          ? "feet"
-                          : "meters"}
-                        )
+                        {translate('settings.zone_edit.form.speed_estimation.lines.c', {
+                          unit: config?.ui.unit_system == "imperial" ? "feet" : "meters"
+                        })}
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -722,11 +702,9 @@ export default function ZoneEditPane({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Line D distance (
-                        {config?.ui.unit_system == "imperial"
-                          ? "feet"
-                          : "meters"}
-                        )
+                        {translate('settings.zone_edit.form.speed_estimation.lines.d', {
+                          unit: config?.ui.unit_system == "imperial" ? "feet" : "meters"
+                        })}
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -747,8 +725,9 @@ export default function ZoneEditPane({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Speed Threshold (
-                        {config?.ui.unit_system == "imperial" ? "mph" : "kph"})
+                        {translate('settings.zone_edit.form.speed_estimation.threshold.label', {
+                          unit: config?.ui.unit_system == "imperial" ? "mph" : "kph"
+                        })}
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -757,8 +736,7 @@ export default function ZoneEditPane({
                         />
                       </FormControl>
                       <FormDescription>
-                        Specifies a minimum speed for objects to be considered
-                        in this zone.
+                        {translate('settings.zone_edit.form.speed_estimation.threshold.description')}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -779,25 +757,25 @@ export default function ZoneEditPane({
           <div className="flex flex-row gap-2 pt-5">
             <Button
               className="flex flex-1"
-              aria-label="Cancel"
+              aria-label={translate('settings.zone_edit.actions.cancel')}
               onClick={onCancel}
             >
-              Cancel
+              {translate('settings.zone_edit.actions.cancel')}
             </Button>
             <Button
               variant="select"
               disabled={isLoading}
               className="flex flex-1"
-              aria-label="Save"
+              aria-label={translate('settings.zone_edit.actions.save')}
               type="submit"
             >
               {isLoading ? (
                 <div className="flex flex-row items-center gap-2">
                   <ActivityIndicator />
-                  <span>Saving...</span>
+                  <span>{translate('settings.zone_edit.actions.saving')}</span>
                 </div>
               ) : (
-                "Save"
+                translate('settings.zone_edit.actions.save')
               )}
             </Button>
           </div>

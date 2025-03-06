@@ -1,0 +1,116 @@
+{
+  "displayName": "Frigate Performance Alerts",
+  "documentation": {
+    "content": "Alert policies for monitoring Frigate performance metrics including detection rate, frame processing, and camera status.",
+    "mimeType": "text/markdown"
+  },
+  "conditions": [
+    {
+      "displayName": "Low Detection Rate",
+      "conditionThreshold": {
+        "filter": "metric.type=\"custom.googleapis.com/frigate/detection_rate\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+        "aggregations": [
+          {
+            "alignmentPeriod": "300s",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "crossSeriesReducer": "REDUCE_MEAN"
+          }
+        ],
+        "comparison": "COMPARISON_LT",
+        "thresholdValue": 5,
+        "duration": "300s",
+        "trigger": {
+          "count": 1
+        }
+      }
+    },
+    {
+      "displayName": "Frame Processing Rate Low",
+      "conditionThreshold": {
+        "filter": "metric.type=\"custom.googleapis.com/frigate/frame_processing_rate\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+        "aggregations": [
+          {
+            "alignmentPeriod": "300s",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "crossSeriesReducer": "REDUCE_MEAN"
+          }
+        ],
+        "comparison": "COMPARISON_LT",
+        "thresholdValue": 10,
+        "duration": "300s",
+        "trigger": {
+          "count": 1
+        }
+      }
+    },
+    {
+      "displayName": "Camera Offline",
+      "conditionThreshold": {
+        "filter": "metric.type=\"custom.googleapis.com/frigate/camera_status\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+        "aggregations": [
+          {
+            "alignmentPeriod": "300s",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "crossSeriesReducer": "REDUCE_MEAN"
+          }
+        ],
+        "comparison": "COMPARISON_LT",
+        "thresholdValue": 1,
+        "duration": "300s",
+        "trigger": {
+          "count": 1
+        }
+      }
+    },
+    {
+      "displayName": "High False Positive Rate",
+      "conditionThreshold": {
+        "filter": "metric.type=\"custom.googleapis.com/frigate/detection_accuracy\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+        "aggregations": [
+          {
+            "alignmentPeriod": "300s",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "crossSeriesReducer": "REDUCE_MEAN"
+          }
+        ],
+        "comparison": "COMPARISON_LT",
+        "thresholdValue": 80,
+        "duration": "300s",
+        "trigger": {
+          "count": 1
+        }
+      }
+    },
+    {
+      "displayName": "Storage Usage High",
+      "conditionThreshold": {
+        "filter": "metric.type=\"custom.googleapis.com/frigate/storage_usage\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+        "aggregations": [
+          {
+            "alignmentPeriod": "300s",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "crossSeriesReducer": "REDUCE_MEAN"
+          }
+        ],
+        "comparison": "COMPARISON_GT",
+        "thresholdValue": 85,
+        "duration": "300s",
+        "trigger": {
+          "count": 1
+        }
+      }
+    }
+  ],
+  "alertStrategy": {
+    "autoClose": "86400s",
+    "notificationRateLimit": {
+      "period": "3600s"
+    }
+  },
+  "combiner": "OR",
+  "enabled": true,
+  "notificationChannels": [
+    "projects/airys-production/notificationChannels/${NOTIFICATION_CHANNEL_ID}"
+  ],
+  "severity": "WARNING"
+} 

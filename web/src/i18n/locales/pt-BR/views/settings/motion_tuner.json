@@ -1,0 +1,25 @@
+{
+  "title": "Ajuste de Detecção de Movimento",
+  "description": "O Frigate usa detecção de movimento como primeira verificação para ver se há algo acontecendo no quadro que valha a pena verificar com detecção de objetos.",
+  "documentation": "Leia o Guia de Ajuste de Movimento",
+  "threshold": {
+    "label": "Limiar",
+    "description": "O valor do limiar determina quanta mudança na luminância de um pixel é necessária para ser considerada movimento.",
+    "default": "Padrão: {{value}}"
+  },
+  "contour_area": {
+    "label": "Área do Contorno",
+    "description": "O valor da área do contorno é usado para decidir quais grupos de pixels alterados se qualificam como movimento.",
+    "default": "Padrão: {{value}}"
+  },
+  "improve_contrast": {
+    "label": "Melhorar Contraste",
+    "description": "Melhorar o contraste para cenas mais escuras.",
+    "default": "Padrão: {{value}}"
+  },
+  "actions": {
+    "reset": "Redefinir",
+    "save": "Salvar",
+    "saving": "Salvando..."
+  }
+} 

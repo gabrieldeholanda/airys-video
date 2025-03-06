@@ -1,0 +1,54 @@
+{
+  "dashboard": {
+    "title": "Painel ao Vivo",
+    "noGroups": "Nenhum grupo de câmeras encontrado",
+    "addGroup": "Adicionar Grupo de Câmeras",
+    "editGroup": "Editar Grupo de Câmeras",
+    "deleteGroup": "Excluir Grupo de Câmeras",
+    "groupName": "Nome do Grupo",
+    "cameras": "Câmeras",
+    "noCameras": "Nenhuma câmera neste grupo"
+  },
+  "camera": {
+    "status": {
+      "offline": "Câmera Offline",
+      "loading": "Carregando Câmera...",
+      "error": "Erro ao Carregar Câmera",
+      "noSignal": "Sem Sinal",
+      "recording": "Gravando",
+      "live": "Ao Vivo"
+    },
+    "controls": {
+      "fullscreen": "Tela Cheia",
+      "snapshot": "Tirar Foto",
+      "record": "Gravar",
+      "stopRecording": "Parar Gravação",
+      "settings": "Configurações da Câmera",
+      "ptz": "Controles PTZ"
+    },
+    "streaming": {
+      "title": "Transmissão",
+      "continuous": {
+        "description": "A imagem da câmera sempre será uma transmissão ao vivo quando visível no painel, mesmo que nenhuma atividade esteja sendo detectada.",
+        "warning": "A transmissão contínua pode causar alto uso de banda e problemas de desempenho. Use com cautela."
+      },
+      "compatibility": {
+        "title": "Modo de compatibilidade",
+        "description": "Ative esta opção apenas se a transmissão ao vivo da sua câmera estiver exibindo artefatos de cor e tiver uma linha diagonal no lado direito da imagem."
+      }
+    }
+  },
+  "alerts": {
+    "title": "Alertas Recentes",
+    "noAlerts": "Nenhum alerta recente",
+    "viewAll": "Ver Todos os Alertas",
+    "clear": "Limpar Alertas",
+    "object": {
+      "person": "Pessoa",
+      "vehicle": "Veículo",
+      "animal": "Animal",
+      "insect": "Inseto",
+      "other": "Outro"
+    }
+  }
+} 

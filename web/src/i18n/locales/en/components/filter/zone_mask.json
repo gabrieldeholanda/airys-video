@@ -1,0 +1,8 @@
+{
+  "filter": "Filter",
+  "filterAriaLabel": "Filter by zone mask",
+  "allMasksAndZones": "All Masks and Zones",
+  "zones": "Zones",
+  "motionMasks": "Motion Masks",
+  "objectMasks": "Object Masks"
+} 

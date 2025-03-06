@@ -1,0 +1,82 @@
+{
+  "review": {
+    "title": "Event Review",
+    "noEvents": "No events found",
+    "filters": {
+      "title": "Filters",
+      "camera": "Camera",
+      "allCameras": "All Cameras",
+      "dateRange": "Date Range",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "objects": "Objects",
+      "zones": "Zones",
+      "apply": "Apply Filters",
+      "reset": "Reset Filters"
+    },
+    "list": {
+      "time": "Time",
+      "camera": "Camera",
+      "objects": "Objects",
+      "zones": "Zones",
+      "score": "Score",
+      "actions": "Actions"
+    },
+    "details": {
+      "title": "Event Details",
+      "time": "Time",
+      "camera": "Camera",
+      "objects": "Detected Objects",
+      "zones": "Triggered Zones",
+      "score": "Confidence Score",
+      "snapshot": "Event Snapshot",
+      "recording": "Event Recording",
+      "noRecording": "No recording available"
+    }
+  },
+  "objects": {
+    "person": "Person",
+    "vehicle": "Vehicle",
+    "animal": "Animal",
+    "insect": "Insect",
+    "other": "Other Object",
+    "count": {
+      "single": "{{count}} object",
+      "multiple": "{{count}} objects"
+    }
+  },
+  "zones": {
+    "entry": "Entry Zone",
+    "motion": "Motion Zone",
+    "count": {
+      "single": "{{count}} zone",
+      "multiple": "{{count}} zones"
+    }
+  },
+  "noEvents": "No events found",
+  "timeRange": "Time Range",
+  "filtered": "Filtered Events",
+  "detected": "Detected Objects",
+  "filters": {
+    "title": "Event Filters",
+    "camera": "Camera",
+    "object": "Object Type",
+    "zone": "Zone",
+    "date": "Date Range",
+    "apply": "Apply Filters",
+    "clear": "Clear Filters"
+  },
+  "details": {
+    "title": "Event Details",
+    "time": "Event Time",
+    "duration": "Duration",
+    "objects": "Detected Objects",
+    "zones": "Triggered Zones",
+    "score": "Detection Score",
+    "actions": {
+      "download": "Download Clip",
+      "share": "Share Event",
+      "delete": "Delete Event"
+    }
+  }
+} 

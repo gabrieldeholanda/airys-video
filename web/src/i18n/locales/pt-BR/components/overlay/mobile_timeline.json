@@ -1,0 +1,9 @@
+{
+  "button": {
+    "select": "Selecionar linha do tempo ou lista de eventos"
+  },
+  "options": {
+    "timeline": "Linha do Tempo",
+    "events": "Eventos"
+  }
+} 

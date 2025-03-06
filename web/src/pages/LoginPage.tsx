@@ -1,8 +1,21 @@
 import { UserAuthForm } from "@/components/auth/AuthForm";
 import Logo from "@/components/Logo";
 import { ThemeProvider } from "@/context/theme-provider";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function LoginPage() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+
   return (
     <ThemeProvider defaultTheme="system" storageKey="frigate-ui-theme">
       <div className="size-full overflow-hidden">

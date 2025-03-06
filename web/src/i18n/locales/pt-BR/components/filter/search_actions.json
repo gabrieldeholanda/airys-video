@@ -1,0 +1,26 @@
+{
+  "selection": {
+    "count": "{{count}} selecionados",
+    "unselect": "Desmarcar"
+  },
+  "actions": {
+    "delete": "Excluir",
+    "delete_now": "Excluir Agora"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Confirmar Exclusão",
+      "description": "Excluir estes {{count}} objetos rastreados remove a captura, quaisquer incorporações salvas e todas as entradas associadas ao ciclo de vida do objeto. As filmagens gravadas destes objetos rastreados na visualização do Histórico <em>NÃO</em> serão excluídas.",
+      "confirm": "Tem certeza que deseja prosseguir?",
+      "bypass_hint": "Mantenha a tecla <em>Shift</em> pressionada para ignorar este diálogo no futuro.",
+      "actions": {
+        "cancel": "Cancelar",
+        "confirm": "Excluir"
+      }
+    }
+  },
+  "messages": {
+    "success": "Objetos rastreados excluídos com sucesso.",
+    "error": "Falha ao excluir objetos rastreados."
+  }
+} 

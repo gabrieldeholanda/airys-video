@@ -1,0 +1,37 @@
+{
+  "displayName": "GPU Utilization High",
+  "documentation": {
+    "content": "GPU utilization is consistently high, indicating potential performance bottlenecks. This may require scaling up resources or optimizing workloads.",
+    "mimeType": "text/markdown"
+  },
+  "conditions": [
+    {
+      "displayName": "GPU Utilization > 90% for 15 minutes",
+      "conditionThreshold": {
+        "filter": "metric.type=\"run.googleapis.com/container/nvidia_gpu/utilization\" AND resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"airys-video\"",
+        "aggregations": [
+          {
+            "alignmentPeriod": "60s",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "crossSeriesReducer": "REDUCE_MEAN"
+          }
+        ],
+        "comparison": "COMPARISON_GT",
+        "thresholdValue": 90,
+        "duration": "900s",
+        "trigger": {
+          "count": 1
+        }
+      }
+    }
+  ],
+  "alertStrategy": {
+    "autoClose": "604800s",
+    "notificationRateLimit": {
+      "period": "3600s"
+    }
+  },
+  "combiner": "OR",
+  "enabled": true,
+  "severity": "WARNING"
+} 

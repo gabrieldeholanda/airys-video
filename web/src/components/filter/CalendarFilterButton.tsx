@@ -14,6 +14,7 @@ import { DateRangePicker } from "../ui/calendar-range";
 import { DateRange } from "react-day-picker";
 import { useState } from "react";
 import PlatformAwareDialog from "../overlay/dialog/PlatformAwareDialog";
+import { useTranslation } from "react-i18next";
 
 type CalendarFilterButtonProps = {
   reviewSummary?: ReviewSummary;
@@ -28,6 +29,8 @@ export default function CalendarFilterButton({
   updateSelectedDay,
 }: CalendarFilterButtonProps) {
   const [open, setOpen] = useState(false);
+  const { t: translate } = useTranslation(['ui']);
+  const { t: commonTranslate } = useTranslation(['common']);
   const selectedDate = useFormattedTimestamp(
     day == undefined ? 0 : day?.getTime() / 1000 + 1,
     "%b %-d",
@@ -36,7 +39,7 @@ export default function CalendarFilterButton({
   const trigger = (
     <Button
       className="flex items-center gap-2"
-      aria-label="Select a date to filter by"
+      aria-label={translate('filter.calendar.button.label')}
       variant={day == undefined ? "default" : "select"}
       size="sm"
     >
@@ -46,7 +49,7 @@ export default function CalendarFilterButton({
       <div
         className={`hidden md:block ${day == undefined ? "text-primary" : "text-selected-foreground"}`}
       >
-        {day == undefined ? "Last 24 Hours" : selectedDate}
+        {day == undefined ? translate('filter.calendar.button.default') : selectedDate}
       </div>
     </Button>
   );
@@ -61,12 +64,12 @@ export default function CalendarFilterButton({
       <DropdownMenuSeparator />
       <div className="flex items-center justify-center p-2">
         <Button
-          aria-label="Reset"
+          aria-label={commonTranslate('reset')}
           onClick={() => {
             updateSelectedDay(undefined);
           }}
         >
-          Reset
+          {commonTranslate('reset')}
         </Button>
       </div>
     </>
@@ -85,15 +88,14 @@ export default function CalendarFilterButton({
 
 type CalendarRangeFilterButtonProps = {
   range?: DateRange;
-  defaultText: string;
   updateSelectedRange: (range?: DateRange) => void;
 };
 export function CalendarRangeFilterButton({
   range,
-  defaultText,
   updateSelectedRange,
 }: CalendarRangeFilterButtonProps) {
   const [open, setOpen] = useState(false);
+  const { t: translate } = useTranslation(['ui']);
 
   const selectedDate = useFormattedRange(
     range?.from == undefined ? 0 : range.from.getTime() / 1000 + 1,
@@ -104,7 +106,7 @@ export function CalendarRangeFilterButton({
   const trigger = (
     <Button
       className="flex items-center gap-2"
-      aria-label="Select a date to filter by"
+      aria-label={translate('filter.calendar.button.label')}
       variant={range == undefined ? "default" : "select"}
       size="sm"
     >
@@ -114,7 +116,7 @@ export function CalendarRangeFilterButton({
       <div
         className={`${range == undefined ? "text-primary" : "text-selected-foreground"}`}
       >
-        {range == undefined ? defaultText : selectedDate}
+        {range == undefined ? translate('filter.calendar.button.range.default') : translate('filter.calendar.button.range.selected', { date: selectedDate })}
       </div>
     </Button>
   );
